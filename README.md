@@ -1,1 +1,3 @@
-# JAVA-SW-TEAM-A
+# JAVA SW 국비과정 A팀 저장소입니다.
+
+### 
