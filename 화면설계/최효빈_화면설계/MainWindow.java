@@ -2,63 +2,73 @@ package ateamproject;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.FlowLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Panel;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class MainWindow extends JFrame {
 	
-	//GridLayoutÏúºÎ°ú Îã¨Î†• Íµ¨ÌòÑ?
+	//GridLayout¿∏∑Œ ¥ﬁ∑¬ ±∏«ˆ?
 	JFrame frame = new JFrame("BorderLayout demo");
 	
 	public MainWindow() {
-		super("JLabel ÏòàÏ†ú");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		super("JLabel øπ¡¶");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		
 		frame.setLayout(new BorderLayout());
 		frame.add(new SidePanel(), BorderLayout.WEST);
-		/*
-		Container bg = getContentPane();
-		bg.setLayout(new FlowLayout());
 		
-		JLabel tLabel = new JLabel("Ïù¥ÏΩ©Ïù¥");
-		JLabel Label = new JLabel("Ïù¥ÏΩ©Ïù¥ÏΩ©Ïù¥");
-		
-		bg.add(tLabel);
-		bg.add(Label);
-		*/
 
-
-		
-		
 		frame.setSize(800, 600);
 		frame.setVisible(true);
 		
 	}
 	
 	class SidePanel extends Panel{
-		
 		SidePanel(){
 			setBackground(Color.BLUE);
-			setLayout(new BorderLayout());
+			
+			JPanel panel = new JPanel();
+			panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 			
 			ToDoList td = new ToDoList();
 			DDay dd = new DDay();
 			CurrTime ct = new CurrTime();
 			
-			add(ct, BorderLayout.NORTH);
-			add(dd, BorderLayout.CENTER);
-			add(td, BorderLayout.SOUTH);
+			panel.setBackground(Color.BLUE);
+			panel.add(Box.createRigidArea(new Dimension(0,50)));
+			panel.add(ct);
+			panel.add(Box.createRigidArea(new Dimension(0,50)));
+			panel.add(dd);
+			panel.add(Box.createRigidArea(new Dimension(0,50)));
+			panel.add(td);
 			
-			
+			add(panel);
 			setVisible(true);
 			
+			
+			
+			/*
+			 * setLayout(new BorderLayout());
+			 * 
+			 * ToDoList td = new ToDoList(); DDay dd = new DDay(); CurrTime ct = new
+			 * CurrTime();
+			 * 
+			 * add(ct, BorderLayout.NORTH); add(dd, BorderLayout.CENTER); add(td,
+			 * BorderLayout.SOUTH);
+			 * 
+			 * 
+			 * setVisible(true);
+			 */
 		}
 	}
 	
@@ -69,16 +79,21 @@ public class MainWindow extends JFrame {
 		JLabel ctime;
 		
 		CurrTime(){
-			setLayout(new BorderLayout());
+			setLayout(new GridLayout(2, 1));
+			
+			setBackground(Color.PINK);
 			
 			cdate = new JLabel("2022/03/16");
 			ctime = new JLabel("am/10/48");
 			
 			cdate.setForeground(Color.WHITE);
-			ctime.setForeground(Color.WHITE);
+			cdate.setHorizontalAlignment(JLabel.CENTER);
 			
-			add(cdate, BorderLayout.NORTH);
-			add(ctime, BorderLayout.SOUTH);
+			ctime.setForeground(Color.WHITE);
+			ctime.setHorizontalAlignment(JLabel.CENTER);
+			
+			add(cdate);
+			add(ctime);
 
 		}
 	}
@@ -90,6 +105,7 @@ public class MainWindow extends JFrame {
 			setLayout(new BorderLayout());
 			ddlbl = new JLabel("D-Day here");
 			ddlbl.setForeground(Color.WHITE);
+			ddlbl.setHorizontalAlignment(JLabel.CENTER);
 			add(ddlbl, BorderLayout.CENTER);
 			
 		}
@@ -109,6 +125,7 @@ public class MainWindow extends JFrame {
 			
 			setBackground(Color.BLACK);
 			tdlbl.setForeground(Color.WHITE);
+			tdlbl.setHorizontalAlignment(JLabel.CENTER);
 			ta.setBackground(Color.WHITE);
 			
 		}
