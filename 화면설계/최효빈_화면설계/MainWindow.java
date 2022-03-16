@@ -16,11 +16,10 @@ import javax.swing.JTextArea;
 
 public class MainWindow extends JFrame {
 	
-	//GridLayout으로 달력 구현?
-	JFrame frame = new JFrame("BorderLayout demo");
+	JFrame frame = new JFrame("Calendar demo");
 	
 	public MainWindow() {
-		super("JLabel 예제");
+		super("Calendar demo_super");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
@@ -29,7 +28,7 @@ public class MainWindow extends JFrame {
 		frame.add(new CalendarPanel(), BorderLayout.CENTER);
 		frame.setSize(800, 600);
 		frame.setVisible(true);
-		
+
 	}
 	
 	class SidePanel extends Panel{
@@ -46,77 +45,72 @@ public class MainWindow extends JFrame {
 			panel.setBackground(Color.BLUE);
 			panel.add(Box.createRigidArea(new Dimension(0,50)));
 			panel.add(ct);
-			panel.add(Box.createRigidArea(new Dimension(0,50)));
+			panel.add(Box.createRigidArea(new Dimension(0,100)));
 			panel.add(dd);
-			panel.add(Box.createRigidArea(new Dimension(0,50)));
+			panel.add(Box.createRigidArea(new Dimension(0,100)));
 			panel.add(Box.createVerticalGlue());
 			panel.add(td);
 			panel.add(Box.createRigidArea(new Dimension(0,50)));
 			
 			add(panel);
 			setVisible(true);
-			
-			
-			
 		}
 	}
 	
 	
 	class CurrTime extends Panel{
 		
-		JLabel cdate;
-		JLabel ctime;
+		JLabel cDate;
+		JLabel cTime;
 		
 		CurrTime(){
 			setLayout(new GridLayout(2, 1));
 			
 			setBackground(Color.PINK);
 			
-			cdate = new JLabel("2022/03/16");
-			ctime = new JLabel("am/10/48");
+			cDate = new JLabel("2022/03/16");
+			cTime = new JLabel("am/10/48");
 			
-			cdate.setForeground(Color.WHITE);
-			cdate.setHorizontalAlignment(JLabel.CENTER);
+			cDate.setForeground(Color.WHITE);
+			cDate.setHorizontalAlignment(JLabel.CENTER);
 			
-			ctime.setForeground(Color.WHITE);
-			ctime.setHorizontalAlignment(JLabel.CENTER);
+			cTime.setForeground(Color.WHITE);
+			cTime.setHorizontalAlignment(JLabel.CENTER);
 			
-			add(cdate);
-			add(ctime);
-
+			add(cDate);
+			add(cTime);
 		}
 	}
 	
 	class DDay extends Panel{
-		JLabel ddlbl;
+		JLabel ddLbl;
 		
 		DDay(){
 			setLayout(new BorderLayout());
-			ddlbl = new JLabel("D-Day here");
-			ddlbl.setForeground(Color.WHITE);
-			ddlbl.setHorizontalAlignment(JLabel.CENTER);
-			add(ddlbl, BorderLayout.CENTER);
-			
+			setBackground(Color.PINK);
+			ddLbl = new JLabel("D-Day here");
+			ddLbl.setForeground(Color.WHITE);
+			ddLbl.setHorizontalAlignment(JLabel.CENTER);
+			add(ddLbl, BorderLayout.CENTER);
 		}
 	}
 	
 	class ToDoList extends Panel{
 		
-		JLabel tdlbl;
+		JLabel tdLbl;
 		JTextArea ta;
 		
 		ToDoList(){
 			setLayout(new BorderLayout());
-			tdlbl= new JLabel("ToDo List");
+			tdLbl= new JLabel("ToDo List");
 			ta = new JTextArea(7, 20);
-			add(tdlbl, BorderLayout.NORTH);
+			add(tdLbl, BorderLayout.NORTH);
 			add(new JScrollPane(ta), BorderLayout.SOUTH);
 			
 			setBackground(Color.BLACK);
-			tdlbl.setForeground(Color.WHITE);
-			tdlbl.setHorizontalAlignment(JLabel.CENTER);
+			tdLbl.setForeground(Color.WHITE);
+			tdLbl.setHorizontalAlignment(JLabel.CENTER);
 			ta.setBackground(Color.WHITE);
-			
 		}
 	}
 	
