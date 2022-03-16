@@ -13,11 +13,11 @@ import javax.swing.JTextArea;
 
 public class MainWindow extends JFrame {
 	
-	//GridLayoutÀ¸·Î ´Ş·Â ±¸Çö?
+	//GridLayoutìœ¼ë¡œ ë‹¬ë ¥ êµ¬í˜„?
 	JFrame frame = new JFrame("BorderLayout demo");
 	
 	public MainWindow() {
-		super("JLabel ¿¹Á¦");
+		super("JLabel ì˜ˆì œ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
@@ -27,8 +27,8 @@ public class MainWindow extends JFrame {
 		Container bg = getContentPane();
 		bg.setLayout(new FlowLayout());
 		
-		JLabel tLabel = new JLabel("ÀÌÄáÀÌ");
-		JLabel Label = new JLabel("ÀÌÄáÀÌÄáÀÌ");
+		JLabel tLabel = new JLabel("ì´ì½©ì´");
+		JLabel Label = new JLabel("ì´ì½©ì´ì½©ì´");
 		
 		bg.add(tLabel);
 		bg.add(Label);
