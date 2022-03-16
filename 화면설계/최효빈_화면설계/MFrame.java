@@ -20,7 +20,7 @@ public class MFrame extends Frame{
 		this(w,h,c,false);
 	}
 	public MFrame(int w, int h, Color c, boolean flag) {
-		//setLayout(new FlowLayout()); -> ch09¿¡¼­´Â ÁÖ¼®Ã³¸®ÇÏ°í, µğÆúÆ®ÀÎ º¸´õ·¹ÀÌ¾Æ¿ôÀ» ¾´´Ù.
+		//setLayout(new FlowLayout()); -> ch09ì—ì„œëŠ” ì£¼ì„ì²˜ë¦¬í•˜ê³ , ë””í´íŠ¸ì¸ ë³´ë”ë ˆì´ì•„ì›ƒì„ ì“´ë‹¤.
 		setSize(w, h);
 		setBackground(c);
 		addWindowListener(new WindowAdapter() {
