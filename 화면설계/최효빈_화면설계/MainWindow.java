@@ -21,13 +21,12 @@ public class MainWindow extends JFrame {
 	
 	public MainWindow() {
 		super("JLabel ¿¹Á¦");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 		frame.setLayout(new BorderLayout());
 		frame.add(new SidePanel(), BorderLayout.WEST);
-		
-
+		frame.add(new CalendarPanel(), BorderLayout.CENTER);
 		frame.setSize(800, 600);
 		frame.setVisible(true);
 		
@@ -36,13 +35,13 @@ public class MainWindow extends JFrame {
 	class SidePanel extends Panel{
 		SidePanel(){
 			setBackground(Color.BLUE);
-			
-			JPanel panel = new JPanel();
-			panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-			
+
 			ToDoList td = new ToDoList();
 			DDay dd = new DDay();
 			CurrTime ct = new CurrTime();
+						
+			JPanel panel = new JPanel();
+			panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 			
 			panel.setBackground(Color.BLUE);
 			panel.add(Box.createRigidArea(new Dimension(0,50)));
@@ -50,25 +49,15 @@ public class MainWindow extends JFrame {
 			panel.add(Box.createRigidArea(new Dimension(0,50)));
 			panel.add(dd);
 			panel.add(Box.createRigidArea(new Dimension(0,50)));
+			panel.add(Box.createVerticalGlue());
 			panel.add(td);
+			panel.add(Box.createRigidArea(new Dimension(0,50)));
 			
 			add(panel);
 			setVisible(true);
 			
 			
 			
-			/*
-			 * setLayout(new BorderLayout());
-			 * 
-			 * ToDoList td = new ToDoList(); DDay dd = new DDay(); CurrTime ct = new
-			 * CurrTime();
-			 * 
-			 * add(ct, BorderLayout.NORTH); add(dd, BorderLayout.CENTER); add(td,
-			 * BorderLayout.SOUTH);
-			 * 
-			 * 
-			 * setVisible(true);
-			 */
 		}
 	}
 	
