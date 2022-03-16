@@ -17,7 +17,7 @@ public class MColor {
 	public static Color[] rColor2(){
 		Random rd = new Random();
 		int r,g,b;
-		r = rd.nextInt(256);//0~255 ³­¼ö
+		r = rd.nextInt(256);//0~255 Â³Â­Â¼Ã¶
 		g = rd.nextInt(256);
 		b = rd.nextInt(256);
 		Color c[] = new Color[2];
