@@ -1,0 +1,40 @@
+package ateamproject;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class Jpanel {
+public static void main(String[] args) {
+	Dimension dim = new Dimension(500,250);
+	JFrame frame = new JFrame("입력하세요");
+	frame.setLocation(200, 300);
+	frame.setPreferredSize(dim);
+	JPanel panel1 = new JPanel();
+	panel1.setLayout(new BoxLayout(panel1,BoxLayout.X_AXIS));
+	panel1.add(new JLabel("일정제목 : "));
+	panel1.add(new JTextField());
+	
+	JPanel panel2 = new JPanel();
+	panel2.setLayout(new BoxLayout(panel2,BoxLayout.X_AXIS));
+	panel2.add(new JLabel("일정내용 : "));
+	panel2.add(new JTextField());
+	
+	JPanel panel3= new JPanel();
+	panel3.setLayout(new BoxLayout(panel3,BoxLayout.Y_AXIS));
+	panel3.add(panel1);
+	panel3.add(panel2);
+
+	frame.add(panel3, BorderLayout.CENTER);
+	frame.add(new JButton("입력하기"), BorderLayout.SOUTH);
+	frame.pack();
+	frame.setVisible(true);
+	
+}
+}
