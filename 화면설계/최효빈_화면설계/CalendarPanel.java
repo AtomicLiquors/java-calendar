@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Panel;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -26,7 +29,6 @@ public class CalendarPanel extends Panel {
 		cPanel.add(tLabel);
 		
 		cPanel.add(new IconBar());
-		cPanel.add(new WeekdayBar());
 		cPanel.add(new CalendarGrid());
 		cPanel.setSize(getPreferredSize());
 		
@@ -39,6 +41,11 @@ public class CalendarPanel extends Panel {
 	class IconBar extends Panel {
 		
 		IconBar() {
+			Calendar cal = Calendar.getInstance();
+			int month = (cal.get(Calendar.MONTH));
+			String year = "" + cal.get(Calendar.YEAR);
+			
+			
 			setBackground(Color.PINK);
 			setLayout(new FlowLayout());
 			
@@ -58,38 +65,15 @@ public class CalendarPanel extends Panel {
 			//btn.setRolloverIcon(var_name);
 			
 			add(homeBtn);
-			add(new JLabel("08"));
+			add(new JLabel(String.format("%02d", month+1)));
+			add(new JLabel(cal.getDisplayName(month, Calendar.LONG, Locale.ENGLISH)));
+			add(new JLabel(year));
 			add(alarmBtn);
 			add(settingBtn);
 			
 			setVisible(true);
-			
-			
-			
-
 		}
 	}
 	
-	class WeekdayBar extends Panel {
-
-		WeekdayBar() {
-			setBackground(Color.WHITE);
-			setLayout(new GridLayout(1, 7));
-			JLabel sun = new JLabel("SUN");
-			JLabel sat = new JLabel("SAT");
-			
-			sun.setForeground(Color.RED);
-			sat.setForeground(Color.BLUE);
-			
-			add(sun);
-			add(new JLabel("MON"));
-			add(new JLabel("TUE"));
-			add(new JLabel("WEN"));
-			add(new JLabel("THU"));
-			add(new JLabel("FRI"));
-			add(sat);
-		}
-
-	}
-
+	
 }
