@@ -7,15 +7,28 @@ import java.awt.Panel;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class CalendarGrid extends Panel {
+import javax.swing.JLabel;
 
+public class CalendarGrid extends Panel {
+	
+	
+	Calendar cal = Calendar.getInstance();
+	
+	//버튼을 누르면 다음을 실행한다.
+	//cal.set(Calendar.MONTH, (현재 달 -1) +-1);
+	
+	
 	CalendarGrid() {
+		
+		System.out.println(cal);
+		setCal();
+	}
+
+	public void setCal() {
 		ArrayList<Integer> calArr = new ArrayList<>();
 		ArrayList<Integer> prevArr = new ArrayList<>();
 		ArrayList<Integer> nextArr = new ArrayList<>();
 				
-		
-		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH);
 		int date = cal.get(Calendar.DATE);
@@ -51,8 +64,19 @@ public class CalendarGrid extends Panel {
 		}
 
 		/** 프레임으로 구현 **/
-		GridLayout gridLayout = new GridLayout(calArr.size() / 7, 7);
+		GridLayout gridLayout = new GridLayout( (calArr.size() / 7) + 1, 7);
 		setLayout(gridLayout);
+		
+		String[] weekName = { "SUN", "MON", "TUE", "WEN", "THU", "FRI", "SUN" };		
+		
+		for(int i = 0; i < 7; i++) {
+			JLabel weekLbl = new JLabel(weekName[i]);
+			weekLbl.setOpaque(true);
+			weekLbl.setBackground(Color.WHITE);
+			weekLbl.setHorizontalAlignment(JLabel.CENTER);
+			add(weekLbl);
+		}
+		
 
 		for (int i = 0; i < calArr.size(); i++) {
 			Button tempBtn = new Button(calArr.get(i) + "");
@@ -67,33 +91,6 @@ public class CalendarGrid extends Panel {
 			
 			add(tempBtn);
 		}
-
 	}
 
 }
-
-/*
-	*//** 프레임으로 구현 **//*
-						 * for(int i = 0; i < prevArr.size(); i++) { Button tempBtn = new
-						 * Button(prevArr.get(i) + ""); tempCal.setTime(null); if (i % 7 == 1) {
-						 * tempBtn.setForeground(Color.RED); } else if(i % 7 == 7) {
-						 * tempBtn.setForeground(Color.BLUE); }
-						 * 
-						 * add(tempBtn); }
-						 * 
-						 * for(int i = 0; i < calArr.size(); i++) { Button tempBtn = new
-						 * Button(calArr.get(i) + ""); if (i % 7 == 0) {
-						 * tempBtn.setForeground(Color.RED); } else if(i % 7 == 6) {
-						 * tempBtn.setForeground(Color.BLUE); }
-						 * 
-						 * add(tempBtn); }
-						 * 
-						 * for(int i = 0; i < nextArr.size(); i++) { Button tempBtn = new
-						 * Button(nextArr.get(i) + ""); if (i % 7 == 0) {
-						 * tempBtn.setForeground(Color.RED); } else if(i % 7 == 6) {
-						 * tempBtn.setForeground(Color.BLUE); }
-						 * 
-						 * add(tempBtn); } }
-						 * 
-						 * }
-						 */
