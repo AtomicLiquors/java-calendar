@@ -2,10 +2,13 @@ package ateamproject;
 
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.FileDialog;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Panel;
-import java.text.SimpleDateFormat;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
@@ -16,16 +19,17 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import ateamproject.CalendarPanel.CalendarGrid;
+
 public class CalendarPanel extends Panel {
 	
 	Calendar cal = Calendar.getInstance();
-	//¹öÆ°À» ´©¸£¸é ´ÙÀ½À» ½ÇÇàÇÑ´Ù.
-	//´Ş·ÂÀÇ ¼¼ÆÃ°ªÀº ´Ş·Â À§ÂÊ¿¡ Ç¥½ÃµÇ´Â ³¯Â¥¿Í ÀÏÄ¡ÇÑ´Ù.
+	CalendarGrid cGrid = new CalendarGrid();
 
 	
 	public CalendarPanel() {
-//		
-//		cal.add(Calendar.MONTH, 1);
+		//ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ ë‹¤ìŒì„ ì‹¤í–‰í•œë‹¤.
+		//ë‹¬ë ¥ì˜ ì„¸íŒ…ê°’ì€ ë‹¬ë ¥ ìœ„ìª½ì— í‘œì‹œë˜ëŠ” ë‚ ì§œì™€ ì¼ì¹˜í•œë‹¤.
 		
 		setBackground(Color.WHITE);
 
@@ -33,12 +37,12 @@ public class CalendarPanel extends Panel {
 		cPanel.setLayout(new BoxLayout(cPanel, BoxLayout.Y_AXIS));
 		cPanel.setBackground(Color.PINK);
 
-		JLabel tLabel = new JLabel("CalendarPanel Class ¿µ¿ªÀÔ´Ï´Ù.");
+		JLabel tLabel = new JLabel("CalendarPanel Class ì˜ì—­ì…ë‹ˆë‹¤.");
 
 		cPanel.add(tLabel);
-
+		
 		cPanel.add(new IconBar());
-		cPanel.add(new CalendarGrid());
+		cPanel.add(cGrid);
 		cPanel.setSize(getPreferredSize());
 
 		add(cPanel);
@@ -48,42 +52,100 @@ public class CalendarPanel extends Panel {
 	
 	
 
-	class IconBar extends Panel {
+	public class IconBar extends Panel implements ActionListener {
+		
+		
+		//3ê°œê°€ ì „ë¶€ ìº˜ë¦°í„°ì—ì„œ ë°›ì•„ì˜¤ê³ , ë²„íŠ¼ë“¤ì´ ìº˜ë¦°ë”ë¥¼ ì¡°ì‘í•´ì•¼ í•œë‹¤.
+		//ë˜ëŠ” 3ê°œê°€ ì „ë¶€ monthIdxì—ì„œ ë°›ì•„ì˜¤ê³ , ë²„íŠ¼ë“¤ì´ monthIdxë¥¼ ì¡°ì‘í•´ì•¼ í•œë‹¤.
+		int monthIdx = cal.get(Calendar.MONTH);
+		int year = cal.get(Calendar.YEAR);
+		String[] engMonths = new DateFormatSymbols(Locale.US).getMonths();
+		
+		ImageIcon homeIcon = new ImageIcon("ateamproject/img/home.png");
+		ImageIcon alarmIcon = new ImageIcon("ateamproject/img/alarm.png");
+		ImageIcon settingIcon = new ImageIcon("ateamproject/img/setting.png");
+		
+		JButton prevBtn = new JButton("â—€");
+		JButton nextBtn = new JButton("â–¶");
+		
+
+		JButton homeBtn = new JButton(homeIcon);
+		JButton alarmBtn = new JButton(alarmIcon);
+		JButton settingBtn = new JButton(settingIcon);
+
+		// btn.setPressedIcon(var_name);
+		// btn.setRolloverIcon(var_name);
+		
+		JLabel monthLbl = new JLabel(String.format("%02d", monthIdx + 1));
+		JLabel engLbl = new JLabel(engMonths[monthIdx]);
+		JLabel yearLbl = new JLabel("" + year);
 		
 		IconBar() {
 			
-			int month = (cal.get(Calendar.MONTH));
-			String year = "" + cal.get(Calendar.YEAR);
-
 			setBackground(Color.PINK);
 			setLayout(new FlowLayout());
 
-			ImageIcon homeIcon = new ImageIcon("ateamproject/img/home.png");
-			ImageIcon alarmIcon = new ImageIcon("ateamproject/img/alarm.png");
-			ImageIcon settingIcon = new ImageIcon("ateamproject/img/setting.png");
-
-			JButton homeBtn = new JButton(homeIcon);
-			JButton alarmBtn = new JButton(alarmIcon);
-			JButton settingBtn = new JButton(settingIcon);
-
-			// btn.setPressedIcon(var_name);
-			// btn.setRolloverIcon(var_name);
-
 			add(homeBtn);
-			add(new JLabel(String.format("%02d", month + 1)));
-			add(new JLabel(cal.getDisplayName(month, Calendar.LONG, Locale.ENGLISH)));
-			add(new JLabel(year));
+			add(prevBtn);
+			add(monthLbl);
+			add(engLbl);	
+			add(yearLbl);
+			add(nextBtn);
 			add(alarmBtn);
 			add(settingBtn);
+			
+			prevBtn.addActionListener(this);
+			nextBtn.addActionListener(this);
 
 			setVisible(true);
+		}
+		
+		
+		public void setLbl(){
+			monthLbl.setText(String.format("%02d", monthIdx + 1));
+			engLbl.setText(engMonths[monthIdx]);
+			yearLbl.setText("" + year);
+		}
+
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			Object obj = e.getSource();
+			
+			if(obj.equals(prevBtn)) {
+				//ì™¼ìª½ í™”ì‚´í‘œë¥¼ í´ë¦­í•˜ë©´ ë‚ ì§œê°€ ë°”ë€ë‹¤.
+				
+				if(monthIdx == 0) {
+					monthIdx = 11;
+					year--;
+				}else {
+					monthIdx--;
+				}
+				
+				setLbl();
+				cGrid.setCalGrid();
+				
+			}else if(obj==nextBtn) {
+				//ì˜¤ë¥¸ìª½ í™”ì‚´í‘œë¥¼ í´ë¦­í•˜ë©´ ë‚ ì§œê°€ ë°”ë€ë‹¤.
+				
+				if(monthIdx == 11) {
+					monthIdx = 0;
+					year++;
+				}else {
+					monthIdx++;
+				}
+				
+				setLbl();
+			}
+			
 		}
 	}
 	
 	
 	
 	
-	class CalendarGrid extends Panel {
+	public class CalendarGrid extends Panel {
 	
 		CalendarGrid() {
 			setCalGrid();
@@ -105,12 +167,12 @@ public class CalendarPanel extends Panel {
 			int date = cal.get(Calendar.DATE);
 			int lastDay = cal.getActualMaximum(Calendar.DATE);
 
-			/** ÀÌ¹ø ´Ş ³¯Â¥¸¦ ¹è¿­¿¡ Ãß°¡ **/
+			/** ì´ë²ˆ ë‹¬ ë‚ ì§œë¥¼ ë°°ì—´ì— ì¶”ê°€ **/
 			for (int i = 0; i < lastDay; i++) {
 				calArr.add(i + 1);
 			}
 			
-			/** Áö³­ ´Ş ³¯Â¥¸¦ ¹è¿­¿¡ Ãß°¡ **/
+			/** ì§€ë‚œ ë‹¬ ë‚ ì§œë¥¼ ë°°ì—´ì— ì¶”ê°€ **/
 			cal.set(Calendar.DATE, 1);
 			int weekday = cal.get(Calendar.DAY_OF_WEEK);
 			int numOfPreMonth = weekday - 1;
@@ -122,7 +184,7 @@ public class CalendarPanel extends Panel {
 				lastDay--;
 			}
 
-			/** ´ÙÀ½ ´Ş ³¯Â¥¸¦ ¹è¿­¿¡ Ãß°¡ **/
+			/** ë‹¤ìŒ ë‹¬ ë‚ ì§œë¥¼ ë°°ì—´ì— ì¶”ê°€ **/
 			cal.add(Calendar.MONTH, 1);
 			lastDay = cal.getActualMaximum(Calendar.DATE);
 			cal.set(Calendar.DATE, lastDay);
@@ -134,7 +196,7 @@ public class CalendarPanel extends Panel {
 				nextArr.add(0);
 			}
 
-			/** ÇÁ·¹ÀÓÀ¸·Î ±¸Çö **/
+			/** í”„ë ˆì„ìœ¼ë¡œ êµ¬í˜„ **/
 			GridLayout gridLayout = new GridLayout( (calArr.size() / 7) + 1, 7);
 			setLayout(gridLayout);
 			
@@ -164,6 +226,12 @@ public class CalendarPanel extends Panel {
 			}
 		}
 
+		
 	}
+
+
+
+
+	
 
 }
