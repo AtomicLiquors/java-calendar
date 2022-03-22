@@ -1,25 +1,15 @@
 package ateamproject;
 
-import java.awt.Button;
-import java.awt.Color;
-import java.awt.FileDialog;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Panel;
+import java.awt.*;
+import java.util.*;
+import javax.swing.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.text.DateFormatSymbols;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
 
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-import ateamproject.CalendarPanel.CalendarGrid;
 
 public class CalendarPanel extends Panel {
 	
@@ -146,16 +136,18 @@ public class CalendarPanel extends Panel {
 	
 	
 	public class CalendarGrid extends Panel {
+		
+		//GridLayout의 특정 항목을 지우는 방법이 필요하다. 
+		
+		//최초 실행 시 생성자에서 날짜를 입력하고, SetCalGrid를 실행한다. 
+		//setCalGrid를 실행했을 때는 날짜만 지우고, 날짜만 다시 쓴다.
+		
 	
 		CalendarGrid() {
 			setCalGrid();
 		}
 		
-		public void refCal() {
-			cal.set(Calendar.MONTH, 0);
-			setCalGrid();
-		}
-		
+			
 
 		public void setCalGrid() {
 			ArrayList<Integer> calArr = new ArrayList<>();
