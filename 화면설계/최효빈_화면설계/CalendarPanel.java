@@ -1,25 +1,31 @@
 package ateamproject;
 
-import java.awt.*;
-import java.util.*;
-import javax.swing.*;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Panel;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import java.text.DateFormatSymbols;
-
-
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class CalendarPanel extends Panel {
 	
 	Calendar cal = Calendar.getInstance();
-	CalendarGrid cGrid = new CalendarGrid();
+	//��ư�� ������ ������ �����Ѵ�.
+	//�޷��� ���ð��� �޷� ���ʿ� ǥ�õǴ� ��¥�� ��ġ�Ѵ�.
 
 	
 	public CalendarPanel() {
-		//버튼을 누르면 다음을 실행한다.
-		//달력의 세팅값은 달력 위쪽에 표시되는 날짜와 일치한다.
+//		
+//		cal.add(Calendar.MONTH, 1);
 		
 		setBackground(Color.WHITE);
 
@@ -27,12 +33,12 @@ public class CalendarPanel extends Panel {
 		cPanel.setLayout(new BoxLayout(cPanel, BoxLayout.Y_AXIS));
 		cPanel.setBackground(Color.PINK);
 
-		JLabel tLabel = new JLabel("CalendarPanel Class 영역입니다.");
+		JLabel tLabel = new JLabel("CalendarPanel Class �����Դϴ�.");
 
 		cPanel.add(tLabel);
-		
+
 		cPanel.add(new IconBar());
-		cPanel.add(cGrid);
+		cPanel.add(new CalendarGrid());
 		cPanel.setSize(getPreferredSize());
 
 		add(cPanel);
@@ -42,112 +48,52 @@ public class CalendarPanel extends Panel {
 	
 	
 
-	public class IconBar extends Panel implements ActionListener {
-		
-		
-		//3개가 전부 캘린터에서 받아오고, 버튼들이 캘린더를 조작해야 한다.
-		//또는 3개가 전부 monthIdx에서 받아오고, 버튼들이 monthIdx를 조작해야 한다.
-		int monthIdx = cal.get(Calendar.MONTH);
-		int year = cal.get(Calendar.YEAR);
-		String[] engMonths = new DateFormatSymbols(Locale.US).getMonths();
-		
-		ImageIcon homeIcon = new ImageIcon("ateamproject/img/home.png");
-		ImageIcon alarmIcon = new ImageIcon("ateamproject/img/alarm.png");
-		ImageIcon settingIcon = new ImageIcon("ateamproject/img/setting.png");
-		
-		JButton prevBtn = new JButton("◀");
-		JButton nextBtn = new JButton("▶");
-		
-
-		JButton homeBtn = new JButton(homeIcon);
-		JButton alarmBtn = new JButton(alarmIcon);
-		JButton settingBtn = new JButton(settingIcon);
-
-		// btn.setPressedIcon(var_name);
-		// btn.setRolloverIcon(var_name);
-		
-		JLabel monthLbl = new JLabel(String.format("%02d", monthIdx + 1));
-		JLabel engLbl = new JLabel(engMonths[monthIdx]);
-		JLabel yearLbl = new JLabel("" + year);
+	class IconBar extends Panel {
 		
 		IconBar() {
 			
+			int month = (cal.get(Calendar.MONTH));
+			String year = "" + cal.get(Calendar.YEAR);
+
 			setBackground(Color.PINK);
 			setLayout(new FlowLayout());
 
+			ImageIcon homeIcon = new ImageIcon("ateamproject/img/home.png");
+			ImageIcon alarmIcon = new ImageIcon("ateamproject/img/alarm.png");
+			ImageIcon settingIcon = new ImageIcon("ateamproject/img/setting.png");
+
+			JButton homeBtn = new JButton(homeIcon);
+			JButton alarmBtn = new JButton(alarmIcon);
+			JButton settingBtn = new JButton(settingIcon);
+
+			// btn.setPressedIcon(var_name);
+			// btn.setRolloverIcon(var_name);
+
 			add(homeBtn);
-			add(prevBtn);
-			add(monthLbl);
-			add(engLbl);	
-			add(yearLbl);
-			add(nextBtn);
+			add(new JLabel(String.format("%02d", month + 1)));
+			add(new JLabel(cal.getDisplayName(month, Calendar.LONG, Locale.ENGLISH)));
+			add(new JLabel(year));
 			add(alarmBtn);
 			add(settingBtn);
-			
-			prevBtn.addActionListener(this);
-			nextBtn.addActionListener(this);
 
 			setVisible(true);
-		}
-		
-		
-		public void setLbl(){
-			monthLbl.setText(String.format("%02d", monthIdx + 1));
-			engLbl.setText(engMonths[monthIdx]);
-			yearLbl.setText("" + year);
-		}
-
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			
-			Object obj = e.getSource();
-			
-			if(obj.equals(prevBtn)) {
-				//왼쪽 화살표를 클릭하면 날짜가 바뀐다.
-				
-				if(monthIdx == 0) {
-					monthIdx = 11;
-					year--;
-				}else {
-					monthIdx--;
-				}
-				
-				setLbl();
-				cGrid.setCalGrid();
-				
-			}else if(obj==nextBtn) {
-				//오른쪽 화살표를 클릭하면 날짜가 바뀐다.
-				
-				if(monthIdx == 11) {
-					monthIdx = 0;
-					year++;
-				}else {
-					monthIdx++;
-				}
-				
-				setLbl();
-			}
-			
 		}
 	}
 	
 	
 	
 	
-	public class CalendarGrid extends Panel {
-		
-		//GridLayout의 특정 항목을 지우는 방법이 필요하다. 
-		
-		//최초 실행 시 생성자에서 날짜를 입력하고, SetCalGrid를 실행한다. 
-		//setCalGrid를 실행했을 때는 날짜만 지우고, 날짜만 다시 쓴다.
-		
+	class CalendarGrid extends Panel {
 	
 		CalendarGrid() {
 			setCalGrid();
 		}
 		
-			
+		public void refCal() {
+			cal.set(Calendar.MONTH, 0);
+			setCalGrid();
+		}
+		
 
 		public void setCalGrid() {
 			ArrayList<Integer> calArr = new ArrayList<>();
@@ -159,12 +105,12 @@ public class CalendarPanel extends Panel {
 			int date = cal.get(Calendar.DATE);
 			int lastDay = cal.getActualMaximum(Calendar.DATE);
 
-			/** 이번 달 날짜를 배열에 추가 **/
+			/** �̹� �� ��¥�� �迭�� �߰� **/
 			for (int i = 0; i < lastDay; i++) {
 				calArr.add(i + 1);
 			}
 			
-			/** 지난 달 날짜를 배열에 추가 **/
+			/** ���� �� ��¥�� �迭�� �߰� **/
 			cal.set(Calendar.DATE, 1);
 			int weekday = cal.get(Calendar.DAY_OF_WEEK);
 			int numOfPreMonth = weekday - 1;
@@ -176,7 +122,7 @@ public class CalendarPanel extends Panel {
 				lastDay--;
 			}
 
-			/** 다음 달 날짜를 배열에 추가 **/
+			/** ���� �� ��¥�� �迭�� �߰� **/
 			cal.add(Calendar.MONTH, 1);
 			lastDay = cal.getActualMaximum(Calendar.DATE);
 			cal.set(Calendar.DATE, lastDay);
@@ -188,7 +134,7 @@ public class CalendarPanel extends Panel {
 				nextArr.add(0);
 			}
 
-			/** 프레임으로 구현 **/
+			/** ���������� ���� **/
 			GridLayout gridLayout = new GridLayout( (calArr.size() / 7) + 1, 7);
 			setLayout(gridLayout);
 			
@@ -218,12 +164,6 @@ public class CalendarPanel extends Panel {
 			}
 		}
 
-		
 	}
-
-
-
-
-	
 
 }
