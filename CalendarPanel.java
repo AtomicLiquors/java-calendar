@@ -282,7 +282,7 @@ public class CalendarPanel extends Panel {
 				
 				if (i < prevArr.size() || i >= calArr.size() - nextArr.size() )
 					calBtn.setEnabled(false);
-				calBtn.setActionCommand(""+i);
+				calBtn.setActionCommand(""+ (i-1));
 				calBtn.addActionListener(this);
 				add(calBtn);
 			}
