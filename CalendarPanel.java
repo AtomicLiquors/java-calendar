@@ -30,6 +30,8 @@ public class CalendarPanel extends Panel {
 	int monthIdx;
 	
 	String[] engMonths = new DateFormatSymbols(Locale.US).getMonths();
+	
+	Button calBtn;
 
 	
 	public CalendarPanel() {
@@ -271,19 +273,20 @@ public class CalendarPanel extends Panel {
 //			
 
 			for (int i = 0; i < calArr.size(); i++) {
-				Button tempBtn = new Button(calArr.get(i) + "");
+				calBtn = new Button(calArr.get(i) + "");
 				if (i % 7 == 0) {
-					tempBtn.setForeground(Color.RED);
+					calBtn.setForeground(Color.RED);
 				} else if (i % 7 == 6) {
-					tempBtn.setForeground(Color.BLUE);
+					calBtn.setForeground(Color.BLUE);
 				}
 				
 				if (i < prevArr.size() || i >= calArr.size() - nextArr.size() )
-					tempBtn.setEnabled(false);
-				
-				add(tempBtn);
-				tempBtn.addActionListener(this);
+					calBtn.setEnabled(false);
+				calBtn.setActionCommand(""+ (i-1));
+				calBtn.addActionListener(this);
+				add(calBtn);
 			}
+			
 			
 			calArr.removeAll(calArr);
 			prevArr.removeAll(prevArr);
@@ -298,9 +301,11 @@ public class CalendarPanel extends Panel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			Object obj = e.getSource();
 			
+			System.out.println(e.getActionCommand()+" clicked");
+			
+			
+				
 			//tempBtn.getText
 		}
 
