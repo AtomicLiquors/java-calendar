@@ -52,7 +52,6 @@ public class CalendarPanel extends Panel {
 		cPanel.add(tLabel);
 		
 		cPanel.add(new IconBar());
-		cPanel.add(new WeekdayBar());
 		cPanel.add(cGrid);
 		cPanel.setSize(getPreferredSize());
 
@@ -64,7 +63,8 @@ public class CalendarPanel extends Panel {
 	
 
 	public class IconBar extends Panel implements ActionListener {
-
+		
+		
 		//3개가 전부 캘린터에서 받아오고, 버튼들이 캘린더를 조작해야 한다.
 		//또는 3개가 전부 monthIdx에서 받아오고, 버튼들이 monthIdx를 조작해야 한다.
 		
@@ -155,27 +155,6 @@ public class CalendarPanel extends Panel {
 	
 	
 	
-	public class WeekdayBar extends Panel {
-		
-		String[] weekName = { "SUN", "MON", "TUE", "WEN", "THU", "FRI", "SUN" };		
-		
-		public WeekdayBar() {
-			
-			setBackground(Color.GRAY);
-			
-			setLayout(new GridLayout(1, 7));
-			/** 요일 라벨을 추가 **/
-			for(int i = 0; i < 7; i++) {
-				JLabel weekLbl = new JLabel(weekName[i]);
-				weekLbl.setOpaque(true);
-				weekLbl.setBackground(Color.WHITE);
-				weekLbl.setHorizontalAlignment(JLabel.CENTER);
-				weekLbl.setPreferredSize(new Dimension(60, 40));
-				add(weekLbl);
-			}
-		}
-	}
-	
 	
 	public class CalendarGrid extends Panel implements ActionListener {
 		
@@ -197,15 +176,13 @@ public class CalendarPanel extends Panel {
 		
 		
 		
-		
+		String[] weekName = { "SUN", "MON", "TUE", "WEN", "THU", "FRI", "SUN" };		
 		GridLayout gridLayout = new GridLayout(7, 7);
 		//달력을 넣기 위한 7 * 7 짜리 그리드를 만들어준다.
 		//단, 행 수인 7은 임시로 넣은 값이고 나중에 setCalGrid()에 의해 수시로 변한다.
-		
-		
-		
+	
 		CalendarGrid() {
-			
+			//달력의 크기를 설정해 준다.	
 			setLayout(gridLayout);
 			
 			yearIdx = cal.get(Calendar.YEAR);
@@ -243,7 +220,14 @@ public class CalendarPanel extends Panel {
 			//System.out.println("lastDay = " + lastDay);
 	
 			
-			
+			/** 요일 라벨을 추가 **/
+			for(int i = 0; i < 7; i++) {
+				JLabel weekLbl = new JLabel(weekName[i]);
+				weekLbl.setOpaque(true);
+				weekLbl.setBackground(Color.WHITE);
+				weekLbl.setHorizontalAlignment(JLabel.CENTER);
+				add(weekLbl);
+			}
 			
 			/** 이번 달 날짜를 배열에 추가 **/
 			for (int i = 0; i < lastDay; i++) {
@@ -281,7 +265,7 @@ public class CalendarPanel extends Panel {
 
 			/** 프레임으로 구현 **/
 			
-			gridLayout.setRows( ( calArr.size() / 7 ) );
+			gridLayout.setRows( ( calArr.size() / 7 ) + 1 );
 			//배열의 크기만큼 gridLayout의 행 수를 조절한다.
 			
 			
