@@ -1,8 +1,34 @@
 CREATE TABLE member(
+/* ======== 회원 데이터 ======== */
+
 mb_id CHAR(8) PRIMARY KEY, 
+/*아이디*/
+
 mb_pwd CHAR(10) NOT NULL,
-mb_username CHAR(10) NOT NULL,
-mb_date DATE NOT null
+/*패스워드*/
+
+mb_joindate DATE NOT NULL
+/*가입일자*/
+
+
+
+/* ======== 회원 인적사항 ========  */
+
+mb_realname CHAR(10) NOT NULL,
+/*실제 이름*/
+
+mb_birthdate DATE NOT NULL,
+/*생년월일*/
+
+mb_email CHAR(30) NOT NULL,
+/*이메일*/
+
+
+/* ======== 기타 ========  */
+
+/*mb_username CHAR(10) NOT NULL,*/
+/*이용자명, 따로 지정하는 게 필요하면 추가*/
+
 )
 
 CREATE TABLE sched(
