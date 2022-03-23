@@ -1,25 +1,21 @@
 package ateamproject;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.SystemColor;import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.FlowLayout;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
-import javax.swing.JFormattedTextField;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import java.awt.SystemColor;
 
 public class Accountcreate {
+
 
 	private JFrame frame;
 	private JTextField textField_7;
@@ -31,7 +27,7 @@ public class Accountcreate {
 	private JTextField textField;
 	private JTextField textField_2;
 	private JTextField textField_3;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -70,17 +66,22 @@ public class Accountcreate {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JButton »Æ¿Œ = new JButton("»Æ¿Œ");
-		»Æ¿Œ.addActionListener(new ActionListener() {
+		JButton ÌôïÏù∏ = new JButton("ÌôïÏù∏");
+		ÌôïÏù∏.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		»Æ¿Œ.setBounds(130, 482, 106, 38);
-		panel.add(»Æ¿Œ);
+		ÌôïÏù∏.setBounds(130, 482, 106, 38);
+		panel.add(ÌôïÏù∏);
 		
-		JButton √Îº“ = new JButton("√Îº“");
-		√Îº“.setBounds(248, 482, 106, 38);
-		panel.add(√Îº“);
+		JButton Ï∑®ÏÜå = new JButton("Ï∑®ÏÜå");
+		Ï∑®ÏÜå.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
+		Ï∑®ÏÜå.setBounds(248, 482, 106, 38);
+		panel.add(Ï∑®ÏÜå);
 		
 		textField_7 = new JTextField();
 		textField_7.setBounds(54, 427, 300, 32);
@@ -89,19 +90,19 @@ public class Accountcreate {
 		
 		JLabel lblNewLabel = new JLabel("\uD68C\uC6D0\uAC00\uC785");
 		lblNewLabel.setForeground(SystemColor.text);
-		lblNewLabel.setFont(new Font("±º∏≤", Font.PLAIN, 16));
+		lblNewLabel.setFont(new Font("Íµ¥Î¶º", Font.PLAIN, 16));
 		lblNewLabel.setBounds(212, 10, 64, 65);
 		panel.add(lblNewLabel);
 		
 		lblNewLabel_2 = new JLabel("\uBE44\uBC00\uBC88\uD638 \uD655\uC778");
 		lblNewLabel_2.setForeground(SystemColor.text);
-		lblNewLabel_2.setFont(new Font("±º∏≤", Font.PLAIN, 13));
+		lblNewLabel_2.setFont(new Font("Íµ¥Î¶º", Font.PLAIN, 13));
 		lblNewLabel_2.setBounds(54, 395, 87, 32);
 		panel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("\uBE44\uBC00\uBC88\uD638 \uD655\uC778");
 		lblNewLabel_2_1.setForeground(SystemColor.text);
-		lblNewLabel_2_1.setFont(new Font("±º∏≤", Font.PLAIN, 13));
+		lblNewLabel_2_1.setFont(new Font("Íµ¥Î¶º", Font.PLAIN, 13));
 		lblNewLabel_2_1.setBounds(54, 329, 87, 32);
 		panel.add(lblNewLabel_2_1);
 		
@@ -113,7 +114,7 @@ public class Accountcreate {
 		
 		JLabel lblNewLabel_2_2 = new JLabel("\uC544\uC774\uB514");
 		lblNewLabel_2_2.setForeground(SystemColor.text);
-		lblNewLabel_2_2.setFont(new Font("±º∏≤", Font.PLAIN, 13));
+		lblNewLabel_2_2.setFont(new Font("Íµ¥Î¶º", Font.PLAIN, 13));
 		lblNewLabel_2_2.setBounds(54, 266, 87, 32);
 		panel.add(lblNewLabel_2_2);
 		
@@ -124,7 +125,7 @@ public class Accountcreate {
 		
 		JLabel lblNewLabel_2_3 = new JLabel("\uC774\uBA54\uC77C");
 		lblNewLabel_2_3.setForeground(SystemColor.text);
-		lblNewLabel_2_3.setFont(new Font("±º∏≤", Font.PLAIN, 13));
+		lblNewLabel_2_3.setFont(new Font("Íµ¥Î¶º", Font.PLAIN, 13));
 		lblNewLabel_2_3.setBounds(54, 203, 87, 32);
 		panel.add(lblNewLabel_2_3);
 		
@@ -135,7 +136,7 @@ public class Accountcreate {
 		
 		JLabel lblNewLabel_2_4 = new JLabel("\uC0DD\uB144\uC6D4\uC77C");
 		lblNewLabel_2_4.setForeground(SystemColor.text);
-		lblNewLabel_2_4.setFont(new Font("±º∏≤", Font.PLAIN, 13));
+		lblNewLabel_2_4.setFont(new Font("Íµ¥Î¶º", Font.PLAIN, 13));
 		lblNewLabel_2_4.setBounds(54, 139, 87, 32);
 		panel.add(lblNewLabel_2_4);
 		
@@ -146,7 +147,7 @@ public class Accountcreate {
 		
 		JLabel lblNewLabel_2_5 = new JLabel("\uC774\uB984");
 		lblNewLabel_2_5.setForeground(SystemColor.text);
-		lblNewLabel_2_5.setFont(new Font("±º∏≤", Font.PLAIN, 13));
+		lblNewLabel_2_5.setFont(new Font("Íµ¥Î¶º", Font.PLAIN, 13));
 		lblNewLabel_2_5.setBounds(54, 74, 87, 32);
 		panel.add(lblNewLabel_2_5);
 		
@@ -157,7 +158,7 @@ public class Accountcreate {
 		
 		JLabel lblNewLabel_2_5_1 = new JLabel("\uB144");
 		lblNewLabel_2_5_1.setForeground(SystemColor.text);
-		lblNewLabel_2_5_1.setFont(new Font("±º∏≤", Font.PLAIN, 13));
+		lblNewLabel_2_5_1.setFont(new Font("Íµ¥Î¶º", Font.PLAIN, 13));
 		lblNewLabel_2_5_1.setBounds(159, 170, 19, 32);
 		panel.add(lblNewLabel_2_5_1);
 		
@@ -168,7 +169,7 @@ public class Accountcreate {
 		
 		JLabel lblNewLabel_2_5_1_1 = new JLabel("\uC6D4");
 		lblNewLabel_2_5_1_1.setForeground(SystemColor.text);
-		lblNewLabel_2_5_1_1.setFont(new Font("±º∏≤", Font.PLAIN, 13));
+		lblNewLabel_2_5_1_1.setFont(new Font("Íµ¥Î¶º", Font.PLAIN, 13));
 		lblNewLabel_2_5_1_1.setBounds(247, 169, 19, 32);
 		panel.add(lblNewLabel_2_5_1_1);
 		
@@ -180,7 +181,7 @@ public class Accountcreate {
 		JLabel lblNewLabel_2_5_1_1_1 = new JLabel("\uC77C");
 		lblNewLabel_2_5_1_1_1.setForeground(SystemColor.text);
 		lblNewLabel_2_5_1_1_1.setBackground(SystemColor.text);
-		lblNewLabel_2_5_1_1_1.setFont(new Font("±º∏≤", Font.PLAIN, 13));
+		lblNewLabel_2_5_1_1_1.setFont(new Font("Íµ¥Î¶º", Font.PLAIN, 13));
 		lblNewLabel_2_5_1_1_1.setBounds(335, 169, 19, 32);
 		panel.add(lblNewLabel_2_5_1_1_1);
 		
@@ -189,7 +190,7 @@ public class Accountcreate {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setFont(new Font("±º∏≤", Font.PLAIN, 13));
+		btnNewButton.setFont(new Font("Íµ¥Î¶º", Font.PLAIN, 13));
 		btnNewButton.setBounds(366, 299, 87, 28);
 		panel.add(btnNewButton);
 	}
