@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Panel;
+import java.util.Scanner;
+import java.util.Vector;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -16,12 +18,15 @@ import javax.swing.JTextArea;
 
 public class MainWindow extends JFrame {
 	
+	Vector<CalMemberBean> vlist;
+	CalMemberMgr mgr;
+	
 	JFrame frame = new JFrame("Calendar demo");
 	
 	public MainWindow() {
 		super("Calendar demo_super");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		mgr = new CalMemberMgr();
 		
 		frame.setLayout(new BorderLayout());
 		frame.add(new SidePanel(), BorderLayout.WEST);
@@ -33,6 +38,9 @@ public class MainWindow extends JFrame {
 	
 	class SidePanel extends Panel{
 		SidePanel(){
+			vlist = mgr.listMember();
+			System.out.println(vlist);
+			
 			setBackground(Color.BLUE);
 
 			ToDoList td = new ToDoList();
@@ -116,6 +124,25 @@ public class MainWindow extends JFrame {
 	
 	public static void main(String[] args) {
 		new MainWindow();
+		CalMemberBean bean = new CalMemberBean();
+		
+		Scanner sc = new Scanner(System.in);
+		
+		
+		bean.setMb_id(sc.next());
+		bean.setMb_pwd(sc.next());
+		bean.setMb_realname(sc.next());
+		bean.setMb_joindate(null);
+		bean.setMb_email(sc.next());
+		bean.setMb_birthdate(null);
+		
+		System.out.println(bean);
+		System.out.println(bean.getMb_id());
+		System.out.println(bean.getMb_pwd());
+		System.out.println(bean.getMb_realname());
+		System.out.println(bean.getMb_email());
+		
+
 	}
 
 }
