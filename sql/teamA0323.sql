@@ -7,7 +7,7 @@ mb_id CHAR(8) PRIMARY KEY,
 mb_pwd CHAR(10) NOT NULL,
 /*패스워드*/
 
-mb_joindate DATE NOT NULL
+mb_joindate DATE NOT NULL,
 /*가입일자*/
 
 
@@ -20,7 +20,7 @@ mb_realname CHAR(10) NOT NULL,
 mb_birthdate DATE NOT NULL,
 /*생년월일*/
 
-mb_email CHAR(30) NOT NULL,
+mb_email CHAR(30) NOT NULL
 /*이메일*/
 
 
@@ -29,7 +29,7 @@ mb_email CHAR(30) NOT NULL,
 /*mb_username CHAR(10) NOT NULL,*/
 /*이용자명, 따로 지정하는 게 필요하면 추가*/
 
-)
+);
 
 CREATE TABLE sched(
 sc_id int(8) AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -41,7 +41,7 @@ sc_content CHAR(200),
 sc_isdone BOOLEAN,
 sc_privacy CHAR(10), 
 sc_priority INT(1)
-)
+);
 
 CREATE TABLE todo(
 mb_id CHAR, 
@@ -51,11 +51,11 @@ td_2 CHAR(30),
 td_3 CHAR(30),
 td_4 CHAR(30),
 td_5 CHAR(30)
-)
+);
 
 CREATE TABLE reply(
 mb_id CHAR, 
-sc_id int, 
+sc_id INT, 
 FOREIGN KEY (mb_id) REFERENCES member (mb_id) ON UPDATE CASCADE,
 FOREIGN KEY (sc_id) REFERENCES sched (sc_id) ON UPDATE CASCADE,
 rp_id INT(8) AUTO_INCREMENT PRIMARY KEY NOT NULL,
