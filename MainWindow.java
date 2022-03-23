@@ -141,7 +141,6 @@ public class MainWindow extends JFrame {
 		System.out.println(bean.getMb_pwd());
 		System.out.println(bean.getMb_realname());
 		System.out.println(bean.getMb_email());
-		
 
 	}
 

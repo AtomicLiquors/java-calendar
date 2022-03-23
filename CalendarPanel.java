@@ -2,6 +2,7 @@ package ateamproject;
 
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Panel;
@@ -42,6 +43,7 @@ public class CalendarPanel extends Panel {
 		setBackground(Color.WHITE);
 
 		JPanel cPanel = new JPanel();
+		cPanel.setSize(700, 700);
 		cPanel.setLayout(new BoxLayout(cPanel, BoxLayout.Y_AXIS));
 		cPanel.setBackground(Color.PINK);
 
@@ -282,6 +284,7 @@ public class CalendarPanel extends Panel {
 				
 				if (i < prevArr.size() || i >= calArr.size() - nextArr.size() )
 					calBtn.setEnabled(false);
+				calBtn.setPreferredSize(new Dimension(60, 60));
 				calBtn.setActionCommand(""+ (i-1));
 				calBtn.addActionListener(this);
 				add(calBtn);
