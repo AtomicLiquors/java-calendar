@@ -11,7 +11,7 @@ import java.awt.SystemColor;
 import java.awt.Font;
 import javax.swing.JButton;
 
-public class Accountseek {
+public class Temp_Accountseek {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -24,7 +24,7 @@ public class Accountseek {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Accountseek window = new Accountseek();
+					Temp_Accountseek window = new Temp_Accountseek();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +36,7 @@ public class Accountseek {
 	/**
 	 * Create the application.
 	 */
-	public Accountseek() {
+	public Temp_Accountseek() {
 		initialize();
 	}
 
