@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -69,9 +70,9 @@ public class Accountcreate {
 	}
 	
 	
-/*
+
 	
-	public Boolean setPwdChecked() {
+	public Boolean pwdCheck() {
 		String pwString = ""; 
 		Boolean flag = false;
 		//tf_pw 필드에서 패스워드를 얻어옴, char[] 배열에 저장 
@@ -92,20 +93,17 @@ public class Accountcreate {
 		
 		for(char c : pwd2){ 
 			Character.toString(c); 
-		//cha 에 저장된 값 string으로 변환 
 			pwString += (pwString.equals("")) ? ""+c+"" : ""+c+""; 
-		//pw 에 저장하기, pw 에 값이 비어있으면 저장, 값이 있으면 이어서 저장하는 삼항연산자 
 		}
 		
-		if(pwd1 != "" && pwd2 != "" && pwd1 == pwd2) {
-			flag = true;
-		}
+		flag = Arrays.equals(pwd1, pwd2);
+		//배열을 비교한 결과를 flag에 대입 
 		
 		return flag;
 
 	}
 	//isPwdCorrect = (tfPassword.getText() == tfChkPassword.getText());
-*/
+
 	
 	private void initialize() {
 
@@ -136,12 +134,28 @@ public class Accountcreate {
 				else
 					JOptionPane.showMessageDialog(null, "아이디 중복확인이 필요합니다.");
 				
+				if (pwdCheck())
+					System.out.println("패스워드 일치 확인을 통과했습니다.");
+				else
+					JOptionPane.showMessageDialog(null, "패스워드가 일치하는지 확인하세요.");
 				
 				mgr.signUp();
 			}
 		});
 		okBtn.setBounds(130, 482, 106, 38);
 		panel.add(okBtn);
+		
+		
+		
+		JButton testBtn = new JButton("테스트 버튼");
+		testBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		testBtn.setBounds(0, 0, 106, 38);
+		panel.add(testBtn);
+		
 
 		JButton cancelBtn = new JButton("취소");
 		cancelBtn.addActionListener(new ActionListener() {
@@ -209,15 +223,29 @@ public class Accountcreate {
 		lblNewLabel_2_5_1_1_1.setBounds(335, 169, 19, 32);
 		panel.add(lblNewLabel_2_5_1_1_1);
 
+		
+		JLabel lblNewLabel_2_2 = new JLabel("이메일");
+		lblNewLabel_2_2.setForeground(SystemColor.text);
+		lblNewLabel_2_2.setFont(new Font("굴림", Font.PLAIN, 13));
+		lblNewLabel_2_2.setBounds(54, 203, 87, 32);
+		panel.add(lblNewLabel_2_2);
+		//===
+		tfEmail = new JTextField("");
+		tfEmail.setColumns(10);
+		tfEmail.setBounds(54, 237, 300, 32);
+		panel.add(tfEmail);
+
+		
 		JLabel lblNewLabel_2_3 = new JLabel("아이디");
 		lblNewLabel_2_3.setForeground(SystemColor.text);
 		lblNewLabel_2_3.setFont(new Font("굴림", Font.PLAIN, 13));
-		lblNewLabel_2_3.setBounds(54, 203, 87, 32);
+		lblNewLabel_2_3.setBounds(54, 266, 87, 32);
 		panel.add(lblNewLabel_2_3);
 
-		tfId = new JTextField("");
+		
+		tfId = new JTextField("ID");
 		tfId.setColumns(10);
-		tfId.setBounds(54, 237, 300, 32);
+		tfId.setBounds(54, 298, 300, 32);
 		tfId.getDocument().addDocumentListener(new DocumentListener() {
 			//한번 중복체크를 받았어도, 입력한 아이디가 변경되면 다시 중복체크를 하도록 만든다.
 			
@@ -236,21 +264,9 @@ public class Accountcreate {
 				//StyledDocument에만 적용되는 메소드.
 			}
 		});
-		
-		
 		panel.add(tfId);
-
-		JLabel lblNewLabel_2_2 = new JLabel("이메일");
-		lblNewLabel_2_2.setForeground(SystemColor.text);
-		lblNewLabel_2_2.setFont(new Font("굴림", Font.PLAIN, 13));
-		lblNewLabel_2_2.setBounds(54, 266, 87, 32);
-		panel.add(lblNewLabel_2_2);
-
-		tfEmail = new JTextField("");
-		tfEmail.setColumns(10);
-		tfEmail.setBounds(54, 298, 300, 32);
-		panel.add(tfEmail);
-
+		
+		
 		JLabel lblNewLabel_2_1 = new JLabel("비밀번호");
 		lblNewLabel_2_1.setForeground(SystemColor.text);
 		lblNewLabel_2_1.setFont(new Font("굴림", Font.PLAIN, 13));
@@ -281,7 +297,16 @@ public class Accountcreate {
 			// return boolean
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("===액션을 실행합니다. 입력값 : " + tfId.getText());
-				boolean dupID = mgr.dupIdChk(tfId.getText());
+				
+				String targetId = tfId.getText().trim();
+				
+				if(targetId.equals("")) {
+					setIdChecked(false);
+					JOptionPane.showMessageDialog(null, "아이디를 입력하세요.");
+					return;
+				}
+					
+				boolean dupID = mgr.dupIdChk(targetId);
 				// getText() in select id from member
 
 				if(dupID) {
@@ -297,7 +322,7 @@ public class Accountcreate {
 			}
 		});
 		checkIdButton.setFont(new Font("굴림", Font.PLAIN, 13));
-		checkIdButton.setBounds(366, 237, 87, 28);
+		checkIdButton.setBounds(366, 299, 87, 28);
 		panel.add(checkIdButton);
 	}
 }

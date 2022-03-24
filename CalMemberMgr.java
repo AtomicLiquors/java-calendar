@@ -116,6 +116,7 @@ public class CalMemberMgr {
 	}
 	
 	
+	
 	public void signUp() {
 		boolean flag = false;
 		
