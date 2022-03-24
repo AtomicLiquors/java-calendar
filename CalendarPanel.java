@@ -208,9 +208,6 @@ public class CalendarPanel extends Panel {
 		
 		public void setCalGrid() {
 			System.out.println("달력 세팅 시작");
-			//배열 초기화를 안 했나? 배열이 수상하니 배열을 들여다봅시다.
-			//배열 선언부를 여기로 끌고와야 되나? 아니면 setCalGrid 실행 전에?
-			//배열에 들어갈 항목 또한 변수값과 연동되게.
 			
 			Calendar locCal = Calendar.getInstance();
 			//System.out.println("locCal 설정 시작 : yearidx, monthidx = " + yearIdx +", " + monthIdx);
@@ -306,9 +303,6 @@ public class CalendarPanel extends Panel {
 		public void actionPerformed(ActionEvent e) {
 			
 			System.out.println(e.getActionCommand()+" clicked");
-			
-			
-				
 			//tempBtn.getText
 		}
 

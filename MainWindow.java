@@ -18,15 +18,19 @@ import javax.swing.JTextArea;
 
 public class MainWindow extends JFrame {
 	
-	Vector<CalMemberBean> vlist;
-	CalMemberMgr mgr;
+	
+	
 	
 	JFrame frame = new JFrame("Calendar demo");
 	
 	public MainWindow() {
 		super("Calendar demo_super");
+		
+		System.out.println("=======MainWindow 클래스 실행=======");
+
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mgr = new CalMemberMgr();
+		
 		
 		frame.setLayout(new BorderLayout());
 		frame.add(new SidePanel(), BorderLayout.WEST);
@@ -38,8 +42,7 @@ public class MainWindow extends JFrame {
 	
 	class SidePanel extends Panel{
 		SidePanel(){
-			vlist = mgr.listMember();
-			System.out.println(vlist);
+			
 			
 			setBackground(Color.BLUE);
 
@@ -135,7 +138,7 @@ public class MainWindow extends JFrame {
 		bean.setMb_joindate(null);
 		bean.setMb_email(sc.next());
 		bean.setMb_birthdate(null);
-		
+	
 		System.out.println(bean);
 		System.out.println(bean.getMb_id());
 		System.out.println(bean.getMb_pwd());

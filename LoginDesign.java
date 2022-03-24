@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,7 +14,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import ateamproject.Study_1.WindowTwo;
 
 import javax.swing.JPanel;
 import java.awt.Color;
@@ -60,79 +59,91 @@ public class LoginDesign {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		JPanel Loginpanel = new JPanel();
 		Loginpanel.setBounds(0, 0, 545, 280);
 		Loginpanel.setBackground(SystemColor.textHighlight);
 		frame.getContentPane().add(Loginpanel);
 		Loginpanel.setLayout(null);
-		
-		JButton btnNewButton = new JButton("\uD68C\uC6D0\uAC00\uC785");
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\rorsc\\OneDrive\\Desktop\\\uB85C\uADF8\uC778 \uB514\uC790\uC778\\\uC0C8 \uD3F4\uB354\\\uD68C\uC6D0\uAC00\uC785.png"));
+
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setIcon(new ImageIcon(
+				"ateamproject/img/signup.png"));
 		btnNewButton.setBounds(101, 215, 119, 35);
-		btnNewButton.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 12));
+		btnNewButton.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.PLAIN, 12));
 		Loginpanel.add(btnNewButton);
-		
+
 		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\rorsc\\OneDrive\\Desktop\\\uB85C\uADF8\uC778 \uB514\uC790\uC778\\\uC0C8 \uD3F4\uB354\\\uC544\uC774\uB514.png"));
+		btnNewButton_1.setIcon(new ImageIcon(
+				"ateamproject/img/lookup.png"));
 		btnNewButton_1.setBounds(273, 215, 119, 35);
-		btnNewButton_1.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 12));
+		btnNewButton_1.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.PLAIN, 12));
 		Loginpanel.add(btnNewButton_1);
-		
-		JButton ·Î±×ÀÎ = new JButton("");
-		·Î±×ÀÎ.setIcon(new ImageIcon("C:\\Users\\rorsc\\OneDrive\\Desktop\\\uB85C\uADF8\uC778 \uB514\uC790\uC778\\\uC0C8 \uD3F4\uB354\\\uB85C\uADF8\uC778.png"));
-		·Î±×ÀÎ.setBounds(410, 68, 113, 119);
-		·Î±×ÀÎ.addActionListener(new ActionListener() {
+
+		JButton loginBtn = new JButton("");
+		loginBtn.setIcon(new ImageIcon(
+				"ateamproject/img/login.png"));
+		loginBtn.setBounds(410, 68, 113, 119);
+		loginBtn.addActionListener(new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(ID.getText().equals("ÀÚ¹Ù4Á¶")&&Arrays.equals(Password.getPassword(), "1234".toCharArray())) {
+				
+				CalMemberMgr mgr;
+				Vector<CalMemberBean> vlist;
+				mgr = new CalMemberMgr();
+				
+
+				
+				//ì¿¼ë¦¬ë¬¸ì„ ì‹¤í–‰í•´ì•¼ ëœë‹¤. Password.getPassword() equals select pwd from member where id = "ID.getText()"  
+				String id = ID.getText();
+				String pwd = new String(Password.getPassword());
+				
+				if (mgr.loginChk(id, pwd)) {
 					System.out.println("Account confirm");
 					frame.dispose();
 					new MainWindow();
-				}else {
-					JOptionPane.showMessageDialog(null,"¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù");
+				} else {
+					JOptionPane.showMessageDialog(null, "ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
 				}
-				
+
 			}
-					
+
 		});
-		·Î±×ÀÎ.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 12));
-		Loginpanel.add(·Î±×ÀÎ);
-		
-		JLabel lblNewLabel = new JLabel("\uC790\uBC14 SW A\uC870 \uC0AC\uBB34\uC6A9 \uCE98\uB9B0\uB354");
+		loginBtn.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.PLAIN, 12));
+		Loginpanel.add(loginBtn);
+
+		JLabel lblNewLabel = new JLabel("ìë°” SW Aì¡° ì‚¬ë¬´ìš© ìº˜ë¦°ë”");
 		lblNewLabel.setBounds(134, 15, 236, 28);
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 14));
+		lblNewLabel.setFont(new Font("ë§‘ì€ ê³ ë”•", Font.PLAIN, 14));
 		Loginpanel.add(lblNewLabel);
 
-		
 		ID = new JTextField();
 		ID.setBounds(101, 68, 291, 42);
 		ID.setColumns(10);
 		Loginpanel.add(ID);
-		
+
 		Password = new JPasswordField();
 		Password.setBounds(101, 145, 291, 42);
 		Password.setColumns(10);
 		Loginpanel.add(Password);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("ID");
 		lblNewLabel_1.setBounds(36, 86, 52, 15);
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		Loginpanel.add(lblNewLabel_1);
-		
+
 		JLabel lblNewLabel_1_1 = new JLabel("PW");
 		lblNewLabel_1_1.setBounds(36, 160, 52, 15);
 		lblNewLabel_1_1.setForeground(Color.WHITE);
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		Loginpanel.add(lblNewLabel_1_1);
-		
+
 		JPanel Mainpanel = new JPanel();
 		Mainpanel.setBounds(0, 0, 1100, 500);
 		frame.getContentPane().add(Mainpanel);
-		Mainpanel.setLayout(null);
-		
 	}
 }
