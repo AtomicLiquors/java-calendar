@@ -90,10 +90,7 @@ public class LoginDesign {
 			public void actionPerformed(ActionEvent e) {
 				
 				CalMemberMgr mgr;
-				Vector<CalMemberBean> vlist;
 				mgr = new CalMemberMgr();
-				
-
 				
 				//쿼리문을 실행해야 된다. Password.getPassword() equals select pwd from member where id = "ID.getText()"  
 				String id = ID.getText();
