@@ -243,7 +243,7 @@ public class Accountcreate {
 		panel.add(lblNewLabel_2_3);
 
 		
-		tfId = new JTextField("ID");
+		tfId = new JTextField("");
 		tfId.setColumns(10);
 		tfId.setBounds(54, 298, 300, 32);
 		tfId.getDocument().addDocumentListener(new DocumentListener() {
