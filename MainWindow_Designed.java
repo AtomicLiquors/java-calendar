@@ -309,17 +309,17 @@ public class MainWindow_Designed {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnAlarm.setIcon(new ImageIcon("C:\\Users\\rorsc\\OneDrive\\Desktop\\alarm.png"));
+		btnAlarm.setIcon(new ImageIcon("ateamproject/img/alarm.png"));
 		btnAlarm.setBounds(799, 10, 41, 37);
 		frame.getContentPane().add(btnAlarm);
 		
 		JButton btnNewButton_1_1 = new JButton("");
-		btnNewButton_1_1.setIcon(new ImageIcon("C:\\Users\\rorsc\\OneDrive\\Desktop\\home.png"));
+		btnNewButton_1_1.setIcon(new ImageIcon("ateamproject/img/home.png"));
 		btnNewButton_1_1.setBounds(237, 10, 41, 37);
 		frame.getContentPane().add(btnNewButton_1_1);
 		
 		JButton btnAlarm_1 = new JButton("");
-		btnAlarm_1.setIcon(new ImageIcon("C:\\Users\\rorsc\\OneDrive\\Desktop\\setting.png"));
+		btnAlarm_1.setIcon(new ImageIcon("ateamproject/img/setting.png"));
 		btnAlarm_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
