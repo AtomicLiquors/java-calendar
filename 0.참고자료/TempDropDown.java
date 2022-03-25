@@ -16,7 +16,7 @@ public class TempDropDown {
 	 */
     public static void main(String[] args) {
 
-        
+    	//sqlDate 변환 관련 :-> https://all-record.tistory.com/112
 
 		//create a array for months and year
 		String year[]=new String[31];
