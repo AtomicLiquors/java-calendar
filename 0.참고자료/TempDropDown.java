@@ -1,7 +1,5 @@
 package ateamproject;
 
-import javax.net.ssl.SSLContext;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -69,7 +67,7 @@ public class TempDropDown {
             @Override
             public void actionPerformed(ActionEvent e) {
             	String yearValue = cmbYear.getItemAt(cmbYear.getSelectedIndex());
-            	String monthValue = cmbMonth.getItemAt(cmbMonth.getSelectedIndex());
+            	int monthValue = cmbMonth.getSelectedIndex()+1;
             	String dayValue = cmbDate.getItemAt(cmbDate.getSelectedIndex());
             	
             	System.out.println("You selected "); 
@@ -82,7 +80,9 @@ public class TempDropDown {
                 System.out.println("SQL에 맞는 날짜 형식으로 변환해 주세요.");
                 
                 String fDate = yearValue + "-" + monthValue + "-" + dayValue;
-                java.sql.Date sqlDate = java.sql.Date.valueOf(fDate);
+                
+                System.out.println(fDate);
+                Date sqlDate = Date.valueOf(fDate);
                 
                 //System.out.println(sqlDate);
             }
