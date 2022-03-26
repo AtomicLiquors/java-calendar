@@ -35,7 +35,7 @@ import javax.swing.JMenuItem;
 import javax.swing.UIManager;
 import java.awt.Label;
 
-public class MainWindow_Designed {
+public class practice {
 
 	private JFrame frame;
 
@@ -46,7 +46,7 @@ public class MainWindow_Designed {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainWindow_Designed window = new MainWindow_Designed();
+					practice window = new practice();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -58,7 +58,7 @@ public class MainWindow_Designed {
 	/**
 	 * Create the application.
 	 */
-	public MainWindow_Designed() {
+	public practice() {
 		initialize();
 	}
 
@@ -310,12 +310,12 @@ public class MainWindow_Designed {
 			}
 		});
 		btnAlarm.setIcon(new ImageIcon("ateamproject/img/alarm.png"));
-		btnAlarm.setBounds(799, 10, 41, 37);
+		btnAlarm.setBounds(799, 44, 41, 37);
 		frame.getContentPane().add(btnAlarm);
 		
 		JButton btnNewButton_1_1 = new JButton("");
 		btnNewButton_1_1.setIcon(new ImageIcon("ateamproject/img/home.png"));
-		btnNewButton_1_1.setBounds(237, 10, 41, 37);
+		btnNewButton_1_1.setBounds(237, 44, 41, 37);
 		frame.getContentPane().add(btnNewButton_1_1);
 		
 		JButton btnAlarm_1 = new JButton("");
@@ -324,22 +324,27 @@ public class MainWindow_Designed {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnAlarm_1.setBounds(851, 10, 41, 37);
+		btnAlarm_1.setBounds(851, 44, 41, 37);
 		frame.getContentPane().add(btnAlarm_1);
 		
 		JLabel lblNewLabel_7 = new JLabel("08");
 		lblNewLabel_7.setFont(new Font("굴림", Font.BOLD, 63));
-		lblNewLabel_7.setBounds(519, 42, 93, 89);
+		lblNewLabel_7.setBounds(519, 65, 93, 89);
 		frame.getContentPane().add(lblNewLabel_7);
 		
 		JLabel lblNewLabel_7_1 = new JLabel("2021");
 		lblNewLabel_7_1.setFont(new Font("굴림", Font.BOLD, 20));
-		lblNewLabel_7_1.setBounds(610, 54, 48, 35);
+		lblNewLabel_7_1.setBounds(610, 77, 48, 35);
 		frame.getContentPane().add(lblNewLabel_7_1);
 		
 		JLabel lblNewLabel_7_1_1 = new JLabel("AUGUST");
 		lblNewLabel_7_1_1.setFont(new Font("굴림", Font.BOLD, 18));
-		lblNewLabel_7_1_1.setBounds(610, 81, 93, 35);
+		lblNewLabel_7_1_1.setBounds(610, 104, 93, 35);
 		frame.getContentPane().add(lblNewLabel_7_1_1);
+		
+		JButton btnNewButton = new JButton("로그아웃");
+		btnNewButton.setFont(new Font("굴림", Font.PLAIN, 10));
+		btnNewButton.setBounds(816, 11, 78, 23);
+		frame.getContentPane().add(btnNewButton);
 	}
 }
