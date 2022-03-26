@@ -35,7 +35,7 @@ import javax.swing.JMenuItem;
 import javax.swing.UIManager;
 import java.awt.Label;
 
-public class practice {
+public class MainWindow_Designed {
 
 	private JFrame frame;
 
@@ -46,7 +46,7 @@ public class practice {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					practice window = new practice();
+					MainWindow_Designed window = new MainWindow_Designed();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -58,7 +58,7 @@ public class practice {
 	/**
 	 * Create the application.
 	 */
-	public practice() {
+	public MainWindow_Designed() {
 		initialize();
 	}
 
