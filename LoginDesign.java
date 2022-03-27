@@ -54,6 +54,7 @@ public class LoginDesign {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		frame.setResizable(false);
 		frame = new JFrame();
 		frame.setBounds(100, 100, 560, 320);
 		frame.setLocationRelativeTo(null);
