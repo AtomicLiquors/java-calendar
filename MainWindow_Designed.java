@@ -67,6 +67,7 @@ public class MainWindow_Designed {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.getContentPane().setLocation(-82, -107);
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.getContentPane().setForeground(new Color(255, 255, 255));
