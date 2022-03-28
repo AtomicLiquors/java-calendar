@@ -56,6 +56,10 @@ public class CalSchedMgr {
 				
 				vlist.addElement(bean);
 				
+				System.out.println( bean.getSc_id() + "\t" + bean.getSc_content() + "\t" +
+						bean.getSc_startdate() + "\t" + bean.getSc_enddate() + "\t" +
+						bean.getSc_color() + "\t" + bean.getSc_priority() + "\t" + bean.getSc_privacy() + "\t" + bean.getSc_title());
+				
 			}
 			
 			

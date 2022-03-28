@@ -173,14 +173,14 @@ public class Accountcreate {
 
 		
 		
-		JButton testBtn = new JButton("테스트 버튼");
-		testBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		testBtn.setBounds(0, 0, 106, 38);
-		panel.add(testBtn);
+//		JButton testBtn = new JButton("테스트 버튼");
+//		testBtn.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				
+//			}
+//		});
+//		testBtn.setBounds(0, 0, 106, 38);
+//		panel.add(testBtn);
 		
 
 		JButton cancelBtn = new JButton("취소");
