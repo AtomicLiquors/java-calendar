@@ -85,7 +85,7 @@ public class CalSchedBean {
 	public String getSc_color() {
 		return sc_color;
 	}
-	public void setSc_priority(String sc_color) {
+	public void setSc_color(String sc_color) {
 		this.sc_color = sc_color;
 	}
 	

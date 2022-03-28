@@ -27,27 +27,21 @@ public class MainWindow extends JFrame {
 		super("Calendar demo_super");
 		
 		System.out.println("=======MainWindow 클래스 실행=======");
-//		System.out.println(vlist);
-//		CalSchedBean bean = new CalSchedBean();
-//		System.out.println(bean.getSc_id());
-//		System.out.println(bean.getSc_startdate());
-//		System.out.println(bean.getSc_title());
-//		System.out.println(bean.getSc_enddate());
-//		System.out.println(bean.getSc_content());
-//		System.out.println(bean.getSc_isdone());
-//		//왜 아무 값도 뜨지 않을까? 뭘 놓친 거지?
 		
 		
+		CalSchedBean sbean = mgr.getSched(1);
+		System.out.println("결과값 : " + 
+		sbean.getSc_id() +"\t" +
+		sbean.getSc_startdate() +"\t" +
+		sbean.getSc_content());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		
 		frame.setLayout(new BorderLayout());
 		frame.add(new SidePanel(), BorderLayout.WEST);
 		frame.add(new CalendarPanel(), BorderLayout.CENTER);
 		frame.setSize(800, 600);
 		frame.setVisible(true);
-
 	}
 	
 	class SidePanel extends Panel{
@@ -135,30 +129,7 @@ public class MainWindow extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		
-		
-
-
-		
 		new MainWindow();
-		CalMemberBean bean = new CalMemberBean();
-		
-		Scanner sc = new Scanner(System.in);
-		
-		
-		bean.setMb_id(sc.next());
-		bean.setMb_pwd(sc.next());
-		bean.setMb_realname(sc.next());
-		bean.setMb_joindate(null);
-		bean.setMb_email(sc.next());
-		bean.setMb_birthdate(null);
-	
-		System.out.println(bean);
-		System.out.println(bean.getMb_id());
-		System.out.println(bean.getMb_pwd());
-		System.out.println(bean.getMb_realname());
-		System.out.println(bean.getMb_email());
-
 	}
 
 }
