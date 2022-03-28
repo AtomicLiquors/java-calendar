@@ -1,1 +1,1 @@
-alter table member modify column mb_email CHAR(30);
+alter table sched add column sc_color CHAR(10);

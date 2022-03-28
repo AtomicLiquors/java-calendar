@@ -17,9 +17,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class MainWindow extends JFrame {
-	
-	
-	
+
+	CalSchedMgr mgr = new CalSchedMgr();
+	Vector<CalSchedBean> vlist = mgr.listSched();
 	
 	JFrame frame = new JFrame("Calendar demo");
 	
@@ -27,7 +27,17 @@ public class MainWindow extends JFrame {
 		super("Calendar demo_super");
 		
 		System.out.println("=======MainWindow 클래스 실행=======");
-
+		System.out.println(vlist);
+		CalSchedBean bean = new CalSchedBean();
+		System.out.println(bean.getSc_id());
+		System.out.println(bean.getSc_startdate());
+		System.out.println(bean.getSc_title());
+		System.out.println(bean.getSc_enddate());
+		System.out.println(bean.getSc_content());
+		System.out.println(bean.getSc_isdone());
+		//왜 아무 값도 뜨지 않을까? 뭘 놓친 거지?
+		
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -42,7 +52,6 @@ public class MainWindow extends JFrame {
 	
 	class SidePanel extends Panel{
 		SidePanel(){
-			
 			
 			setBackground(Color.BLUE);
 
@@ -126,6 +135,11 @@ public class MainWindow extends JFrame {
 	}
 	
 	public static void main(String[] args) {
+		
+		
+
+
+		
 		new MainWindow();
 		CalMemberBean bean = new CalMemberBean();
 		

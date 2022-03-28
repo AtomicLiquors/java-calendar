@@ -72,8 +72,6 @@ public class Accountcreate {
 		//확인 버튼을 눌렀을 때, 입력이 맞게 되었는지, Id중복확인이 되었는지 판단한다.
 
 		
-		System.out.println("formCheck 함수 실행");
-		
 		
 		boolean emptyId = tfId.getText().trim().length() == 0;
 		boolean emptyName = tfName.getText().trim().length() == 0;
@@ -114,8 +112,7 @@ public class Accountcreate {
 	
 	
 	public Boolean pwdCheck() {
-		System.out.println("패스워드 체크를 실행합니다.");
-		
+
 		String pwString = ""; 
 		Boolean flag = false;
 		//tf_pw 필드에서 패스워드를 얻어옴, char[] 배열에 저장 
@@ -378,31 +375,19 @@ public class Accountcreate {
 					//formCheck메소드를 실행하고, false일 경우 종료한다.
 					return;
 				}
-									
-
-//                String fDate = yValue + "-" + mValue + "-" + dValue;
-//                Date sqlDate = Date.valueOf(fDate);
 				
 				String yValue = cmbYear.getItemAt(cmbYear.getSelectedIndex());
             	int mValue = cmbMonth.getSelectedIndex()+1;
             	String dValue = cmbDate.getItemAt(cmbDate.getSelectedIndex());
             	
-            	System.out.println("You selected "); 
-                System.out.println(yValue);
-                System.out.println(mValue);
-                System.out.println(dValue);
 
-				
 				String id = tfId.getText().trim();
 				char[] pwd = tfPassword.getPassword();
 				String name = tfName.getText().trim();
 				String bDate = yValue + "-" + mValue + "-" + dValue;
 				String email = tfEmail.getText().trim();
 				
-//				Date sqlDate = Date.valueOf(bDate);
-//                System.out.println(bDate); -> Mgr로.
-				
-				
+
 				
 				mgr.signUp(id, pwd, name, bDate, email);
 			}

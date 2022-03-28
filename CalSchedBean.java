@@ -12,6 +12,7 @@ public class CalSchedBean {
 	private Boolean sc_isdone;
 	private String sc_privacy;
 	private int sc_priority;
+	private String sc_color;
 	
 	
 	public CalSchedBean() {
@@ -20,7 +21,7 @@ public class CalSchedBean {
 	
 	
 	public CalSchedBean(int sc_id, String sc_title, Date sc_startdate, Date sc_enddate, String sc_content,
-			Boolean sc_isdone, String sc_privacy, int sc_priority) {
+			Boolean sc_isdone, String sc_privacy, int sc_priority, String sc_color) {
 		this.sc_id = sc_id;
 		this.sc_title = sc_title;
 		this.sc_startdate = sc_startdate;
@@ -29,6 +30,7 @@ public class CalSchedBean {
 		this.sc_isdone = sc_isdone;
 		this.sc_privacy = sc_privacy;
 		this.sc_priority = sc_priority;
+		this.sc_color = sc_color;
 	}
 	
 	public int getSc_id() {
@@ -78,6 +80,13 @@ public class CalSchedBean {
 	}
 	public void setSc_priority(int sc_priority) {
 		this.sc_priority = sc_priority;
+	}
+	
+	public String getSc_color() {
+		return sc_color;
+	}
+	public void setSc_priority(String sc_color) {
+		this.sc_color = sc_color;
 	}
 	
 	

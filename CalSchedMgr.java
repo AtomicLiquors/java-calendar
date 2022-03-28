@@ -15,18 +15,27 @@ public class CalSchedMgr {
 		pool = DBConnectionMgr.getInstance();
 	}
 
-	public Vector<CalMemberBean> listMember() {
+//	다른 클래스에서 쓸 때 기본양식 :	
 
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = null;
-		Vector<CalMemberBean> vlist = new Vector<CalMemberBean>();
-
+//	CalSchedMgr mgr;
+//	Vector<CalSchedBean> vlist;
+//	mgr = new CalSchedMgr();
+//	vlist = mgr.listMember();
+	
+//	System.out.println(vlist);
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	String sql = null;
+	
+	public Vector<CalSchedBean> listSched() {
+		
+		Vector<CalSchedBean> vlist = new Vector<CalSchedBean>();
 		
 		try {
 			con = pool.getConnection();
-			sql = "select * from member";
+			sql = "select * from sched";
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeQuery();
 			rs = pstmt.executeQuery();
@@ -41,9 +50,15 @@ public class CalSchedMgr {
 						rs.getString("sc_content"),
 						rs.getBoolean("sc_isdone"),
 						rs.getString("sc_privacy"),
-						rs.getInt("sc_priority")
+						rs.getInt("sc_priority"),
+						rs.getString("sc_color")
 						);
+				
+				vlist.addElement(bean);
+				
 			}
+			
+			
 			
 			
 		} catch (Exception e) {
@@ -51,8 +66,21 @@ public class CalSchedMgr {
 		}finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
-
+		
 		return vlist;
 
+	}
+	
+	
+	public void addSched() {
+		
+	}
+	
+	public void delSched() {
+		
+	}
+	
+	public void editSched() {
+		
 	}
 }
