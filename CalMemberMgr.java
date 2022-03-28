@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 public class CalMemberMgr {
@@ -117,46 +115,49 @@ public class CalMemberMgr {
 	
 	
 	
-	public void signUp() {
-		boolean flag = false;
+	public void signUp(String id, char[] pwd, String name, String bDate, String email) {
+//		boolean flag = false;
 		
 		java.util.Date now = new java.util.Date();
-		java.sql.Date sqlDateNow = new java.sql.Date(now.getTime());
+		java.sql.Date jDate = new java.sql.Date(now.getTime());
+		
+		Date sbDate = Date.valueOf(bDate);
+		
+		String pwdStr = "";
+		
+		for(char c : pwd){ 
+			Character.toString(c); 
+		//cha 에 저장된 값 string으로 변환 
+			pwdStr += (pwdStr.equals("")) ? ""+c+"" : ""+c+""; 
+		//pw 에 저장하기, pw 에 값이 비어있으면 저장, 값이 있으면 이어서 저장하는 삼항연산자 
+		}
 		
 		
 
-//		//문자열을 sqlDate로 변환.
-//		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//		java.util.Date fd = formatter.parse("2022-05-05");
-//		java.sql.Date sqlDateUser = new java.sql.Date(fd.getTime());
-//		
-		System.out.println("SignUp 메소드가 실행되었습니다.");
-		
-		/* 파라미터 전달이 확인되면, 아래 내용을 다시 되살려 주세요. */
-//		try {
-//			con = pool.getConnection();
-//			sql = "insert into member(mb_id, mb_pwd, mb_joindate, mb_realname, mb_birthdate, mb_email) "
-//					+ "values(?, ?, ?, ?, ?, ?)";
-//
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setString(1, param);
-//			pstmt.setString(2, param);
-//			pstmt.setDate(3, sqlDateNow); 
-//			pstmt.setString(4, param);
-//			pstmt.setString(5, param);
-//			pstmt.setString(6, param);
-//			rs = pstmt.executeQuery();
-//			
-//			rs.next();
+		try {
+			con = pool.getConnection();
+			sql = "insert into member(mb_id, mb_pwd, mb_joindate, mb_realname, mb_birthdate, mb_email) "
+					+ "values(?, ?, ?, ?, ?, ?)";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwdStr);
+			pstmt.setDate(3, jDate); 
+			pstmt.setString(4, name);
+			pstmt.setDate(5, sbDate);
+			pstmt.setString(6, email);
+			int rowCount = pstmt.executeUpdate();
+			System.out.println(rowCount + "명의 회원정보가 추가되었습니다.");
+			
 //			flag = ((rs.getInt(1) != 0));
-//			
-//			
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			pool.freeConnection(con, pstmt, rs);
-//		}
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
 
 	}
 	

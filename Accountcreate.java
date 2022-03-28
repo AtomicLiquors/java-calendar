@@ -5,10 +5,12 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -32,10 +34,7 @@ public class Accountcreate {
 	private JFrame frame;
 	private JTextField tfEmail;
 	private JTextField tfId;
-	private JTextField tfBirthYear;
 	private JTextField tfName;
-	private JTextField tfBirthMonth;
-	private JTextField tfBirthDay;
 	private JPasswordField tfPassword;
 	private JPasswordField tfChkPassword;
 
@@ -69,10 +68,54 @@ public class Accountcreate {
 		isIdChecked = flag;
 	}
 	
-	
+	public Boolean formCheck() {
+		//확인 버튼을 눌렀을 때, 입력이 맞게 되었는지, Id중복확인이 되었는지 판단한다.
+
+		
+		System.out.println("formCheck 함수 실행");
+		
+		
+		boolean emptyId = tfId.getText().trim().length() == 0;
+		boolean emptyName = tfName.getText().trim().length() == 0;
+		boolean emptyEmail = tfEmail.getText().trim().length() == 0;
+		
+		if(emptyId) {
+			JOptionPane.showMessageDialog(null, "아이디를 입력해 주세요.");
+			return false;
+		}
+		
+		if (!isIdChecked) {
+			//Id 중복확인을 통과하지 않았다면 다음을 실행한다.
+			JOptionPane.showMessageDialog(null, "아이디 중복확인이 필요합니다.");
+			return false;
+		}
+		
+		if(emptyName) {
+			JOptionPane.showMessageDialog(null, "이름(실명)을 입력해주세요.");
+			return false;
+		}
+		
+		if(emptyEmail) {
+			JOptionPane.showMessageDialog(null, "이메일 주소를 입력해주세요.");
+			return false;
+		}
+		
+
+		if(!emptyId && !emptyName && !emptyEmail && isIdChecked && pwdCheck())
+			return true;
+		else
+			return false;
+		
+		
+		//반영 안 된 것 : id, pwd, 이메일 제약조건.
+	}
 
 	
+	
+	
 	public Boolean pwdCheck() {
+		System.out.println("패스워드 체크를 실행합니다.");
+		
 		String pwString = ""; 
 		Boolean flag = false;
 		//tf_pw 필드에서 패스워드를 얻어옴, char[] 배열에 저장 
@@ -96,8 +139,21 @@ public class Accountcreate {
 			pwString += (pwString.equals("")) ? ""+c+"" : ""+c+""; 
 		}
 		
+		if(pwd1.length == 0) {
+			JOptionPane.showMessageDialog(null, "패스워드를 올바르게 입력하세요.");
+			return false;
+		}
+		
+		if(pwd2.length == 0) {
+			JOptionPane.showMessageDialog(null, "패스워드 확인란을 올바르게 입력하세요.");
+			return false;
+		}
+		
 		flag = Arrays.equals(pwd1, pwd2);
 		//배열을 비교한 결과를 flag에 대입 
+		
+		if(!flag)
+			JOptionPane.showMessageDialog(null, "패스워드가 일치하지 않습니다.");
 		
 		return flag;
 
@@ -118,33 +174,6 @@ public class Accountcreate {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
-		JButton okBtn = new JButton("확인");
-		okBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//양식이 빠짐없이 작성되었는가?
-				//아이디 중복확인을 통과했는가?
-				//비밀번호 확인이 일치하는가?
-				//입력 내용이 형식에 어긋나지 않았나?
-				//
-				
-				if (formComplete) 
-					System.out.println("항목이 빠짐없이 작성되었습니다.");
-				if (isIdChecked)
-					System.out.println("중복확인을 통과했습니다.");
-				else
-					JOptionPane.showMessageDialog(null, "아이디 중복확인이 필요합니다.");
-				
-				if (pwdCheck())
-					System.out.println("패스워드 일치 확인을 통과했습니다.");
-				else
-					JOptionPane.showMessageDialog(null, "패스워드가 일치하는지 확인하세요.");
-				
-				mgr.signUp();
-			}
-		});
-		okBtn.setBounds(130, 482, 106, 38);
-		panel.add(okBtn);
-		
 		
 		
 		JButton testBtn = new JButton("테스트 버튼");
@@ -182,6 +211,26 @@ public class Accountcreate {
 		tfName.setColumns(10);
 		tfName.setBounds(54, 106, 300, 32);
 		panel.add(tfName);
+		
+		
+		//생년월일 드롭다운
+
+		String yList[]=new String[31];
+		String dList[]=new String[31];
+		String mList[]=new String[12];
+			
+		
+		for(int i=0;i<31;i++)
+		{
+			dList[i]=""+(int)(i+1);
+			yList[i]=""+(int)(2022-i);
+		}//월을 선택하면 유동적으로 바뀌도록.
+		
+		
+		for(int i=0; i<12; i++) {
+			mList[i] = "" + (int)(i+1);
+		}
+		
 
 		JLabel lblNewLabel_2_4 = new JLabel("생년월일");
 		lblNewLabel_2_4.setForeground(SystemColor.text);
@@ -189,21 +238,20 @@ public class Accountcreate {
 		lblNewLabel_2_4.setBounds(54, 139, 87, 32);
 		panel.add(lblNewLabel_2_4);
 
-		tfBirthYear = new JTextField("");
-		tfBirthYear.setColumns(10);
-		tfBirthYear.setBounds(54, 171, 99, 32);
-		panel.add(tfBirthYear);
+		JComboBox<String> cmbYear = new JComboBox<>(yList);
+		cmbYear.setBounds(54, 171, 99, 32);
+		panel.add(cmbYear);
 
 		JLabel lblNewLabel_2_5_1 = new JLabel("년");
 		lblNewLabel_2_5_1.setForeground(SystemColor.text);
 		lblNewLabel_2_5_1.setFont(new Font("굴림", Font.PLAIN, 13));
 		lblNewLabel_2_5_1.setBounds(159, 170, 19, 32);
 		panel.add(lblNewLabel_2_5_1);
-
-		tfBirthMonth = new JTextField("");
-		tfBirthMonth.setColumns(10);
-		tfBirthMonth.setBounds(190, 171, 50, 32);
-		panel.add(tfBirthMonth);
+		
+        
+        JComboBox<String> cmbMonth = new JComboBox<>(mList);
+        cmbMonth.setBounds(190, 171, 50, 32);
+		panel.add(cmbMonth);
 
 		JLabel lblNewLabel_2_5_1_1 = new JLabel("월");
 		lblNewLabel_2_5_1_1.setForeground(SystemColor.text);
@@ -211,10 +259,10 @@ public class Accountcreate {
 		lblNewLabel_2_5_1_1.setBounds(247, 169, 19, 32);
 		panel.add(lblNewLabel_2_5_1_1);
 
-		tfBirthDay = new JTextField("");
-		tfBirthDay.setColumns(10);
-		tfBirthDay.setBounds(278, 171, 50, 32);
-		panel.add(tfBirthDay);
+
+        JComboBox<String> cmbDate = new JComboBox<>(dList);
+        cmbDate.setBounds(278, 171, 50, 32);
+		panel.add(cmbDate);
 
 		JLabel lblNewLabel_2_5_1_1_1 = new JLabel("일");
 		lblNewLabel_2_5_1_1_1.setForeground(SystemColor.text);
@@ -296,13 +344,12 @@ public class Accountcreate {
 
 			// return boolean
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("===액션을 실행합니다. 입력값 : " + tfId.getText());
 				
 				String targetId = tfId.getText().trim();
 				
 				if(targetId.equals("")) {
 					setIdChecked(false);
-					JOptionPane.showMessageDialog(null, "아이디를 입력하세요.");
+					JOptionPane.showMessageDialog(null, "먼저 아이디를 입력하세요.");
 					return;
 				}
 					
@@ -321,6 +368,50 @@ public class Accountcreate {
 					
 			}
 		});
+		
+		
+		JButton okBtn = new JButton("확인");
+		okBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (!formCheck()) {
+					//formCheck메소드를 실행하고, false일 경우 종료한다.
+					return;
+				}
+									
+
+//                String fDate = yValue + "-" + mValue + "-" + dValue;
+//                Date sqlDate = Date.valueOf(fDate);
+				
+				String yValue = cmbYear.getItemAt(cmbYear.getSelectedIndex());
+            	int mValue = cmbMonth.getSelectedIndex()+1;
+            	String dValue = cmbDate.getItemAt(cmbDate.getSelectedIndex());
+            	
+            	System.out.println("You selected "); 
+                System.out.println(yValue);
+                System.out.println(mValue);
+                System.out.println(dValue);
+
+				
+				String id = tfId.getText().trim();
+				char[] pwd = tfPassword.getPassword();
+				String name = tfName.getText().trim();
+				String bDate = yValue + "-" + mValue + "-" + dValue;
+				String email = tfEmail.getText().trim();
+				
+//				Date sqlDate = Date.valueOf(bDate);
+//                System.out.println(bDate); -> Mgr로.
+				
+				
+				
+				mgr.signUp(id, pwd, name, bDate, email);
+			}
+		});
+		okBtn.setBounds(130, 482, 106, 38);
+		panel.add(okBtn);
+		
+		
+		
 		checkIdButton.setFont(new Font("굴림", Font.PLAIN, 13));
 		checkIdButton.setBounds(366, 299, 87, 28);
 		panel.add(checkIdButton);
