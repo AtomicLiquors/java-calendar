@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 
 
@@ -20,14 +22,20 @@ public class CalendarPanel_Merged extends Panel {
 	Calendar cal = Calendar.getInstance();
 	CalendarGrid cGrid = new CalendarGrid();
 	
-	int yearIdx;
-	int monthIdx;
-	String[] engMonths = new DateFormatSymbols(Locale.US).getMonths();
 
+	String[] engMonths = new DateFormatSymbols(Locale.US).getMonths();
 	
 	
 	JButton calBtn;
+	
+	int panelY;
+	int panelM;
 
+
+	public void setDate(int y, int m) {
+		panelY = y;
+		panelM = m;
+	}
 	
 	public CalendarPanel_Merged() {		
 
@@ -45,22 +53,10 @@ public class CalendarPanel_Merged extends Panel {
 
 
 	
-	public void decMonth(int m, int y) {
-		//상위 클래스에서 m, y값을 변경한다.
-		//하위 클래스에서 m, y값을 받아와 함수를 실행한다. 
-		
-		//
-	}
-
-	
 	public class CalendarGrid extends Panel implements ActionListener {
-		
-		//GridLayout의 특정 항목을 지우는 방법이 필요하다. 
 		
 		//최초 실행 시 생성자에서 날짜를 입력하고, SetCalGrid를 실행한다. 
 		//setCalGrid를 실행했을 때는 날짜만 지우고, 날짜만 다시 쓴다.
-		
-		//Grid의 행 열 수를 새롭게 지정할 수 있나?
 		
 		ArrayList<Integer> calArr = new ArrayList<>();
 		ArrayList<Integer> prevArr = new ArrayList<>();
@@ -90,14 +86,25 @@ public class CalendarPanel_Merged extends Panel {
 			repaint();
 			System.out.println("달력 지우기 완료");
 		}
-		
 
+		
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			System.out.println(e.getActionCommand()+" clicked");
-			//tempBtn.getText
+			String btnTxt = "";
+			
+			Object obj = e.getSource();
+			if (obj instanceof JButton) {
+				JButton tempBtn = (JButton)obj;
+		        btnTxt = tempBtn.getText();
+			}
+			System.out.println(btnTxt+" clicked");
+			Ppop pop = new Ppop();
+			pop.setVisible(true);
+			
+			
+			pop.setDate("" + panelY, "" + (panelM + 1), btnTxt);
 		}
 
 
@@ -173,7 +180,11 @@ public class CalendarPanel_Merged extends Panel {
 				calBtn.setPreferredSize(new Dimension(95, 75));
 				calBtn.setActionCommand(""+ (i-1));
 				calBtn.addActionListener(this);
+								
 				add(calBtn);
+				
+				//if( DB를 조회해서 panelY, panelM, i와 일치하는 날짜에 데이터가 있을 경우)
+				//일정 표기할 객체.setVisible(true);
 			}
 			
 			

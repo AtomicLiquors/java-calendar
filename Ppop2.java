@@ -34,6 +34,7 @@ public class Ppop2 extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JLabel dateLabel; 
 
 	/**
 	 * Launch the application.
@@ -61,6 +62,11 @@ public class Ppop2 extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		dateLabel = new JLabel("1111");
+		dateLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		dateLabel.setBounds(26, 0, 57, 15);
+		contentPane.add(dateLabel);
 
 		JLabel lblNewLabel = new JLabel("일정내용 더보기");
 		lblNewLabel.setBounds(0, 0, 434, 15);
@@ -149,6 +155,11 @@ public class Ppop2 extends JFrame {
 		lblNewLabel_3.setBounds(0, 205, 434, 15);
 		contentPane.add(lblNewLabel_3);
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+	}
+	
+	
+	public void setDate(String y, String m, String d) {
+		dateLabel.setText(y + "-" + m + "-" + d);
 	}
 
 }

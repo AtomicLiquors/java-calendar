@@ -22,11 +22,17 @@ public class Ppop extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	private JLabel dateLabel;
+	
+	String popY = ""+2020;
+	String popM = ""+3;
+	String popD = ""+5;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -43,12 +49,19 @@ public class Ppop extends JFrame {
 	 * Create the frame.
 	 */
 	public Ppop() {
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 229);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		dateLabel = new JLabel(popY+"-"+popM+"-"+popD);
+		dateLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		dateLabel.setBounds(26, 0, 57, 15);
+		contentPane.add(dateLabel);
 		
 		JLabel lblNewLabel = new JLabel("일정내용");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -71,19 +84,22 @@ public class Ppop extends JFrame {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Ppop2.main(null);
+				Ppop2 pop2 = new Ppop2();
+				pop2.setVisible(true);
+				pop2.setDate(popY, popM, popD);
+				
 			}
 		});
 		
 		
-		JButton btnNewButton_1 = new JButton("저장");
-		btnNewButton_1.setBounds(116, 157, 97, 23);
-		contentPane.add(btnNewButton_1);
+		JButton saveBtn = new JButton("저장");
+		saveBtn.setBounds(116, 157, 97, 23);
+		contentPane.add(saveBtn);
 		
-		JButton btnNewButton_2 = new JButton("취소");
-		btnNewButton_2.setBounds(241, 157, 97, 23);
-		contentPane.add(btnNewButton_2);
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton cancleBtn = new JButton("취소");
+		cancleBtn.setBounds(241, 157, 97, 23);
+		contentPane.add(cancleBtn);
+		cancleBtn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -99,13 +115,20 @@ public class Ppop extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(115, 62, 276, 57);
-		contentPane.add(textArea);
+		JTextArea scContent = new JTextArea();
+		scContent.setBounds(115, 62, 276, 57);
+		contentPane.add(scContent);
 		
-		JButton btnNewButton_3 = new JButton("삭제");
-		btnNewButton_3.setBounds(347, 129, 75, 23);
-		contentPane.add(btnNewButton_3);
+		JButton delBtn = new JButton("삭제");
+		delBtn.setBounds(347, 129, 75, 23);
+		contentPane.add(delBtn);
 	}
 	
+	public void setDate(String y, String m, String d) {
+		popY = y;
+		popM = m;
+		popD = d;
+		dateLabel.setText(y + "-" + m + "-" + d);
+	}
 }
+

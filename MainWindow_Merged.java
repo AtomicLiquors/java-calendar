@@ -27,7 +27,6 @@ public class MainWindow_Merged implements ActionListener{
 	int monthIdx = cal.get(Calendar.MONTH);
 	String[] engMonths = new DateFormatSymbols(Locale.US).getMonths();
 	
-	
 	public JFrame frame;
 	
 	JLabel monthLbl;
@@ -39,14 +38,11 @@ public class MainWindow_Merged implements ActionListener{
 	JButton settingBtn;
 	JButton prevBtn;
 	JButton nextBtn;
-	
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
-		
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -58,8 +54,6 @@ public class MainWindow_Merged implements ActionListener{
 				}
 			}
 		});
-		
-		
 	}
 
 	/**
@@ -79,6 +73,8 @@ public class MainWindow_Merged implements ActionListener{
 		monthLbl.setText(String.format("%02d", monthIdx + 1));
 		engLbl.setText(engMonths[monthIdx]);
 		yearLbl.setText("" + yearIdx);
+		cmg.setDate(yearIdx, monthIdx);
+
 	}
 	
 	private void initialize() {
@@ -324,25 +320,7 @@ public class MainWindow_Merged implements ActionListener{
 		}
 		
 	}
-	
-	
-}
 
-
-
-
-
-
-
-/*
-
-
-@Override
-public void actionPerformed(ActionEvent e) {
-	
-	
 	
 }
-}
-*/
 
