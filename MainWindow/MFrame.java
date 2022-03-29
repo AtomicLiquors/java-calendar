@@ -1,4 +1,4 @@
-package ateamproject;
+package ateamproject.MainWindow;
 
 import java.awt.Color;
 import java.awt.FlowLayout;

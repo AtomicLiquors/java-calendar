@@ -1,4 +1,4 @@
-package ateamproject;
+package ateamproject.Data;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -79,13 +79,18 @@ public class CalSchedMgr {
 
 	}
 	
-	public CalSchedBean getSched(int id) { //0.매개변수로 임시로 id값을 받는다.
+	public CalSchedBean getSched(String d) { //0.매개변수로 date를 받는다.
 		CalSchedBean bean = new CalSchedBean();
+		
+		Date rDate = Date.valueOf(d);
+		
 		try {
 			con = pool.getConnection();
-			sql = "select * from sched where sc_id = ?";//2. 물음표 자리에 매개변수가 들어가.
+			//between
+			sql = "SELECT * FROM sched WHERE sc_startdate <= ? AND sc_enddate >= ?";//2. 물음표 자리에 매개변수가 들어가.
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, id); //1. 여기서 매개변수 id를 받은 다음...
+			pstmt.setDate(1, rDate); //1. 여기서 매개변수 date를 받은 다음...
+			pstmt.setDate(2, rDate); 
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				bean.setSc_id(rs.getInt("sc_id"));
@@ -97,6 +102,7 @@ public class CalSchedMgr {
 				bean.setSc_privacy(rs.getString("sc_privacy"));
 				bean.setSc_startdate(rs.getDate("sc_startdate"));
 				bean.setSc_title(rs.getString("sc_title"));
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

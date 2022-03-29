@@ -1,4 +1,4 @@
-package ateamproject;
+package ateamproject.MbForm;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import ateamproject.Data.CalMemberMgr;
 import member.MemberBean;
 
 public class Accountcreate {

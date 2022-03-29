@@ -17,6 +17,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import ateamproject.Data.CalMemberMgr;
+import ateamproject.MainWindow.MainWindow_Merged;
+import ateamproject.MbForm.Accountcreate;
+import ateamproject.MbForm.Accountseek;
+
 public class LoginDesign {
 
 	public JFrame frame;
@@ -114,7 +119,7 @@ public class LoginDesign {
 				if (mgr.loginChk(id, pwd)) {
 					System.out.println("Account confirm");
 					frame.dispose();
-					new MainWindow();
+					new MainWindow_Merged();
 					
 				} else {
 					JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 일치하지 않습니다");

@@ -28,7 +28,7 @@ public class MainWindow extends JFrame {
 
 		System.out.println("=======MainWindow 클래스 실행=======");
 		
-		CalSchedBean sbean = mgr.getSched(1);
+		CalSchedBean sbean = mgr.getSched("2022-3-25");
 		System.out.println("결과값 : " + 
 		sbean.getSc_id() +"\t" +
 		sbean.getSc_startdate() +"\t" +
@@ -129,7 +129,7 @@ public class MainWindow extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		new MainWindow();
+		new TempWindow();
 	}
 
 }

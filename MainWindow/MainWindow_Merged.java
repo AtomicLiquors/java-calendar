@@ -1,12 +1,16 @@
-package ateamproject;
+package ateamproject.MainWindow;
 
 import java.awt.Color;
+
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
+
 import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -17,21 +21,28 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import ateamproject.CalendarPanel_Merged;
-
-public class MainWindow_Merged implements ActionListener{
+public class MainWindow_Merged implements ActionListener, Runnable{
+	
 	Calendar cal = Calendar.getInstance();
 	CalendarPanel_Merged cmg = new CalendarPanel_Merged();
 	
 	int yearIdx = cal.get(Calendar.YEAR);
 	int monthIdx = cal.get(Calendar.MONTH);
 	String[] engMonths = new DateFormatSymbols(Locale.US).getMonths();
-	
+
+	private Thread thread;
+	private JLabel label;
+	private SimpleDateFormat sfDate;
+	private SimpleDateFormat sfTime;
+
 	public JFrame frame;
 	
 	JLabel monthLbl;
 	JLabel yearLbl;
 	JLabel engLbl; 
+	
+	JLabel currDateLbl;
+	JLabel currTimeLbl;
 	
 	JButton alarmBtn;
 	JButton homeBtn;
@@ -39,30 +50,17 @@ public class MainWindow_Merged implements ActionListener{
 	JButton prevBtn;
 	JButton nextBtn;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainWindow_Merged window = new MainWindow_Merged();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the application.
 	 */
 	public MainWindow_Merged() {
+		
+		
 		initialize();
 		cmg.cGrid.setCalGrid(yearIdx, monthIdx);
 		setLbl();
+		
 	}
 
 	/**
@@ -78,22 +76,23 @@ public class MainWindow_Merged implements ActionListener{
 	}
 	
 	private void initialize() {
+		
+		
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setLocation(-82, -107);
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.getContentPane().setForeground(new Color(255, 255, 255));
 		frame.setBounds(100, 100, 950, 630);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel calPanel = new JPanel();
 		calPanel.setBounds(237, 176, 665, 385);
 		frame.getContentPane().add(calPanel);
-		
-		
-		
+				
 		calPanel.add(cmg);
+		
+		
 		
 		JLabel lblNewLabel = new JLabel("일");
 		lblNewLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -209,19 +208,29 @@ public class MainWindow_Merged implements ActionListener{
 		lblNewLabel_5.setBounds(0, 0, 38, 50);
 		panel_4_1_2.add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("2022-03-15");
-		lblNewLabel_6.setForeground(new Color(255, 255, 255));
-		lblNewLabel_6.setFont(new Font("굴림", Font.BOLD, 19));
-		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_6.setBounds(25, 36, 131, 42);
-		panel_1.add(lblNewLabel_6);
 		
-		JLabel lblNewLabel_6_1 = new JLabel("PM 03:42");
-		lblNewLabel_6_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_6_1.setForeground(Color.WHITE);
-		lblNewLabel_6_1.setFont(new Font("굴림", Font.BOLD, 19));
-		lblNewLabel_6_1.setBounds(33, 64, 88, 42);
-		panel_1.add(lblNewLabel_6_1);
+		sfDate = new SimpleDateFormat("yyyy-MM-dd a");
+		sfTime = new SimpleDateFormat("hh:mm:ss");
+        if (thread == null) {
+            thread = new Thread(this);
+            thread.start();
+        }
+		
+        
+		
+		currDateLbl = new JLabel("2022-03-15");
+		currDateLbl.setForeground(new Color(255, 255, 255));
+		currDateLbl.setFont(new Font("굴림", Font.BOLD, 19));
+		currDateLbl.setHorizontalAlignment(SwingConstants.LEFT);
+		currDateLbl.setBounds(20, 36, 200, 42);
+		panel_1.add(currDateLbl);
+		
+		currTimeLbl = new JLabel("PM 03:42");
+		currTimeLbl.setHorizontalAlignment(SwingConstants.LEFT);
+		currTimeLbl.setForeground(Color.WHITE);
+		currTimeLbl.setFont(new Font("굴림", Font.BOLD, 19));
+		currTimeLbl.setBounds(20, 64, 88, 42);
+		panel_1.add(currTimeLbl);
 		
 		alarmBtn = new JButton("");
 		alarmBtn.addActionListener(new ActionListener() {
@@ -281,7 +290,6 @@ public class MainWindow_Merged implements ActionListener{
 		logoutBtn.setBounds(816, 11, 78, 23);
 		frame.getContentPane().add(logoutBtn);
 
-		
 	}
 
 	@Override
@@ -320,6 +328,40 @@ public class MainWindow_Merged implements ActionListener{
 		}
 		
 	}
+
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		
+
+
+		
+		JFrame.setDefaultLookAndFeelDecorated(true);
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainWindow_Merged window = new MainWindow_Merged();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	@Override
+	public void run() {
+        while (true) {
+        	currDateLbl.setText(sfDate.format(new Date()));
+        	currTimeLbl.setText(sfTime.format(new Date()));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e){}
+        }
+    }
 
 	
 }

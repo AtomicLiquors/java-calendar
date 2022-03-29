@@ -1,4 +1,4 @@
-package ateamproject;
+package ateamproject.MainWindow;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,6 +15,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import ateamproject.SchPopup.Ppop;
+
 
 
 public class CalendarPanel_Merged extends Panel {
@@ -24,6 +26,7 @@ public class CalendarPanel_Merged extends Panel {
 	
 
 	String[] engMonths = new DateFormatSymbols(Locale.US).getMonths();
+	
 	
 	
 	JButton calBtn;
@@ -178,7 +181,7 @@ public class CalendarPanel_Merged extends Panel {
 				if (i < prevArr.size() || i >= calArr.size() - nextArr.size() )
 					calBtn.setEnabled(false);
 				calBtn.setPreferredSize(new Dimension(95, 75));
-				calBtn.setActionCommand(""+ (i-1));
+				//calBtn.setActionCommand(""+ (i-1));
 				calBtn.addActionListener(this);
 								
 				add(calBtn);
