@@ -1,0 +1,43 @@
+class CurrTime extends Panel implements Runnable{
+		 private Thread thread;
+		    private JLabel label;
+		    private SimpleDateFormat sf;
+
+		    public CurrTime() {
+		       
+		        setLayout(new FlowLayout());
+		        
+		        label = new JLabel();
+		        label.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		        setBackground(Color.PINK);
+				label = new JLabel("D-Day here");
+				label.setForeground(Color.WHITE);
+				label.setHorizontalAlignment(JLabel.CENTER);
+				add(label, BorderLayout.CENTER);
+		        
+		        sf = new SimpleDateFormat("yyyy년MM월dd일 a hh:mm:ss");
+		        if (thread == null) {
+		            thread = new Thread(this);
+		            thread.start();
+		        }
+		        add(label);
+		        setBounds(100,100,400,100);
+		        setVisible(true);
+		        
+		        setDefaultCloseOperation(EXIT_ON_CLOSE);
+		    }
+
+		    public static void main(String[] args){
+		        JFrame.setDefaultLookAndFeelDecorated(true);
+		        new DigitalClock();
+		    }
+
+		    public void run() {
+		        while (true) {
+		           label.setText(sf.format(new Date()));
+		            try {
+		                Thread.sleep(1000);
+		            } catch (InterruptedException e){}
+		        }
+		    }
+		}
