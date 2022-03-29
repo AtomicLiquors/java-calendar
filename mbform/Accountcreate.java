@@ -1,4 +1,4 @@
-package ateamproject.MbForm;
+package ateamproject.mbform;
 
 import java.awt.EventQueue;
 import java.awt.Font;
