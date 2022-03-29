@@ -2,6 +2,7 @@ package ateamproject.Data;
 
 import java.sql.Date;
 
+
 public class CalSchedBean {
 	
 	private int sc_id;

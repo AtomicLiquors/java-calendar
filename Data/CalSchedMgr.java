@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 import member.DBConnectionMgr;
-import member.MemberBean;
 
 public class CalSchedMgr {
 	private DBConnectionMgr pool;
@@ -115,9 +114,36 @@ public class CalSchedMgr {
 	}
 	
 	
-	public void addSched() {
-		
+	public boolean addSched(CalSchedBean bean) {
+
+		boolean flag = false;
+
+		try {
+			con = pool.getConnection();
+			sql = "insert sched "
+					+ "(sc_title, sc_startdate, sc_enddate,	sc_content,	sc_isdone, sc_privacy, sc_priority, sc_color)"
+					+ "values(?, ?, ?, ?, ?, ?, ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getSc_title());
+			pstmt.setDate(2, bean.getSc_startdate());
+			pstmt.setDate(3, bean.getSc_enddate());
+			pstmt.setString(4, bean.getSc_content());
+			pstmt.setBoolean(5, bean.getSc_isdone());
+			pstmt.setString(6, bean.getSc_privacy());
+			pstmt.setInt(7, bean.getSc_priority());
+			pstmt.setString(8, bean.getSc_color());
+			// 적용된 레코드 개수 : 에러 및 처리 : 0, 정상 처리시 : 1(insert는 1이에요.)
+			int cnt = pstmt.executeUpdate(); // SQL문 실행!
+			if (cnt == 1)
+				flag = true; // 그래서... "cnt는 1이면... flag는 true다."
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+		return flag;
 	}
+
 	
 	public void delSched() {
 		

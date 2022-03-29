@@ -8,11 +8,9 @@ import javax.swing.border.EmptyBorder;
 
 import ateamproject.Data.CalSchedBean;
 import ateamproject.Data.CalSchedMgr;
+import member.MemberBean;
 
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import javax.swing.JPopupMenu;
+import javax.swing.*;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,9 +18,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Vector;
 
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
+
+import ateamproject.Data.CalSchedBean;
 
 public class Ppop extends JFrame {
 	
@@ -38,7 +35,7 @@ public class Ppop extends JFrame {
 	String popM = "" + 1;
 	String popD = "" + 1;
 
-	
+	String popDate = "";
 	
 	
 	public Ppop() {
@@ -49,7 +46,7 @@ public class Ppop extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		dateLabel = new JLabel(popY + "-" + popM + "-" + popD);
+		dateLabel = new JLabel(popDate);
 		dateLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		dateLabel.setBounds(26, 0, 57, 15);
 		contentPane.add(dateLabel);
@@ -75,9 +72,9 @@ public class Ppop extends JFrame {
 		
 		callPop2Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Ppop2 pop2 = new Ppop2();
-				pop2.setVisible(true);
-				pop2.setDate(popY, popM, popD);
+				PpopDetail popDetail = new PpopDetail();
+				popDetail.setVisible(true);
+				popDetail.setPopDate(popY, popM, popD);
 				
 				dispose();
 			}
@@ -87,6 +84,26 @@ public class Ppop extends JFrame {
 		JButton saveBtn = new JButton("저장");
 		saveBtn.setBounds(116, 157, 97, 23);
 		contentPane.add(saveBtn);
+		saveBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int input = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?");
+				CalSchedBean bean = new CalSchedBean();
+				if (input==0) { 
+					bean.setSc_content(null);
+					bean.setSc_startdate(null); 
+					bean.setSc_enddate(null);
+					bean.setSc_color(null); 
+					bean.setSc_priority(0); 
+					bean.setSc_privacy(null); 
+					bean.setSc_title(null);
+					}
+				dispose();
+			}
+		});
+		
+		
 		
 		JButton cancleBtn = new JButton("취소");
 		cancleBtn.setBounds(241, 157, 97, 23);
@@ -132,10 +149,13 @@ public class Ppop extends JFrame {
 		popY = y;
 		popM = m;
 		popD = d;
-		dateLabel.setText(y + "-" + m + "-" + d);
+		
+		popDate = popY + "-" + popM + "-" + popD;
+		
+		dateLabel.setText(popDate);
 		
 		
-		CalSchedBean sbean = mgr.getSched(popY + "-" + popM + "-" +popD);
+		CalSchedBean sbean = mgr.getSched(popDate);
 		System.out.println("결과값 : "); 
 		System.out.println("id : " + sbean.getSc_id() ); 
 		System.out.println("시작일 : " + sbean.getSc_startdate()); 
