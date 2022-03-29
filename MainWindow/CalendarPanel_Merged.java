@@ -209,7 +209,7 @@ public class CalendarPanel_Merged extends Panel {
 				
 
 				CalSchedBean sbean = mgr.getSched(btnDate);
-				Boolean isSchedFound = !(sbean.getSc_id()==0);
+				Boolean isSchedFound = (sbean.getSc_id()!=0);
 				
 				if(isSchedFound) {
 					if (isOuttaBound)

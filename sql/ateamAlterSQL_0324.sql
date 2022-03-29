@@ -1,1 +1,1 @@
-alter table sched add column sc_color CHAR(10);
+UPDATE sched SET sc_title = '제목' WHERE sc_id = 3;

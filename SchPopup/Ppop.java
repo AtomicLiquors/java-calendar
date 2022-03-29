@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
 import java.util.Vector;
 
 
@@ -40,7 +41,7 @@ public class Ppop extends JFrame {
 
 	String popDate = "";
 	
-	Boolean isSchedFound;
+	Boolean isSchedFound = false;
 	
 	
 	public Ppop() {
@@ -93,17 +94,26 @@ public class Ppop extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int input = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?");
-//				CalSchedBean bean = new CalSchedBean();
-//				if (input==0) { 
-//					bean.setSc_content(null);
-//					bean.setSc_startdate(null); 
-//					bean.setSc_enddate(null);
-//					bean.setSc_color(null); 
-//					bean.setSc_priority(0); 
-//					bean.setSc_privacy(null); 
-//					bean.setSc_title(null);
-//					}
+				int input = JOptionPane.showConfirmDialog(null, "저장하시겠습니까?");
+				CalSchedBean bean = new CalSchedBean();
+				
+				Date rDate = Date.valueOf(popDate);
+				
+				if (input==0) { 
+					bean.setSc_content(taContent.getText());
+					bean.setSc_startdate(rDate); 
+					bean.setSc_enddate(rDate);
+					bean.setSc_color(null); 
+					bean.setSc_priority(0); 
+					bean.setSc_isdone(false); 
+					bean.setSc_privacy(null); 
+					bean.setSc_title(tfTitle.getText());
+					}
+				
+				if(isSchedFound)
+					mgr.updateSched(bean);
+				else
+					mgr.addSched(bean);
 				dispose();
 			}
 		});
@@ -123,14 +133,14 @@ public class Ppop extends JFrame {
 		
 		
 		
-		
 		tfTitle = new JTextField();
-		
+		//일정 제목
 		tfTitle.setBounds(115, 25, 276, 20);
 		contentPane.add(tfTitle);
 		tfTitle.setColumns(10);
 		
 		taContent = new JTextArea();
+		//일정 내용
 		taContent.setBounds(115, 62, 276, 57);
 		contentPane.add(taContent);
 		
@@ -149,7 +159,7 @@ public class Ppop extends JFrame {
 	}
 	
 	public void setPopDate(String y, String m, String d) {
-		System.out.println(popY + "-" + popM + "-" +popD);
+
 		
 		popY = y;
 		popM = m;
@@ -159,25 +169,23 @@ public class Ppop extends JFrame {
 		
 		dateLabel.setText(popDate);
 		
-		
 		CalSchedBean sbean = mgr.getSched(popDate);
+		isSchedFound = (sbean.getSc_id() != 0);
 		
-		System.out.println("결과값 : "); 
-		System.out.println("id : " + sbean.getSc_id() ); 
-		System.out.println("시작일 : " + sbean.getSc_startdate()); 
-		System.out.println("종료일 : " + sbean.getSc_enddate() ); 
-		System.out.println("제목 : " + sbean.getSc_title()); 
-		System.out.println("내용 : " + sbean.getSc_content()); 
+//		System.out.println("결과값 : "); 
+//		System.out.println("id : " + sbean.getSc_id() ); 
+//		System.out.println("시작일 : " + sbean.getSc_startdate()); 
+//		System.out.println("종료일 : " + sbean.getSc_enddate() ); 
+//		System.out.println("제목 : " + sbean.getSc_title()); 
+//		System.out.println("내용 : " + sbean.getSc_content()); 
 		
-		if(sbean.getSc_id()==0) {
-			tfTitle.setText("일정 내용이 존재하지 않습니다.");
-			tfTitle.setEnabled(false);
-			taContent.setText("");
-			taContent.setEnabled(false);
-			delBtn.setEnabled(false);
-		}else {
+		if(isSchedFound) {
 			tfTitle.setText(sbean.getSc_title());
 			taContent.setText(sbean.getSc_content());
+		}else {
+			tfTitle.setText("새 일정 제목");
+			taContent.setText("");
+			delBtn.setEnabled(false);	
 		}		
 	}
 

@@ -296,8 +296,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		
 		if(obj.equals(prevBtn)) {
 			//왼쪽 화살표를 클릭하면 날짜가 바뀐다.
-			System.out.println("prevBtn");
-			
+
 			if(monthIdx == 0) {
 				monthIdx = 11;
 				yearIdx--;
@@ -310,8 +309,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 			cmg.cGrid.setCalGrid(yearIdx, monthIdx);
 			
 		}else if(obj==nextBtn) {
-			//오른쪽 화살표를 클릭하면 날짜가 바뀐다.
-			System.out.println("nextBtn");
+			//오른쪽 화살표를 클릭하면 날짜가 바뀐다.;
 			
 			if(monthIdx == 11) {
 				monthIdx = 0;
