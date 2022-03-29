@@ -1,4 +1,4 @@
-package ateamproject.mbform;
+package ateamproject.MbForm;
 
 import java.awt.EventQueue;
 

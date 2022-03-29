@@ -19,8 +19,8 @@ import javax.swing.SwingConstants;
 
 import ateamproject.Data.CalMemberMgr;
 import ateamproject.MainWindow.MainWindow_Merged;
-import ateamproject.mbform.Accountcreate;
-import ateamproject.mbform.Accountseek;
+import ateamproject.MbForm.Accountcreate;
+import ateamproject.MbForm.Accountseek;
 
 public class LoginDesign {
 
