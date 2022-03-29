@@ -83,6 +83,8 @@ public class CalSchedMgr {
 		CalSchedBean bean = new CalSchedBean();
 		
 		Date rDate = Date.valueOf(d);
+		System.out.println(d);
+		System.out.println(rDate);
 		
 		try {
 			con = pool.getConnection();
@@ -102,7 +104,6 @@ public class CalSchedMgr {
 				bean.setSc_privacy(rs.getString("sc_privacy"));
 				bean.setSc_startdate(rs.getDate("sc_startdate"));
 				bean.setSc_title(rs.getString("sc_title"));
-				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

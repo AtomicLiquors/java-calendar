@@ -97,53 +97,45 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		lblNewLabel.setHorizontalAlignment(JLabel.CENTER);
 		lblNewLabel.setBounds(237, 139, 93, 37);
 		lblNewLabel.setForeground(Color.RED);
-		lblNewLabel.setToolTipText("");
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("월");
-		lblNewLabel_1.setToolTipText("");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setForeground(Color.BLACK);
 		lblNewLabel_1.setBounds(331, 139, 93, 37);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("화");
-		lblNewLabel_1_1.setToolTipText("");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_1.setForeground(Color.BLACK);
 		lblNewLabel_1_1.setBounds(425, 139, 93, 37);
 		frame.getContentPane().add(lblNewLabel_1_1);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("수");
-		lblNewLabel_1_2.setToolTipText("");
 		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_2.setForeground(Color.BLACK);
 		lblNewLabel_1_2.setBounds(519, 139, 93, 37);
 		frame.getContentPane().add(lblNewLabel_1_2);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("목");
-		lblNewLabel_1_3.setToolTipText("");
 		lblNewLabel_1_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_3.setForeground(Color.BLACK);
 		lblNewLabel_1_3.setBounds(610, 139, 93, 37);
 		frame.getContentPane().add(lblNewLabel_1_3);
 		
 		JLabel lblNewLabel_1_4 = new JLabel("금");
-		lblNewLabel_1_4.setToolTipText("");
 		lblNewLabel_1_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_4.setForeground(Color.BLACK);
 		lblNewLabel_1_4.setBounds(705, 139, 93, 37);
 		frame.getContentPane().add(lblNewLabel_1_4);
 		
 		JLabel lblNewLabel_1_5 = new JLabel("토");
-		lblNewLabel_1_5.setToolTipText("");
 		lblNewLabel_1_5.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_5.setForeground(Color.BLUE);
 		lblNewLabel_1_5.setBounds(799, 139, 93, 37);
 		frame.getContentPane().add(lblNewLabel_1_5);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setToolTipText("");
 		panel_1.setBackground(new Color(30, 144, 255));
 		panel_1.setBounds(0, 0, 195, 613);
 		panel_1.setLayout(null);
@@ -254,6 +246,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
 		settingBtn.setBounds(851, 44, 41, 37);
 		frame.getContentPane().add(settingBtn);
 		
@@ -333,9 +326,6 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
-
-
 		
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		

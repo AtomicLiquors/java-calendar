@@ -14,6 +14,7 @@ import java.util.Locale;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import ateamproject.SchPopup.Ppop;
 
@@ -45,16 +46,12 @@ public class CalendarPanel_Merged extends Panel {
 		JPanel cPanel = new JPanel();
 		cPanel.setLayout(new BoxLayout(cPanel, BoxLayout.Y_AXIS));
 		cPanel.add(cGrid);
-		cPanel.setSize(getPreferredSize());
 
 		add(cPanel);
 
 		setVisible(true);
 	}
 	
-	
-
-
 	
 	public class CalendarGrid extends Panel implements ActionListener {
 		
@@ -68,13 +65,11 @@ public class CalendarPanel_Merged extends Panel {
 
 		int lastDay; 
 		
-		String[] weekName = { "SUN", "MON", "TUE", "WEN", "THU", "FRI", "SUN" };		
 		GridLayout gridLayout = new GridLayout(7, 7);
 		//달력을 넣기 위한 7 * 7 짜리 그리드를 만들어준다.
 		//단, 행 수인 7은 임시로 넣은 값이고 나중에 setCalGrid()에 의해 수시로 변한다.
 	
-		CalendarGrid() {
-			//달력의 크기를 설정해 준다.	
+		CalendarGrid() {	
 			setLayout(gridLayout);		
 		}
 		
@@ -87,7 +82,7 @@ public class CalendarPanel_Merged extends Panel {
 			}
 			validate();
 			repaint();
-			System.out.println("달력 지우기 완료");
+			//System.out.println("달력 지우기 완료");
 		}
 
 		
@@ -102,27 +97,25 @@ public class CalendarPanel_Merged extends Panel {
 				JButton tempBtn = (JButton)obj;
 		        btnTxt = tempBtn.getText();
 			}
-			System.out.println(btnTxt+" clicked");
+			//System.out.println(btnTxt+" clicked");
 			Ppop pop = new Ppop();
 			pop.setVisible(true);
+			pop.setPopDate("" + panelY, "" + (panelM + 1), btnTxt);
 			
 			
-			pop.setDate("" + panelY, "" + (panelM + 1), btnTxt);
 		}
 
 
 
 		public void setCalGrid(int y, int m) {
 
-			System.out.println("달력 세팅 시작");
+			//System.out.println("달력 세팅 시작");
 			
 			Calendar locCal = Calendar.getInstance();
-			System.out.println("locCal 설정 시작 : yearidx, monthidx = " + y +", " + m);
+			//System.out.println("locCal 설정 시작 : yearidx, monthidx = " + y +", " + m);
 			
 			locCal.set(y, m, 1);
 			lastDay = locCal.getActualMaximum(Calendar.DATE);
-			//System.out.println("lastDay = " + lastDay);
-	
 
 			
 			/** 이번 달 날짜를 배열에 추가 **/
@@ -180,8 +173,9 @@ public class CalendarPanel_Merged extends Panel {
 				
 				if (i < prevArr.size() || i >= calArr.size() - nextArr.size() )
 					calBtn.setEnabled(false);
-				calBtn.setPreferredSize(new Dimension(95, 75));
-				//calBtn.setActionCommand(""+ (i-1));
+				calBtn.setPreferredSize(new Dimension(95, 385 / (calArr.size()/7) ));
+				calBtn.setHorizontalAlignment(SwingConstants.LEFT);
+				calBtn.setVerticalAlignment(SwingConstants.TOP);
 				calBtn.addActionListener(this);
 								
 				add(calBtn);
@@ -194,7 +188,7 @@ public class CalendarPanel_Merged extends Panel {
 			calArr.removeAll(calArr);
 			prevArr.removeAll(prevArr);
 			nextArr.removeAll(nextArr);
-//			System.out.println("달력 세팅 완료\n");
+			//System.out.println("달력 세팅 완료\n");
 						
 			validate();
 			repaint();

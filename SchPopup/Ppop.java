@@ -27,32 +27,20 @@ public class Ppop extends JFrame {
 	
 	CalSchedMgr mgr = new CalSchedMgr();
 	Vector<CalSchedBean> vlist = mgr.listSched();
-	
-	
 
 	private JPanel contentPane;
 	private JTextField tfTitle;
 
 	private JLabel dateLabel;
 	
-	String popY = ""+2020;
-	String popM = ""+3;
-	String popD = ""+5;
+	String popY = "" + 2020;
+	String popM = "" + 1;
+	String popD = "" + 1;
 
-	/**
-	 * Create the frame.
-	 */
+	
+	
+	
 	public Ppop() {
-		
-		CalSchedBean sbean = mgr.getSched("2022-3-25");
-		System.out.println("결과값 : "); 
-		System.out.println("id : " + sbean.getSc_id() ); 
-		System.out.println("시작일 : " + sbean.getSc_startdate()); 
-		System.out.println("종료일 : " + sbean.getSc_enddate() ); 
-		System.out.println("제목 : " + sbean.getSc_title()); 
-		System.out.println("내용 : " + sbean.getSc_content()); 
-		
-
 
 		setBounds(100, 100, 450, 229);
 		contentPane = new JPanel();
@@ -60,7 +48,7 @@ public class Ppop extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		dateLabel = new JLabel(popY+"-"+popM+"-"+popD);
+		dateLabel = new JLabel(popY + "-" + popM + "-" + popD);
 		dateLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		dateLabel.setBounds(26, 0, 57, 15);
 		contentPane.add(dateLabel);
@@ -85,7 +73,7 @@ public class Ppop extends JFrame {
 		contentPane.add(callPop2Btn);
 		
 		callPop2Btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				Ppop2 pop2 = new Ppop2();
 				pop2.setVisible(true);
 				pop2.setDate(popY, popM, popD);
@@ -112,7 +100,7 @@ public class Ppop extends JFrame {
 		
 		
 		tfTitle = new JTextField();
-		tfTitle.setText(sbean.getSc_title());
+		
 		tfTitle.setBounds(115, 25, 276, 20);
 		contentPane.add(tfTitle);
 		tfTitle.setColumns(10);
@@ -126,13 +114,25 @@ public class Ppop extends JFrame {
 		contentPane.add(delBtn);
 	}
 	
-	public void setDate(String y, String m, String d) {
+	public void setPopDate(String y, String m, String d) {
+		System.out.println(popY + "-" + popM + "-" +popD);
+		
 		popY = y;
 		popM = m;
 		popD = d;
 		dateLabel.setText(y + "-" + m + "-" + d);
+		
+		
+		CalSchedBean sbean = mgr.getSched(popY + "-" + popM + "-" +popD);
+		System.out.println("결과값 : "); 
+		System.out.println("id : " + sbean.getSc_id() ); 
+		System.out.println("시작일 : " + sbean.getSc_startdate()); 
+		System.out.println("종료일 : " + sbean.getSc_enddate() ); 
+		System.out.println("제목 : " + sbean.getSc_title()); 
+		System.out.println("내용 : " + sbean.getSc_content()); 
+		
+		tfTitle.setText(sbean.getSc_title());
 	}
-	
 
 	/**
 	 * Launch the application.

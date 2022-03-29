@@ -35,8 +35,8 @@ public class Ppop2 extends JFrame {
 	private JLabel dateLabel; 
 	
 	String popY = ""+2020;
-	String popM = ""+3;
-	String popD = ""+5;
+	String popM = ""+1;
+	String popD = ""+1;
 
 
 
