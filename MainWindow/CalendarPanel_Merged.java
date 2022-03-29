@@ -175,9 +175,10 @@ public class CalendarPanel_Merged extends Panel {
 				}
 				
 				
-				if (i < prevArr.size() || i >= calArr.size() - nextArr.size() )
-					calBtn.setEnabled(false);
+				Boolean isOuttaBound = (i < prevArr.size() || i >= calArr.size() - nextArr.size() );
 				
+				if (isOuttaBound)
+					calBtn.setEnabled(false);
 				
 				calBtn.setPreferredSize(new Dimension(95, 385 / (calArr.size()/7) ));
 				calBtn.setHorizontalAlignment(SwingConstants.LEFT);
@@ -206,10 +207,15 @@ public class CalendarPanel_Merged extends Panel {
 //				System.out.println(panelM);
 //				System.out.println(calArr.get(i));
 				
+
 				CalSchedBean sbean = mgr.getSched(btnDate);
 				Boolean isSchedFound = !(sbean.getSc_id()==0);
+				
 				if(isSchedFound) {
-					calBtn.setBackground(Color.BLUE);
+					if (isOuttaBound)
+						calBtn.setBackground(Color.GRAY);
+					else
+						calBtn.setBackground(Color.BLUE);
 				}
 				add(calBtn);
 				
