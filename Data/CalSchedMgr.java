@@ -24,6 +24,7 @@ public class CalSchedMgr {
 //	vlist = mgr.listMember();
 	
 //	System.out.println(vlist);
+
 	
 	Connection con = null;
 	PreparedStatement pstmt = null;

@@ -1,17 +1,14 @@
 package ateamproject.MainWindow;
 
 import java.awt.Color;
-
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
-
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
-import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import javax.swing.ImageIcon;
@@ -20,6 +17,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import ateamproject.LoginScreen;
 
 public class MainWindow_Merged implements ActionListener, Runnable{
 	
@@ -281,6 +280,13 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		logoutBtn.setFont(new Font("굴림", Font.PLAIN, 10));
 		logoutBtn.setBounds(816, 11, 78, 23);
 		frame.getContentPane().add(logoutBtn);
+		logoutBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				LoginScreen lscreen = new LoginScreen();
+				lscreen.frame.setVisible(true);
+			}
+		});
 
 	}
 

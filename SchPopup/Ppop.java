@@ -10,6 +10,7 @@ import ateamproject.Data.CalSchedBean;
 import ateamproject.Data.CalSchedMgr;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JPopupMenu;
 import java.awt.Component;
@@ -28,9 +29,9 @@ public class Ppop extends JFrame {
 	CalSchedMgr mgr = new CalSchedMgr();
 	Vector<CalSchedBean> vlist = mgr.listSched();
 
-	private JPanel contentPane;
+	protected JPanel contentPane;
 	private JTextField tfTitle;
-
+	private JTextArea taContent; 
 	private JLabel dateLabel;
 	
 	String popY = "" + 2020;
@@ -99,19 +100,30 @@ public class Ppop extends JFrame {
 		});
 		
 		
+		
+		
 		tfTitle = new JTextField();
 		
 		tfTitle.setBounds(115, 25, 276, 20);
 		contentPane.add(tfTitle);
 		tfTitle.setColumns(10);
 		
-		JTextArea scContent = new JTextArea();
-		scContent.setBounds(115, 62, 276, 57);
-		contentPane.add(scContent);
+		taContent = new JTextArea();
+		taContent.setBounds(115, 62, 276, 57);
+		contentPane.add(taContent);
 		
 		JButton delBtn = new JButton("삭제");
 		delBtn.setBounds(347, 129, 75, 23);
 		contentPane.add(delBtn);
+		delBtn.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int input = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?");
+				if (input==0)
+					System.out.println("삭제 기능을 구현해 주세요.");
+					dispose();
+			}
+		});
 	}
 	
 	public void setPopDate(String y, String m, String d) {
@@ -132,6 +144,7 @@ public class Ppop extends JFrame {
 		System.out.println("내용 : " + sbean.getSc_content()); 
 		
 		tfTitle.setText(sbean.getSc_title());
+		taContent.setText(sbean.getSc_content());
 	}
 
 	/**
