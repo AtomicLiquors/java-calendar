@@ -164,7 +164,6 @@ public class Accountcreate {
 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 493, 580);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 		JPanel panel = new JPanel();

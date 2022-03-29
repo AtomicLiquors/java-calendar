@@ -44,7 +44,6 @@ public class Accountseek {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 570, 470);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
