@@ -29,6 +29,7 @@ public class LoginDesign {
 	private JPasswordField Password;
 
 	/**
+	 * 
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -119,7 +120,8 @@ public class LoginDesign {
 				if (mgr.loginChk(id, pwd)) {
 					System.out.println("Account confirm");
 					frame.dispose();
-					new MainWindow_Merged();
+					MainWindow_Merged mw = new MainWindow_Merged();
+					mw.frame.setVisible(true);
 					
 				} else {
 					JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 일치하지 않습니다");

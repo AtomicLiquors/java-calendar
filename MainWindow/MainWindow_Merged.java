@@ -31,7 +31,6 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	String[] engMonths = new DateFormatSymbols(Locale.US).getMonths();
 
 	private Thread thread;
-	private JLabel label;
 	private SimpleDateFormat sfDate;
 	private SimpleDateFormat sfTime;
 
