@@ -31,11 +31,16 @@ public class Ppop extends JFrame {
 	private JTextArea taContent; 
 	private JLabel dateLabel;
 	
+	private JButton delBtn;
+	private JButton saveBtn;
+	
 	String popY = "" + 2020;
 	String popM = "" + 1;
 	String popD = "" + 1;
 
 	String popDate = "";
+	
+	Boolean isSchedFound;
 	
 	
 	public Ppop() {
@@ -81,7 +86,7 @@ public class Ppop extends JFrame {
 		});
 		
 		
-		JButton saveBtn = new JButton("저장");
+		saveBtn = new JButton("저장");
 		saveBtn.setBounds(116, 157, 97, 23);
 		contentPane.add(saveBtn);
 		saveBtn.addActionListener(new ActionListener() {
@@ -89,26 +94,26 @@ public class Ppop extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int input = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?");
-				CalSchedBean bean = new CalSchedBean();
-				if (input==0) { 
-					bean.setSc_content(null);
-					bean.setSc_startdate(null); 
-					bean.setSc_enddate(null);
-					bean.setSc_color(null); 
-					bean.setSc_priority(0); 
-					bean.setSc_privacy(null); 
-					bean.setSc_title(null);
-					}
+//				CalSchedBean bean = new CalSchedBean();
+//				if (input==0) { 
+//					bean.setSc_content(null);
+//					bean.setSc_startdate(null); 
+//					bean.setSc_enddate(null);
+//					bean.setSc_color(null); 
+//					bean.setSc_priority(0); 
+//					bean.setSc_privacy(null); 
+//					bean.setSc_title(null);
+//					}
 				dispose();
 			}
 		});
 		
 		
 		
-		JButton cancleBtn = new JButton("취소");
-		cancleBtn.setBounds(241, 157, 97, 23);
-		contentPane.add(cancleBtn);
-		cancleBtn.addActionListener(new ActionListener() {
+		JButton cancelBtn = new JButton("취소");
+		cancelBtn.setBounds(241, 157, 97, 23);
+		contentPane.add(cancelBtn);
+		cancelBtn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -129,7 +134,7 @@ public class Ppop extends JFrame {
 		taContent.setBounds(115, 62, 276, 57);
 		contentPane.add(taContent);
 		
-		JButton delBtn = new JButton("삭제");
+		delBtn = new JButton("삭제");
 		delBtn.setBounds(347, 129, 75, 23);
 		contentPane.add(delBtn);
 		delBtn.addActionListener(new ActionListener(){
@@ -156,6 +161,7 @@ public class Ppop extends JFrame {
 		
 		
 		CalSchedBean sbean = mgr.getSched(popDate);
+		
 		System.out.println("결과값 : "); 
 		System.out.println("id : " + sbean.getSc_id() ); 
 		System.out.println("시작일 : " + sbean.getSc_startdate()); 
@@ -163,8 +169,16 @@ public class Ppop extends JFrame {
 		System.out.println("제목 : " + sbean.getSc_title()); 
 		System.out.println("내용 : " + sbean.getSc_content()); 
 		
-		tfTitle.setText(sbean.getSc_title());
-		taContent.setText(sbean.getSc_content());
+		if(sbean.getSc_id()==0) {
+			tfTitle.setText("일정 내용이 존재하지 않습니다.");
+			tfTitle.setEnabled(false);
+			taContent.setText("");
+			taContent.setEnabled(false);
+			delBtn.setEnabled(false);
+		}else {
+			tfTitle.setText(sbean.getSc_title());
+			taContent.setText(sbean.getSc_content());
+		}		
 	}
 
 	/**

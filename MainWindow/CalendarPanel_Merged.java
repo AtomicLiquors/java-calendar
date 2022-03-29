@@ -16,6 +16,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import ateamproject.Data.CalSchedBean;
+import ateamproject.Data.CalSchedMgr;
 import ateamproject.SchPopup.Ppop;
 
 
@@ -25,6 +27,7 @@ public class CalendarPanel_Merged extends Panel {
 	Calendar cal = Calendar.getInstance();
 	CalendarGrid cGrid = new CalendarGrid();
 	
+	CalSchedMgr mgr = new CalSchedMgr(); 
 
 	String[] engMonths = new DateFormatSymbols(Locale.US).getMonths();
 	
@@ -32,8 +35,8 @@ public class CalendarPanel_Merged extends Panel {
 	
 	JButton calBtn;
 	
-	int panelY;
-	int panelM;
+	int panelY = cal.get(Calendar.YEAR);;
+	int panelM = cal.get(Calendar.MONTH);
 
 
 	public void setDate(int y, int m) {
@@ -171,13 +174,43 @@ public class CalendarPanel_Merged extends Panel {
 					calBtn.setForeground(Color.BLUE);
 				}
 				
+				
 				if (i < prevArr.size() || i >= calArr.size() - nextArr.size() )
 					calBtn.setEnabled(false);
+				
+				
 				calBtn.setPreferredSize(new Dimension(95, 385 / (calArr.size()/7) ));
 				calBtn.setHorizontalAlignment(SwingConstants.LEFT);
 				calBtn.setVerticalAlignment(SwingConstants.TOP);
 				calBtn.addActionListener(this);
-								
+				
+				
+				String btnDate = panelY + "-" + (panelM + 1) + "-" + calArr.get(i);;
+				
+
+				if(i < prevArr.size()) {
+					if(panelM==0) {
+						panelY = panelY - 1;
+						panelM = 12;
+					}
+					btnDate = panelY + "-" + (panelM) + "-" + calArr.get(i);
+				}else if(i >= calArr.size() - nextArr.size()) {
+					if(panelM==11) {
+						panelY = panelY + 1;
+						panelM = 1;
+					}
+					btnDate = panelY + "-" + (panelM + 2) + "-" + calArr.get(i);
+				}
+					
+//				System.out.println(panelY);
+//				System.out.println(panelM);
+//				System.out.println(calArr.get(i));
+				
+				CalSchedBean sbean = mgr.getSched(btnDate);
+				Boolean isSchedFound = !(sbean.getSc_id()==0);
+				if(isSchedFound) {
+					calBtn.setBackground(Color.BLUE);
+				}
 				add(calBtn);
 				
 				//if( DB를 조회해서 panelY, panelM, i와 일치하는 날짜에 데이터가 있을 경우)
@@ -193,7 +226,6 @@ public class CalendarPanel_Merged extends Panel {
 			validate();
 			repaint();
 		}
-
 		
 	}
 
