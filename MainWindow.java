@@ -25,9 +25,8 @@ public class MainWindow extends JFrame {
 	
 	public MainWindow() {
 		super("Calendar demo_super");
-		
+
 		System.out.println("=======MainWindow 클래스 실행=======");
-		
 		
 		CalSchedBean sbean = mgr.getSched(1);
 		System.out.println("결과값 : " + 
@@ -78,6 +77,7 @@ public class MainWindow extends JFrame {
 		JLabel cTime;
 		
 		CurrTime(){
+
 			setLayout(new GridLayout(2, 1));
 			
 			setBackground(Color.PINK);

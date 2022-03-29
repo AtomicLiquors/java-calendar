@@ -1,29 +1,25 @@
 package ateamproject;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-
-import javax.swing.JPanel;
-import java.awt.Color;
-import java.awt.SystemColor;
-import javax.swing.ImageIcon;
-import javax.swing.UIManager;
-
 public class LoginDesign {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField ID;
 	private JPasswordField Password;
 
@@ -54,12 +50,12 @@ public class LoginDesign {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame.setResizable(false);
 		frame = new JFrame();
 		frame.setBounds(100, 100, 560, 320);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setResizable(false);
 
 		JPanel Loginpanel = new JPanel();
 		Loginpanel.setBounds(0, 0, 545, 280);
@@ -67,19 +63,37 @@ public class LoginDesign {
 		frame.getContentPane().add(Loginpanel);
 		Loginpanel.setLayout(null);
 
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon(
+		JButton joinBtn = new JButton("");
+		joinBtn.setIcon(new ImageIcon(
 				"ateamproject/img/signup.png"));
-		btnNewButton.setBounds(101, 215, 119, 35);
-		btnNewButton.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
-		Loginpanel.add(btnNewButton);
+		joinBtn.setBounds(101, 215, 119, 35);
+		joinBtn.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+		joinBtn.addActionListener(new ActionListener() {
 
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setIcon(new ImageIcon(
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Accountcreate window = new Accountcreate();
+				window.frame.setVisible(true);
+			}
+		});
+		
+		Loginpanel.add(joinBtn);
+		
+
+		JButton seekBtn = new JButton("");
+		seekBtn.setIcon(new ImageIcon(
 				"ateamproject/img/lookup.png"));
-		btnNewButton_1.setBounds(273, 215, 119, 35);
-		btnNewButton_1.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
-		Loginpanel.add(btnNewButton_1);
+		seekBtn.setBounds(273, 215, 119, 35);
+		seekBtn.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+		seekBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Accountseek window = new Accountseek();
+				window.frame.setVisible(true);
+			}
+		});
+		Loginpanel.add(seekBtn);
 
 		JButton loginBtn = new JButton("");
 		loginBtn.setIcon(new ImageIcon(
@@ -101,6 +115,7 @@ public class LoginDesign {
 					System.out.println("Account confirm");
 					frame.dispose();
 					new MainWindow();
+					
 				} else {
 					JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 일치하지 않습니다");
 				}

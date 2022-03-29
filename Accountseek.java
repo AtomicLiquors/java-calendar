@@ -13,7 +13,7 @@ import javax.swing.JButton;
 
 public class Accountseek {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
 

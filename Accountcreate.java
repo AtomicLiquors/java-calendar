@@ -20,6 +20,8 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import member.MemberBean;
+
 public class Accountcreate {
 
 	CalMemberMgr mgr = new CalMemberMgr();
@@ -31,7 +33,7 @@ public class Accountcreate {
 	boolean isPwdCorrect = false;
 	//통과여부를 처리하는 함수는 okBtn.addActionListener로.
 	
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField tfEmail;
 	private JTextField tfId;
 	private JTextField tfName;
@@ -171,7 +173,6 @@ public class Accountcreate {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
-		
 		
 //		JButton testBtn = new JButton("테스트 버튼");
 //		testBtn.addActionListener(new ActionListener() {
@@ -376,6 +377,7 @@ public class Accountcreate {
 					return;
 				}
 				
+				//시간 남아돌면 bean을 쓰는 걸로 수정하고 싶다.
 				String yValue = cmbYear.getItemAt(cmbYear.getSelectedIndex());
             	int mValue = cmbMonth.getSelectedIndex()+1;
             	String dValue = cmbDate.getItemAt(cmbDate.getSelectedIndex());
@@ -387,15 +389,16 @@ public class Accountcreate {
 				String bDate = yValue + "-" + mValue + "-" + dValue;
 				String email = tfEmail.getText().trim();
 				
-
+				
 				
 				mgr.signUp(id, pwd, name, bDate, email);
+				frame.dispose();
+				
 			}
 		});
 		okBtn.setBounds(130, 482, 106, 38);
 		panel.add(okBtn);
-		
-		
+
 		
 		checkIdButton.setFont(new Font("굴림", Font.PLAIN, 13));
 		checkIdButton.setBounds(366, 299, 87, 28);

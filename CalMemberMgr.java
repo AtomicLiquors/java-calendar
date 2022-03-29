@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
 
+import member.MemberBean;
+
 public class CalMemberMgr {
 	private DBConnectionMgr pool;
 
@@ -160,5 +162,34 @@ public class CalMemberMgr {
 		}
 
 	}
+	/*
+	//저장
+		public boolean insertMember( MemberBean bean ) {
+			Connection con = null; //DB 연결 객체
+			PreparedStatement pstmt = null; //SQL문 생성객체
+			ResultSet rs = null; //SQL문 결과 리턴 객체
+			String sql = null;
+			boolean flag = false;
+			
+			try {
+				con = pool.getConnection();
+				sql = "insert tblMember (name, phone, address, team)" //sql문
+					+ "values(?, ?, ?, ?)"; //이런 문법으로 값을 집어넣는다.
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, bean.getName());//1: 첫번째 ?
+				pstmt.setString(2, bean.getPhone());//2: 두번째 ?
+				pstmt.setString(3, bean.getAddress());//3: 세번째 ?
+				pstmt.setString(4, bean.getTeam());//4: 네번째 ?
+				//적용된 레코드 개수 : 에러 및 처리 : 0, 정상 처리시 : 1(insert는 1이에요.)
+				int cnt = pstmt.executeUpdate(); //SQL문 실행!
+				if(cnt == 1) flag = true; //그래서... "cnt는 1이면... flag는 true다."
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				pool.freeConnection(con, pstmt);
+			}
+			return flag;
+		}
+		*/
 	
 }
