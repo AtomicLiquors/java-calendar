@@ -42,6 +42,7 @@ public class Ppop extends JFrame {
 	String popDate = "";
 	
 	Boolean isSchedFound = false;
+	int schedId;
 	
 	
 	public Ppop() {
@@ -110,10 +111,13 @@ public class Ppop extends JFrame {
 					bean.setSc_title(tfTitle.getText());
 					}
 				
-				if(isSchedFound)
+				if(isSchedFound) {
+					bean.setSc_id(schedId);
 					mgr.updateSched(bean);
+				}
 				else
 					mgr.addSched(bean);
+				
 				dispose();
 			}
 		});
@@ -180,6 +184,7 @@ public class Ppop extends JFrame {
 //		System.out.println("내용 : " + sbean.getSc_content()); 
 		
 		if(isSchedFound) {
+			schedId = sbean.getSc_id();
 			tfTitle.setText(sbean.getSc_title());
 			taContent.setText(sbean.getSc_content());
 		}else {

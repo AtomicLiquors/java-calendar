@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowStateListener;
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,7 +24,7 @@ import ateamproject.SchPopup.Ppop;
 
 
 
-public class CalendarPanel_Merged extends Panel {
+public class CalendarPanel_Merged extends Panel{
 	
 	Calendar cal = Calendar.getInstance();
 	CalendarGrid cGrid = new CalendarGrid();
@@ -45,10 +47,12 @@ public class CalendarPanel_Merged extends Panel {
 	}
 	
 	public CalendarPanel_Merged() {		
-
+		
 		JPanel cPanel = new JPanel();
 		cPanel.setLayout(new BoxLayout(cPanel, BoxLayout.Y_AXIS));
 		cPanel.add(cGrid);
+		
+		
 
 		add(cPanel);
 
@@ -78,6 +82,7 @@ public class CalendarPanel_Merged extends Panel {
 		
 
 		public void clearCalGrid() {
+			
 			//기존 달력을 지워야 한다.
 			int count = cGrid.getComponentCount();
 			for (int i = 0; i < count; i++) {
@@ -234,9 +239,6 @@ public class CalendarPanel_Merged extends Panel {
 		}
 		
 	}
-
-
-
 
 	
 

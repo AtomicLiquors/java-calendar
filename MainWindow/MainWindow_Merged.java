@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -53,8 +55,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	 * Create the application.
 	 */
 	public MainWindow_Merged() {
-		
-		
+
 		initialize();
 		cmg.cGrid.setCalGrid(yearIdx, monthIdx);
 		setLbl();
@@ -356,6 +357,6 @@ public class MainWindow_Merged implements ActionListener, Runnable{
         }
     }
 
-	
+
 }
 
