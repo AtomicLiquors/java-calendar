@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.text.DateFormatSymbols;
@@ -25,6 +26,7 @@ import ateamproject.LoginScreen;
 public class MainWindow_Merged implements ActionListener, Runnable{
 	
 	Calendar cal = Calendar.getInstance();
+	Dday dd = new Dday();
 	CalendarPanel_Merged cmg = new CalendarPanel_Merged();
 	
 	int yearIdx = cal.get(Calendar.YEAR);
@@ -55,7 +57,6 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	 * Create the application.
 	 */
 	public MainWindow_Merged() {
-
 		initialize();
 		cmg.cGrid.setCalGrid(yearIdx, monthIdx);
 		setLbl();
@@ -342,6 +343,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 			}
 		});
 	}
@@ -356,7 +358,6 @@ public class MainWindow_Merged implements ActionListener, Runnable{
             } catch (InterruptedException e){}
         }
     }
-
 
 }
 

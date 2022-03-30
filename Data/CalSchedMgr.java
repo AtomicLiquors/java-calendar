@@ -145,18 +145,31 @@ public class CalSchedMgr {
 	}
 
 	
-	public void delSched() {
-		
+	public boolean delSched(int id) {
+
+		boolean flag = false;
+		try {
+			con = pool.getConnection();
+			sql = "delete from sched where sc_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			int cnt = pstmt.executeUpdate();
+
+			if (cnt == 1)
+				flag = true; 
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+		return flag;
 	}
-	
+
 	public boolean updateSched(CalSchedBean bean) {
-		
-		System.out.println("DB에 수정사항이 반영되지 않고 있어 수정중인 기능입니다.");
 		
 		boolean flag = false;
 		
-		System.out.println("ID: "+ bean.getSc_id());
-
 		try {
 			con = pool.getConnection();
 			sql = "UPDATE sched SET " 
@@ -181,7 +194,7 @@ public class CalSchedMgr {
 			pstmt.setInt(9, bean.getSc_id());
 			// 적용된 레코드 개수 : 에러 및 처리 : 0, 정상 처리시 : 1(insert는 1이에요.)
 			int cnt = pstmt.executeUpdate(); // SQL문 실행!
-			System.out.println(cnt);
+
 			if (cnt == 1)
 				flag = true; // 그래서... "cnt는 1이면... flag는 true다."
 		} catch (Exception e) {

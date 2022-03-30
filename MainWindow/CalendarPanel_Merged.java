@@ -7,7 +7,7 @@ import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowStateListener;
+import java.awt.event.WindowListener;
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,7 +24,7 @@ import ateamproject.SchPopup.Ppop;
 
 
 
-public class CalendarPanel_Merged extends Panel{
+public class CalendarPanel_Merged extends Panel implements WindowListener{
 	
 	Calendar cal = Calendar.getInstance();
 	CalendarGrid cGrid = new CalendarGrid();
@@ -107,6 +107,7 @@ public class CalendarPanel_Merged extends Panel{
 			}
 			//System.out.println(btnTxt+" clicked");
 			Ppop pop = new Ppop();
+
 			pop.setVisible(true);
 			pop.setPopDate("" + panelY, "" + (panelM + 1), btnTxt);
 			
@@ -220,7 +221,7 @@ public class CalendarPanel_Merged extends Panel{
 					if (isOuttaBound)
 						calBtn.setBackground(Color.GRAY);
 					else
-						calBtn.setBackground(Color.BLUE);
+						calBtn.setBackground(Color.decode("#0078D7"));
 				}
 				add(calBtn);
 				
@@ -237,6 +238,49 @@ public class CalendarPanel_Merged extends Panel{
 			validate();
 			repaint();
 		}
+		
+	}
+
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+
+		
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 

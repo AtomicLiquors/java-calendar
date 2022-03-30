@@ -19,8 +19,8 @@ import javax.swing.SwingConstants;
 
 import ateamproject.Data.CalMemberMgr;
 import ateamproject.MainWindow.MainWindow_Merged;
-import ateamproject.MbForm.Accountcreate;
-import ateamproject.MbForm.Accountseek;
+import ateamproject.mbform.Accountcreate;
+import ateamproject.mbform.Accountseek;
 
 public class LoginScreen {
 
@@ -161,7 +161,7 @@ public class LoginScreen {
 		lblNewLabel_1_1.setForeground(Color.WHITE);
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		Loginpanel.add(lblNewLabel_1_1);
-
+		
 		JPanel Mainpanel = new JPanel();
 		Mainpanel.setBounds(0, 0, 1100, 500);
 		frame.getContentPane().add(Mainpanel);

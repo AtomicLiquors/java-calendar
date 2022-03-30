@@ -2,8 +2,6 @@ package ateamproject.SchPopup;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import ateamproject.Data.CalSchedBean;
@@ -155,15 +153,16 @@ public class Ppop extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int input = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?");
-				if (input==0)
-					System.out.println("삭제 기능을 구현해 주세요.");
+				if (input==0) {
+					mgr.delSched(schedId);
+					JOptionPane.showMessageDialog(null, "일정이 데이터베이스에서 삭제되었습니다.");
 					dispose();
+				}
 			}
 		});
 	}
 	
 	public void setPopDate(String y, String m, String d) {
-
 		
 		popY = y;
 		popM = m;
@@ -175,6 +174,7 @@ public class Ppop extends JFrame {
 		
 		CalSchedBean sbean = mgr.getSched(popDate);
 		isSchedFound = (sbean.getSc_id() != 0);
+		schedId = sbean.getSc_id();
 		
 //		System.out.println("결과값 : "); 
 //		System.out.println("id : " + sbean.getSc_id() ); 
