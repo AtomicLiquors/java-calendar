@@ -116,10 +116,9 @@ public class LoginScreen {
 				String pwd = new String(Password.getPassword());
 				
 				if (mgr.loginChk(id, pwd)) {
-					System.out.println("Account confirm");
 					frame.dispose();
 					MainWindow_Merged mw = new MainWindow_Merged();
-					mw.setLoginInfo(id); //로그인 정보 전달
+					mw.setLoginInfo(id); 
 					mw.frame.setVisible(true);
 					
 				} else {

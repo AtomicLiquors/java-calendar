@@ -1,22 +1,25 @@
 package ateamproject.SchPopup;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Vector;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import ateamproject.Data.CalSchedBean;
 import ateamproject.Data.CalSchedMgr;
-
-import javax.swing.*;
-import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.sql.Date;
-import java.util.Vector;
-
-import ateamproject.Data.CalSchedBean;
 
 public class Ppop extends JFrame {
 
@@ -36,11 +39,14 @@ public class Ppop extends JFrame {
 	String popM = "" + 1;
 	String popD = "" + 1;
 
+	static String popLoginId = "";
 	String popDate = "";
 
 	Boolean isSchedFound = false;
 	Boolean isOnDday = false;
 	int schedId;
+	
+	CalSchedBean sbean;
 
 	public Ppop(String y, String m, String d) {
 
@@ -50,14 +56,48 @@ public class Ppop extends JFrame {
 
 		popDate = popY + "-" + popM + "-" + popD;
 
-		CalSchedBean sbean = mgr.getSched(popDate);
+		sbean = mgr.getSched(popDate);
 		isSchedFound = (sbean.getSc_id() != 0);
-//		System.out.println("일정 존재 여부: " + isSchedFound);
 
 		if (isSchedFound)
 			schedId = sbean.getSc_id();
-
 		
+		initialize();
+	}
+	
+	
+	public Ppop(int sc_id) {
+		schedId = sc_id;
+		sbean = mgr.getSched(sc_id);
+		isSchedFound = (sbean.getSc_id() != 0);
+		
+		if (isSchedFound) {
+			
+			SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-M-d");
+			SimpleDateFormat sdfYear = new SimpleDateFormat("yyyy");
+			SimpleDateFormat sdfMonth = new SimpleDateFormat("M");
+			SimpleDateFormat sdfDay = new SimpleDateFormat("d");
+			
+			popDate = sdfDate.format(sbean.getSc_startdate());
+			popY = sdfYear.format(sbean.getSc_startdate());
+			popM = sdfMonth.format(sbean.getSc_startdate());
+			popD = sdfDay.format(sbean.getSc_startdate());
+					
+		}
+		
+		initialize();
+	}
+
+	
+	public Ppop() {
+		
+		initialize();
+	}
+	
+	
+	
+	
+	private void initialize() {
 
 		setBounds(100, 100, 450, 229);
 		contentPane = new JPanel();
@@ -177,7 +217,7 @@ public class Ppop extends JFrame {
 			}
 		});
 
-		JButton cancelBtn = new JButton("취소");
+		JButton cancelBtn = new JButton("닫기");
 		cancelBtn.setBounds(241, 157, 97, 23);
 		contentPane.add(cancelBtn);
 		cancelBtn.addActionListener(new ActionListener() {
@@ -224,22 +264,6 @@ public class Ppop extends JFrame {
 			delBtn.setEnabled(false);
 		}
 	}
-	
-	
-	
-	public Ppop(String sc_id) {
-		mgr.getSched(sc_id);
-	}
-
-	public Ppop() {
-
-		this("" + 2020, "" + 1, "" + 1);
-		initialize();
-	}
-	
-	private void initialize() {
-		
-	}
 
 	public void setBtnIsOnDday() {
 		isOnDday = mgr.getIsOnDday(schedId);//데이터를 가져온다.
@@ -265,6 +289,12 @@ public class Ppop extends JFrame {
 				}
 			}
 		});
+	}
+
+
+	public static void passLoginInfo(String loginId) {
+		popLoginId = loginId;
+		System.out.println(popLoginId);
 	}
 
 }

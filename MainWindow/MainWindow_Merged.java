@@ -39,7 +39,10 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	int yearIdx = cal.get(Calendar.YEAR);
 	int monthIdx = cal.get(Calendar.MONTH);
 	String[] engMonths = new DateFormatSymbols(Locale.US).getMonths();
-
+	
+	String loginId;
+	int ddayId;
+	
 	private Thread thread;
 	private SimpleDateFormat sfDate;
 	private SimpleDateFormat sfTime;
@@ -86,7 +89,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		yearLbl.setText("" + yearIdx);
 		cmg.setDate(yearIdx, monthIdx);
 		
-		int ddayId = scMgr.getDdaySched();
+		ddayId = scMgr.getDdaySched();
 		
 
 		if(ddayId != 0) {
@@ -253,7 +256,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		panel_1.add(ddayTitlePanel);
 		ddayTitlePanel.setLayout(null);
 		
-		ddayTitleBtn = new JButton("Sample Dday Text");
+		ddayTitleBtn = new JButton("");
 		ddayTitleBtn.setFont(new Font("굴림", Font.BOLD, 15));
 		ddayTitleBtn.setForeground(new Color(255, 255, 255));
 		ddayTitleBtn.setHorizontalAlignment(SwingConstants.LEFT);
@@ -269,10 +272,15 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("d-day clicked");
 				
-				Ppop p = new Ppop();
-				//ppop을 띄워줄 것이다.
+				if(ddayId > 0) {
+					Ppop p = new Ppop(ddayId);
+					p.setVisible(true);
+					//ppop을 띄워줄 것이다.
+				}else {
+					System.out.println("dday가 존재하지 않습니다.");
+				}
+				
 				
 			}
 			
@@ -419,11 +427,14 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 			cmg.cGrid.setCalGrid(yearIdx, monthIdx);
 		}
 	}
-
+	
 	public void setLoginInfo(String mb_id) {
 		CalMemberBean bean = mbMgr.getMemberInfo(mb_id);
+		loginId = mb_id;
 		memberLbl.setText( bean.getMb_realname() + "님 환영합니다."); 
 	}
+	
+
 	/**
 	 * Launch the application.
 	 */
