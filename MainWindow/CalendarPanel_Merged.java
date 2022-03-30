@@ -104,10 +104,9 @@ public class CalendarPanel_Merged extends Panel implements WindowListener{
 		        btnTxt = tempBtn.getText();
 			}
 			//System.out.println(btnTxt+" clicked");
-			Ppop pop = new Ppop();
+			Ppop pop = new Ppop("" + panelY, "" + (panelM + 1), btnTxt);
 
 			pop.setVisible(true);
-			pop.setPopDate("" + panelY, "" + (panelM + 1), btnTxt);
 			
 			
 		}
