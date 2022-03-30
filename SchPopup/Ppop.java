@@ -52,9 +52,9 @@ public class Ppop extends JFrame {
 
 		CalSchedBean sbean = mgr.getSched(popDate);
 		isSchedFound = (sbean.getSc_id() != 0);
-		System.out.println("일정 존재 여부: " + isSchedFound);
+//		System.out.println("일정 존재 여부: " + isSchedFound);
 
-		if (isSchedFound) {
+		if (isSchedFound)
 			schedId = sbean.getSc_id();
 //		System.out.println("결과값 : "); 
 //		System.out.println("id : " + sbean.getSc_id() ); 
@@ -63,170 +63,170 @@ public class Ppop extends JFrame {
 //		System.out.println("제목 : " + sbean.getSc_title()); 
 //		System.out.println("내용 : " + sbean.getSc_content()); 
 
-			setBounds(100, 100, 450, 229);
-			contentPane = new JPanel();
-			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-			setContentPane(contentPane);
-			contentPane.setLayout(null);
+		setBounds(100, 100, 450, 229);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 
-			dateLabel = new JLabel(popDate);
-			dateLabel.setHorizontalAlignment(SwingConstants.LEFT);
-			dateLabel.setBounds(26, 0, 57, 15);
-			dateLabel.setText(popDate);
+		dateLabel = new JLabel(popDate);
+		dateLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		dateLabel.setBounds(26, 0, 57, 15);
+		dateLabel.setText(popDate);
 
-			contentPane.add(dateLabel);
+		contentPane.add(dateLabel);
 
-			JLabel lblNewLabel = new JLabel("일정내용");
-			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel.setBounds(0, 0, 434, 15);
-			contentPane.add(lblNewLabel);
+		JLabel lblNewLabel = new JLabel("일정내용");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(0, 0, 434, 15);
+		contentPane.add(lblNewLabel);
 
-			JLabel titleLbl = new JLabel("일정제목");
-			titleLbl.setHorizontalAlignment(SwingConstants.CENTER);
-			titleLbl.setBounds(26, 28, 57, 15);
-			contentPane.add(titleLbl);
+		JLabel titleLbl = new JLabel("일정제목");
+		titleLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLbl.setBounds(26, 28, 57, 15);
+		contentPane.add(titleLbl);
 
-			JLabel contentLbl = new JLabel("일정내용");
-			contentLbl.setHorizontalAlignment(SwingConstants.CENTER);
-			contentLbl.setBounds(26, 71, 57, 36);
-			contentPane.add(contentLbl);
+		JLabel contentLbl = new JLabel("일정내용");
+		contentLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		contentLbl.setBounds(26, 71, 57, 36);
+		contentPane.add(contentLbl);
 
-			JButton callPop2Btn = new JButton("더보기");
-			callPop2Btn.setBounds(17, 117, 86, 23);
-			contentPane.add(callPop2Btn);
+		JButton callPop2Btn = new JButton("더보기");
+		callPop2Btn.setBounds(17, 117, 86, 23);
+		contentPane.add(callPop2Btn);
 
-			callPop2Btn.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					PpopDetail popDetail = new PpopDetail(popY, popM, popD);
-					popDetail.setVisible(true);
+		callPop2Btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PpopDetail popDetail = new PpopDetail(popY, popM, popD);
+				popDetail.setVisible(true);
 
-					dispose();
-				}
-			});
-
-			saveBtn = new JButton("저장");
-			saveBtn.setBounds(116, 157, 97, 23);
-			contentPane.add(saveBtn);
-			saveBtn.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					int input = JOptionPane.showConfirmDialog(null, "저장하시겠습니까?");
-					CalSchedBean bean = new CalSchedBean();
-
-					Date rDate = Date.valueOf(popDate);
-
-					if (input == 0) {
-						bean.setSc_content(taContent.getText());
-						bean.setSc_startdate(rDate);
-						bean.setSc_enddate(rDate);
-						bean.setSc_color(null);
-						bean.setSc_priority(0);
-						bean.setSc_isdone(false);
-						bean.setSc_privacy(null);
-						bean.setSc_title(tfTitle.getText());
-					}
-
-					if (isSchedFound) {
-						bean.setSc_id(schedId);
-						mgr.updateSched(bean);
-					} else
-						mgr.addSched(bean);
-
-					dispose();
-				}
-			});
-
-			ddayBtn = new JButton();
-			ddayBtn.setIcon(new ImageIcon("ateamproject/img/dday.png"));
-			ddayBtn.setContentAreaFilled(false);
-			ddayBtn.setBorderPainted(false);
-			ddayBtn.setToolTipText("일정을 D-Day로 등록합니다.");
-			ddayBtn.setBounds(400, 25, 20, 20);
-			contentPane.add(ddayBtn);
-
-			if (isSchedFound)
-				ddayBtn.setEnabled(true);
-			else
-				ddayBtn.setEnabled(false);
-
-			ddayBtn.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("D-day 등록을 실행합니다.");
-
-					// if : 이미 일정이 등록되어 있는가? d-day 테이블에서 sc_id를 찾아.
-
-					if (isOnDday) {
-						int input = JOptionPane.showConfirmDialog(null, "D-Day 등록을 해제하시겠습니까?");
-
-						if (input == 0) {
-							// mgr.delSched(schedId);
-							setIsOnDday();
-						}
-
-					} else {
-						int input = JOptionPane.showConfirmDialog(null, "D-Day로 등록하시겠습니까?");
-						System.out.println(schedId);
-						if (input == 0) {
-							// mgr.delSched(schedId);
-							JOptionPane.showMessageDialog(null, "일정이 D-Day로 등록되었습니다.");
-							setIsOnDday();
-						}
-
-					}
-
-				}
-			});
-
-			JButton cancelBtn = new JButton("취소");
-			cancelBtn.setBounds(241, 157, 97, 23);
-			contentPane.add(cancelBtn);
-			cancelBtn.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					dispose();
-				}
-			});
-
-			tfTitle = new JTextField();
-			// 일정 제목
-			tfTitle.setBounds(115, 25, 276, 20);
-			contentPane.add(tfTitle);
-			tfTitle.setColumns(10);
-
-			taContent = new JTextArea();
-			// 일정 내용
-			taContent.setBounds(115, 62, 276, 57);
-			contentPane.add(taContent);
-
-			delBtn = new JButton("삭제");
-			delBtn.setBounds(347, 129, 75, 23);
-			contentPane.add(delBtn);
-			delBtn.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					int input = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?");
-					if (input == 0) {
-						mgr.delSched(schedId);
-						JOptionPane.showMessageDialog(null, "일정이 데이터베이스에서 삭제되었습니다.");
-						dispose();
-					}
-				}
-			});
-
-			if (isSchedFound) {
-				tfTitle.setText(sbean.getSc_title());
-				taContent.setText(sbean.getSc_content());
-			} else {
-				tfTitle.setText("새 일정 제목");
-				taContent.setText("");
-				delBtn.setEnabled(false);
+				dispose();
 			}
-		}
+		});
 
+		saveBtn = new JButton("저장");
+		saveBtn.setBounds(116, 157, 97, 23);
+		contentPane.add(saveBtn);
+		saveBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int input = JOptionPane.showConfirmDialog(null, "저장하시겠습니까?");
+				CalSchedBean bean = new CalSchedBean();
+
+				Date rDate = Date.valueOf(popDate);
+
+				if (input == 0) {
+					bean.setSc_content(taContent.getText());
+					bean.setSc_startdate(rDate);
+					bean.setSc_enddate(rDate);
+					bean.setSc_color(null);
+					bean.setSc_priority(0);
+					bean.setSc_isdone(false);
+					bean.setSc_privacy(null);
+					bean.setSc_title(tfTitle.getText());
+				}
+
+				if (isSchedFound) {
+					bean.setSc_id(schedId);
+					mgr.updateSched(bean);
+				} else
+					mgr.addSched(bean);
+
+				dispose();
+			}
+		});
+
+		ddayBtn = new JButton();
+		ddayBtn.setIcon(new ImageIcon("ateamproject/img/dday.png"));
+		setBtnIsOnDday();
+		ddayBtn.setContentAreaFilled(false);
+		ddayBtn.setBorderPainted(false);
+		ddayBtn.setToolTipText("일정을 D-Day로 등록합니다.");
+		ddayBtn.setBounds(400, 25, 20, 20);
+		contentPane.add(ddayBtn);
+
+		if (isSchedFound)
+			ddayBtn.setEnabled(true);
+		else
+			ddayBtn.setEnabled(false);
+
+		ddayBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("D-day 등록을 실행합니다.");
+
+				// if : 이미 일정이 등록되어 있는가? d-day 테이블에서 sc_id를 찾아.
+
+				if (isOnDday) {
+					int input = JOptionPane.showConfirmDialog(null, "D-Day 등록을 해제하시겠습니까?");
+					
+					if (input == 0) {
+						mgr.clearDday();
+						setBtnIsOnDday();
+					}
+
+				} else {
+					int input = JOptionPane.showConfirmDialog(null, "D-Day로 등록하시겠습니까?");
+					if (input == 0) {
+						JOptionPane.showMessageDialog(null, "일정이 D-Day로 등록되었습니다.");
+						mgr.clearDday();
+						mgr.addDday(schedId);
+						setBtnIsOnDday();
+					}
+
+				}
+
+			}
+		});
+
+		JButton cancelBtn = new JButton("취소");
+		cancelBtn.setBounds(241, 157, 97, 23);
+		contentPane.add(cancelBtn);
+		cancelBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+
+		tfTitle = new JTextField();
+		// 일정 제목
+		tfTitle.setBounds(115, 25, 276, 20);
+		contentPane.add(tfTitle);
+		tfTitle.setColumns(10);
+
+		taContent = new JTextArea();
+		// 일정 내용
+		taContent.setBounds(115, 62, 276, 57);
+		contentPane.add(taContent);
+
+		delBtn = new JButton("삭제");
+		delBtn.setBounds(347, 129, 75, 23);
+		contentPane.add(delBtn);
+		delBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int input = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?");
+				if (input == 0) {
+					mgr.delSched(schedId);
+					mgr.delDday(schedId);
+					JOptionPane.showMessageDialog(null, "일정이 데이터베이스에서 삭제되었습니다.");
+					dispose();
+				}
+			}
+		});
+
+		if (isSchedFound) {
+			tfTitle.setText(sbean.getSc_title());
+			taContent.setText(sbean.getSc_content());
+		} else {
+			tfTitle.setText("새 일정 제목");
+			taContent.setText("");
+			delBtn.setEnabled(false);
+		}
 	}
 
 	public Ppop() {
@@ -235,13 +235,12 @@ public class Ppop extends JFrame {
 
 	}
 
-	public void setIsOnDday() {
-		isOnDday = false;
-
+	public void setBtnIsOnDday() {
+		isOnDday = mgr.getIsOnDday(schedId);//데이터를 가져온다.
 		if (isOnDday) {
-			System.out.println("이미 Dday로 등록돼있습니다. 버튼 모양을 바꿔주세요.");
+			ddayBtn.setIcon(new ImageIcon("ateamproject/img/ddayOn.png"));
 		} else {
-			System.out.println("버튼 모양을 원상태로 되돌려주세요.");
+			ddayBtn.setIcon(new ImageIcon("ateamproject/img/dday.png"));
 		}
 	}
 

@@ -24,7 +24,7 @@ import ateamproject.SchPopup.Ppop;
 
 
 
-public class CalendarPanel_Merged extends Panel implements WindowListener{
+public class CalendarPanel_Merged extends Panel{
 	
 	Calendar cal = Calendar.getInstance();
 	CalendarGrid cGrid = new CalendarGrid();
@@ -233,49 +233,6 @@ public class CalendarPanel_Merged extends Panel implements WindowListener{
 			validate();
 			repaint();
 		}
-		
-	}
-
-
-	@Override
-	public void windowOpened(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowClosing(WindowEvent e) {
-
-		
-	}
-
-	@Override
-	public void windowClosed(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowDeactivated(WindowEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 

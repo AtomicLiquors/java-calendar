@@ -23,12 +23,16 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import ateamproject.LoginScreen;
+import ateamproject.Data.CalSchedBean;
+import ateamproject.Data.CalSchedMgr;
 
 public class MainWindow_Merged implements ActionListener, Runnable{
 	
 	Calendar cal = Calendar.getInstance();
 	Dday dd = new Dday();
 	CalendarPanel_Merged cmg = new CalendarPanel_Merged();
+	CalSchedMgr mgr = new CalSchedMgr();
+	CalSchedBean dBean;
 	
 	int yearIdx = cal.get(Calendar.YEAR);
 	int monthIdx = cal.get(Calendar.MONTH);
@@ -78,13 +82,31 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		yearLbl.setText("" + yearIdx);
 		cmg.setDate(yearIdx, monthIdx);
 		
+		int ddayId = mgr.getDdaySched();
 		
-		//Dday Label 설정
-//		if(dday가 존재한다면)
-//			sched에서 dday의 id와 일치하는 정보를 불러와라.
-		long [] sd = dd.countDday(2022, 5, 20);
-		ddayTenLbl.setText("" + sd[0]);
-		ddayOneLbl.setText("" + sd[1]);
+
+		if(ddayId != 0) {
+			dBean = mgr.getSched(ddayId);
+			Date dDate = dBean.getSc_startdate();
+			
+			SimpleDateFormat ysdf = new SimpleDateFormat(
+				    "yyyy");
+			SimpleDateFormat msdf = new SimpleDateFormat(
+					"M");
+			SimpleDateFormat dsdf = new SimpleDateFormat(
+					"d");
+			
+			int y = Integer.parseInt(ysdf.format(dDate));
+			int m = Integer.parseInt(msdf.format(dDate));
+			int d = Integer.parseInt(dsdf.format(dDate));
+			
+			long [] sd = dd.countDday(y, m, d);
+			ddayTenLbl.setText("" + sd[0]);
+			ddayOneLbl.setText("" + sd[1]);
+		}else{
+			ddayTenLbl.setText("" + 0);
+			ddayOneLbl.setText("" + 0);
+		}
 	}
 	
 	
