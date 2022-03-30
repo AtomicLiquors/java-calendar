@@ -391,8 +391,12 @@ public class Accountcreate {
 				
 				
 				
-				mgr.signUp(id, pwd, name, bDate, email);
+				boolean flag = mgr.signUp(id, pwd, name, bDate, email);
 				frame.dispose();
+				if(flag)
+					JOptionPane.showMessageDialog(null, name + "님의 회원가입이 완료되었습니다.");
+				else				
+					JOptionPane.showMessageDialog(null, "예기치 못한 오류가 발생했습니다.");
 				
 			}
 		});

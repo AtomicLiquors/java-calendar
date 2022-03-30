@@ -147,8 +147,8 @@ public class CalMemberMgr {
 	
 	
 	
-	public void signUp(String id, char[] pwd, String name, String bDate, String email) {
-//		boolean flag = false;
+	public Boolean signUp(String id, char[] pwd, String name, String bDate, String email) {
+		boolean flag = false;
 		
 		java.util.Date now = new java.util.Date();
 		java.sql.Date jDate = new java.sql.Date(now.getTime());
@@ -179,18 +179,18 @@ public class CalMemberMgr {
 			pstmt.setDate(5, sbDate);
 			pstmt.setString(6, email);
 			int rowCount = pstmt.executeUpdate();
-			System.out.println(rowCount + "명의 회원정보가 추가되었습니다.");
 			
-//			flag = ((rs.getInt(1) != 0));
-			
-			
+			if(rowCount > 0)
+				flag = true;
+
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
-
+		
+		return flag;
 	}
 	/*
 	//저장

@@ -59,7 +59,7 @@ public class LoginScreen {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 560, 320);
 		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 
