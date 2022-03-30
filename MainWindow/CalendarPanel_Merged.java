@@ -32,7 +32,7 @@ public class CalendarPanel_Merged extends Panel{
 	CalSchedMgr mgr = new CalSchedMgr(); 
 
 	String[] engMonths = new DateFormatSymbols(Locale.US).getMonths();
-	
+	String loginId;
 	
 	
 	JButton calBtn;
@@ -104,9 +104,9 @@ public class CalendarPanel_Merged extends Panel{
 		        btnTxt = tempBtn.getText();
 			}
 			//System.out.println(btnTxt+" clicked");
-			Ppop pop = new Ppop("" + panelY, "" + (panelM + 1), btnTxt);
-
-			pop.setVisible(true);
+			Ppop p = new Ppop("" + panelY, "" + (panelM + 1), btnTxt);
+			p.passLoginInfo(loginId);
+			p.setVisible(true);
 			
 			
 		}

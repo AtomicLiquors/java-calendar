@@ -31,7 +31,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	
 	Calendar cal = Calendar.getInstance();
 	Dday dd = new Dday();
-	CalendarPanel_Merged cmg = new CalendarPanel_Merged();
+	CalendarPanel_Merged cPanel = new CalendarPanel_Merged();
 	CalMemberMgr mbMgr = new CalMemberMgr();
 	CalSchedMgr scMgr = new CalSchedMgr();
 	CalSchedBean dBean;
@@ -74,7 +74,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	 */
 	public MainWindow_Merged() {
 		initialize();
-		cmg.cGrid.setCalGrid(yearIdx, monthIdx);
+		cPanel.cGrid.setCalGrid(yearIdx, monthIdx);
 		setLbl();
 	}
 
@@ -87,7 +87,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		monthLbl.setText(String.format("%02d", monthIdx + 1));
 		engLbl.setText(engMonths[monthIdx]);
 		yearLbl.setText("" + yearIdx);
-		cmg.setDate(yearIdx, monthIdx);
+		cPanel.setDate(yearIdx, monthIdx);
 		
 		ddayId = scMgr.getDdaySched();
 		
@@ -136,7 +136,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		calPanel.setBounds(237, 176, 665, 385);
 		frame.getContentPane().add(calPanel);
 				
-		calPanel.add(cmg);
+		calPanel.add(cPanel);
 		
 		
 		JLabel lblNewLabel = new JLabel("일");
@@ -276,6 +276,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 				if(ddayId > 0) {
 					Ppop p = new Ppop(ddayId);
 					p.setVisible(true);
+					p.passLoginInfo(loginId);
 					//ppop을 띄워줄 것이다.
 				}else {
 					System.out.println("dday가 존재하지 않습니다.");
@@ -284,10 +285,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 				
 			}
 			
-		});
-		
-
-		
+		});		
 		
 		sfDate = new SimpleDateFormat("yyyy-MM-dd a");
 		sfTime = new SimpleDateFormat("hh:mm:ss");
@@ -409,8 +407,8 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 			}
 			
 			setLbl();
-			cmg.cGrid.clearCalGrid();
-			cmg.cGrid.setCalGrid(yearIdx, monthIdx);
+			cPanel.cGrid.clearCalGrid();
+			cPanel.cGrid.setCalGrid(yearIdx, monthIdx);
 			
 		}else if(obj==nextBtn) {
 			//오른쪽 화살표를 클릭하면 날짜가 바뀐다.;
@@ -423,14 +421,17 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 			}
 			
 			setLbl();
-			cmg.cGrid.clearCalGrid();
-			cmg.cGrid.setCalGrid(yearIdx, monthIdx);
+			cPanel.cGrid.clearCalGrid();
+			cPanel.cGrid.setCalGrid(yearIdx, monthIdx);
 		}
 	}
 	
 	public void setLoginInfo(String mb_id) {
 		CalMemberBean bean = mbMgr.getMemberInfo(mb_id);
+		
 		loginId = mb_id;
+		cPanel.loginId = mb_id;
+		
 		memberLbl.setText( bean.getMb_realname() + "님 환영합니다."); 
 	}
 	
@@ -457,8 +458,8 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 					window.frame.addWindowListener(new WindowAdapter() {
 						public void windowActivated(WindowEvent e) {
 							window.setLbl();
-							window.cmg.cGrid.clearCalGrid();
-							window.cmg.cGrid.setCalGrid(window.yearIdx, window.monthIdx);
+							window.cPanel.cGrid.clearCalGrid();
+							window.cPanel.cGrid.setCalGrid(window.yearIdx, window.monthIdx);
 						}
 					});
 					
