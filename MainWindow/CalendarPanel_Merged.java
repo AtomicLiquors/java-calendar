@@ -49,10 +49,8 @@ public class CalendarPanel_Merged extends Panel implements WindowListener{
 	public CalendarPanel_Merged() {		
 		
 		JPanel cPanel = new JPanel();
-		cPanel.setLayout(new BoxLayout(cPanel, BoxLayout.Y_AXIS));
+		cPanel.setOpaque(false);
 		cPanel.add(cGrid);
-		
-		
 
 		add(cPanel);
 
@@ -77,7 +75,7 @@ public class CalendarPanel_Merged extends Panel implements WindowListener{
 		//단, 행 수인 7은 임시로 넣은 값이고 나중에 setCalGrid()에 의해 수시로 변한다.
 	
 		CalendarGrid() {	
-			setLayout(gridLayout);		
+			setLayout(gridLayout);	
 		}
 		
 

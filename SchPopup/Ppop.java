@@ -122,6 +122,14 @@ public class Ppop extends JFrame {
 		});
 		
 		
+		JButton ddayBtn = new JButton();
+		ddayBtn.setIcon(new ImageIcon("ateamproject/img/dday.png"));
+		ddayBtn.setContentAreaFilled(false);
+		ddayBtn.setBorderPainted(false);
+		ddayBtn.setToolTipText("일정을 D-Day로 등록합니다.");
+		ddayBtn.setBounds(400, 25, 20, 20);
+		contentPane.add(ddayBtn);
+		
 		
 		JButton cancelBtn = new JButton("취소");
 		cancelBtn.setBounds(241, 157, 97, 23);
@@ -133,7 +141,6 @@ public class Ppop extends JFrame {
 				dispose();
 			}
 		});
-		
 		
 		
 		tfTitle = new JTextField();

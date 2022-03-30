@@ -47,6 +47,10 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	JLabel currDateLbl;
 	JLabel currTimeLbl;
 	
+	JLabel ddayTenLbl;
+	JLabel ddayOneLbl;
+	JButton ddayTitleBtn;
+	
 	JButton alarmBtn;
 	JButton homeBtn;
 	JButton settingBtn;
@@ -68,12 +72,24 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	 */
 	
 	public void setLbl(){
+		//달력 Label 설정
 		monthLbl.setText(String.format("%02d", monthIdx + 1));
 		engLbl.setText(engMonths[monthIdx]);
 		yearLbl.setText("" + yearIdx);
 		cmg.setDate(yearIdx, monthIdx);
-
+		
+		
+		//Dday Label 설정
+//		if(dday가 존재한다면)
+//			sched에서 dday의 id와 일치하는 정보를 불러와라.
+		long [] sd = dd.countDday(2022, 5, 20);
+		ddayTenLbl.setText("" + sd[0]);
+		ddayOneLbl.setText("" + sd[1]);
 	}
+	
+	
+
+
 	
 	private void initialize() {
 
@@ -90,7 +106,6 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		frame.getContentPane().add(calPanel);
 				
 		calPanel.add(cmg);
-		
 		
 		
 		JLabel lblNewLabel = new JLabel("일");
@@ -191,28 +206,50 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		ddayDLbl.setBounds(0, 0, 38, 50);
 		panel_4_1_1.add(ddayDLbl); 
 		
-		JLabel ddayTenLbl = new JLabel("0");
+		ddayTenLbl = new JLabel("0");
 		ddayTenLbl.setFont(new Font("굴림", Font.BOLD, 15));
 		ddayTenLbl.setForeground(new Color(255, 255, 255));
 		ddayTenLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		ddayTenLbl.setBounds(0, 0, 38, 50);
 		panel_4_1_2.add(ddayTenLbl);
 		
-
-		JLabel ddayOneLbl = new JLabel("0");
+		ddayOneLbl = new JLabel("0");
 		ddayOneLbl.setFont(new Font("굴림", Font.BOLD, 15));
 		ddayOneLbl.setForeground(new Color(255, 255, 255));
 		ddayOneLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		ddayOneLbl.setBounds(0, 0, 38, 50);
 		panel_4_1.add(ddayOneLbl);
 		
-	//	시작할 때, 윈도우리스너 작동할 때 + 다음날로 넘어갈 때 동작할 메소드 setDday를 선언한다.
-//		(조건 체크 : 해당하는 일정이 있는가? 있으면 다음을 수행하시오.)
-		//예컨대 : 테이블에 데이터가 있다.
-		//
-		long [] sd = dd.countDday(2022, 5, 20);
-		System.out.println(sd[0]);
-		System.out.println(sd[1]);
+		JPanel ddayTitlePanel = new JPanel();
+		ddayTitlePanel.setOpaque(false);
+		ddayTitlePanel.setBorder(null);
+		ddayTitlePanel.setBounds(32, 180, 150, 50);
+		panel_1.add(ddayTitlePanel);
+		ddayTitlePanel.setLayout(null);
+		
+		ddayTitleBtn = new JButton("Sample Dday Text");
+		ddayTitleBtn.setFont(new Font("굴림", Font.BOLD, 15));
+		ddayTitleBtn.setForeground(new Color(255, 255, 255));
+		ddayTitleBtn.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		ddayTitleBtn.setOpaque(false);
+		ddayTitleBtn.setBounds(0, 0, 150, 35);
+		ddayTitleBtn.setContentAreaFilled(false);
+		ddayTitleBtn.setBorder(null);
+		ddayTitleBtn.setBorderPainted(false);
+		ddayTitlePanel.add(ddayTitleBtn); 
+		
+		ddayTitleBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("d-day clicked");
+				//ppop을 띄워줄 것이다.
+			}
+			
+		});
+		
+
 		
 		
 		sfDate = new SimpleDateFormat("yyyy-MM-dd a");
@@ -243,6 +280,9 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		});
 		alarmBtn.setIcon(new ImageIcon("ateamproject/img/alarm.png"));
 		alarmBtn.setBounds(799, 44, 41, 37);
+		alarmBtn.setContentAreaFilled(false);
+		alarmBtn.setBorder(null);
+		alarmBtn.setBorderPainted(false);
 		frame.getContentPane().add(alarmBtn);
 		
 		
@@ -251,10 +291,19 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		homeBtn = new JButton("");
 		homeBtn.setIcon(new ImageIcon("ateamproject/img/home.png"));
 		homeBtn.setBounds(237, 44, 41, 37);
+		homeBtn.setContentAreaFilled(false);
+		homeBtn.setBorder(null);
+		homeBtn.setBorderPainted(false);		
 		frame.getContentPane().add(homeBtn);
 		
 		settingBtn = new JButton("");
 		settingBtn.setIcon(new ImageIcon("ateamproject/img/setting.png"));
+		settingBtn.setContentAreaFilled(false);
+		settingBtn.setBorder(null);
+		settingBtn.setBorderPainted(false);
+		
+		
+
 		settingBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
