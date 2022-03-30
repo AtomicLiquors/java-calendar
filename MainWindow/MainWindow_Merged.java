@@ -351,8 +351,6 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 							window.setLbl();
 							window.cmg.cGrid.clearCalGrid();
 							window.cmg.cGrid.setCalGrid(window.yearIdx, window.monthIdx);
-							
-							System.out.println("이콩이");
 						}
 					});
 					
