@@ -83,6 +83,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	 */
 	
 	public void setLbl(){
+
 		//달력 Label 설정
 		monthLbl.setText(String.format("%02d", monthIdx + 1));
 		engLbl.setText(engMonths[monthIdx]);
@@ -115,6 +116,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		}else{
 			ddayTenLbl.setText("" + 0);
 			ddayOneLbl.setText("" + 0);
+			ddayTitleBtn.setText("");
 		}
 	}
 	
