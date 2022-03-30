@@ -5,8 +5,6 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DateFormatSymbols;
@@ -23,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import ateamproject.LoginScreen;
+import ateamproject.Data.CalMemberMgr;
 import ateamproject.Data.CalSchedBean;
 import ateamproject.Data.CalSchedMgr;
 
@@ -31,7 +30,8 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	Calendar cal = Calendar.getInstance();
 	Dday dd = new Dday();
 	CalendarPanel_Merged cmg = new CalendarPanel_Merged();
-	CalSchedMgr mgr = new CalSchedMgr();
+	CalMemberMgr mbMgr = new CalMemberMgr();
+	CalSchedMgr scMgr = new CalSchedMgr();
 	CalSchedBean dBean;
 	
 	int yearIdx = cal.get(Calendar.YEAR);
@@ -82,11 +82,11 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		yearLbl.setText("" + yearIdx);
 		cmg.setDate(yearIdx, monthIdx);
 		
-		int ddayId = mgr.getDdaySched();
+		int ddayId = scMgr.getDdaySched();
 		
 
 		if(ddayId != 0) {
-			dBean = mgr.getSched(ddayId);
+			dBean = scMgr.getSched(ddayId);
 			Date dDate = dBean.getSc_startdate();
 			
 			SimpleDateFormat ysdf = new SimpleDateFormat(
@@ -409,7 +409,9 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		}
 	}
 
-	
+	public void setLoginInfo() {
+		
+	}
 	/**
 	 * Launch the application.
 	 */

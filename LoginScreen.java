@@ -121,6 +121,8 @@ public class LoginScreen {
 					System.out.println("Account confirm");
 					frame.dispose();
 					MainWindow_Merged mw = new MainWindow_Merged();
+					//로그인 정보 전달
+					mw.setLoginInfo();
 					mw.frame.setVisible(true);
 					
 				} else {
