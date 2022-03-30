@@ -165,12 +165,6 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		panel_1.add(panel_4_1);
 		panel_4_1.setLayout(null);
 		
-		JLabel lblNewLabel_3 = new JLabel("7");
-		lblNewLabel_3.setFont(new Font("굴림", Font.BOLD, 15));
-		lblNewLabel_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(0, 0, 38, 50);
-		panel_4_1.add(lblNewLabel_3);
 		
 		JPanel panel_4_1_1 = new JPanel();
 		panel_4_1_1.setForeground(new Color(0, 0, 204));
@@ -179,25 +173,46 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		panel_1.add(panel_4_1_1);
 		panel_4_1_1.setLayout(null);
 		
-		JLabel lblNewLabel_4 = new JLabel("D");
-		lblNewLabel_4.setFont(new Font("굴림", Font.BOLD, 15));
-		lblNewLabel_4.setForeground(new Color(255, 255, 255));
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setBounds(0, 0, 38, 50);
-		panel_4_1_1.add(lblNewLabel_4);
 		
+		
+		
+		//아래는 D-Day 항목들, 단 소속 패널이 다 따로따로 되어있는데 개선바람.		
 		JPanel panel_4_1_2 = new JPanel();
 		panel_4_1_2.setBackground(new Color(0, 51, 153));
 		panel_4_1_2.setBounds(82, 120, 38, 50);
 		panel_1.add(panel_4_1_2);
 		panel_4_1_2.setLayout(null);
 		
-		JLabel lblNewLabel_5 = new JLabel("0");
-		lblNewLabel_5.setFont(new Font("굴림", Font.BOLD, 15));
-		lblNewLabel_5.setForeground(new Color(255, 255, 255));
-		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_5.setBounds(0, 0, 38, 50);
-		panel_4_1_2.add(lblNewLabel_5);
+		
+		JLabel ddayDLbl = new JLabel("D");
+		ddayDLbl.setFont(new Font("굴림", Font.BOLD, 15));
+		ddayDLbl.setForeground(new Color(255, 255, 255));
+		ddayDLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		ddayDLbl.setBounds(0, 0, 38, 50);
+		panel_4_1_1.add(ddayDLbl); 
+		
+		JLabel ddayTenLbl = new JLabel("0");
+		ddayTenLbl.setFont(new Font("굴림", Font.BOLD, 15));
+		ddayTenLbl.setForeground(new Color(255, 255, 255));
+		ddayTenLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		ddayTenLbl.setBounds(0, 0, 38, 50);
+		panel_4_1_2.add(ddayTenLbl);
+		
+
+		JLabel ddayOneLbl = new JLabel("0");
+		ddayOneLbl.setFont(new Font("굴림", Font.BOLD, 15));
+		ddayOneLbl.setForeground(new Color(255, 255, 255));
+		ddayOneLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		ddayOneLbl.setBounds(0, 0, 38, 50);
+		panel_4_1.add(ddayOneLbl);
+		
+	//	시작할 때, 윈도우리스너 작동할 때 + 다음날로 넘어갈 때 동작할 메소드 setDday를 선언한다.
+//		(조건 체크 : 해당하는 일정이 있는가? 있으면 다음을 수행하시오.)
+		//예컨대 : 테이블에 데이터가 있다.
+		//
+		long [] sd = dd.countDday(2022, 5, 20);
+		System.out.println(sd[0]);
+		System.out.println(sd[1]);
 		
 		
 		sfDate = new SimpleDateFormat("yyyy-MM-dd a");
@@ -206,8 +221,6 @@ public class MainWindow_Merged implements ActionListener, Runnable{
             thread = new Thread(this);
             thread.start();
         }
-		
-        
 		
 		currDateLbl = new JLabel("2022-03-15");
 		currDateLbl.setForeground(new Color(255, 255, 255));
@@ -323,7 +336,6 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 			cmg.cGrid.clearCalGrid();
 			cmg.cGrid.setCalGrid(yearIdx, monthIdx);
 		}
-		
 	}
 
 	
