@@ -5,9 +5,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -340,6 +340,17 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 				try {
 					MainWindow_Merged window = new MainWindow_Merged();
 					window.frame.setVisible(true);
+					window.frame.addMouseListener(new MouseAdapter() {
+						public void mouseEntered(MouseEvent e) {
+							System.out.println("예콩이");
+						}
+					});
+					
+					window.frame.addWindowListener(new WindowAdapter() {
+						public void 
+					});
+					
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

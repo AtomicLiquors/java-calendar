@@ -86,6 +86,7 @@ public class Ppop extends JFrame {
 		});
 		
 		
+		
 		saveBtn = new JButton("저장");
 		saveBtn.setBounds(116, 157, 97, 23);
 		contentPane.add(saveBtn);
