@@ -56,12 +56,8 @@ public class Ppop extends JFrame {
 
 		if (isSchedFound)
 			schedId = sbean.getSc_id();
-//		System.out.println("결과값 : "); 
-//		System.out.println("id : " + sbean.getSc_id() ); 
-//		System.out.println("시작일 : " + sbean.getSc_startdate()); 
-//		System.out.println("종료일 : " + sbean.getSc_enddate() ); 
-//		System.out.println("제목 : " + sbean.getSc_title()); 
-//		System.out.println("내용 : " + sbean.getSc_content()); 
+
+		
 
 		setBounds(100, 100, 450, 229);
 		contentPane = new JPanel();
@@ -228,11 +224,21 @@ public class Ppop extends JFrame {
 			delBtn.setEnabled(false);
 		}
 	}
+	
+	
+	
+	public Ppop(String sc_id) {
+		mgr.getSched(sc_id);
+	}
 
 	public Ppop() {
 
 		this("" + 2020, "" + 1, "" + 1);
-
+		initialize();
+	}
+	
+	private void initialize() {
+		
 	}
 
 	public void setBtnIsOnDday() {

@@ -112,8 +112,6 @@ public class LoginScreen {
 				
 				CalMemberMgr mgr;
 				mgr = new CalMemberMgr();
-				
-				//쿼리문을 실행해야 된다. Password.getPassword() equals select pwd from member where id = "ID.getText()"  
 				String id = ID.getText();
 				String pwd = new String(Password.getPassword());
 				
@@ -121,8 +119,7 @@ public class LoginScreen {
 					System.out.println("Account confirm");
 					frame.dispose();
 					MainWindow_Merged mw = new MainWindow_Merged();
-					//로그인 정보 전달
-					mw.setLoginInfo();
+					mw.setLoginInfo(id); //로그인 정보 전달
 					mw.frame.setVisible(true);
 					
 				} else {

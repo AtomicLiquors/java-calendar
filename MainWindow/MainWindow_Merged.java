@@ -21,9 +21,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import ateamproject.LoginScreen;
+import ateamproject.Data.CalMemberBean;
 import ateamproject.Data.CalMemberMgr;
 import ateamproject.Data.CalSchedBean;
 import ateamproject.Data.CalSchedMgr;
+import ateamproject.SchPopup.Ppop;
 
 public class MainWindow_Merged implements ActionListener, Runnable{
 	
@@ -53,6 +55,8 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	
 	JLabel ddayTenLbl;
 	JLabel ddayOneLbl;
+	JLabel memberLbl;
+	
 	JButton ddayTitleBtn;
 	
 	JButton alarmBtn;
@@ -88,6 +92,8 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		if(ddayId != 0) {
 			dBean = scMgr.getSched(ddayId);
 			Date dDate = dBean.getSc_startdate();
+			ddayTitleBtn.setText(dBean.getSc_title());
+			
 			
 			SimpleDateFormat ysdf = new SimpleDateFormat(
 				    "yyyy");
@@ -209,9 +215,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		panel_4_1_1.setBounds(32, 120, 38, 50);
 		panel_1.add(panel_4_1_1);
 		panel_4_1_1.setLayout(null);
-		
-		
-		
+				
 		
 		//아래는 D-Day 항목들, 단 소속 패널이 다 따로따로 되어있는데 개선바람.		
 		JPanel panel_4_1_2 = new JPanel();
@@ -253,7 +257,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		ddayTitleBtn.setFont(new Font("굴림", Font.BOLD, 15));
 		ddayTitleBtn.setForeground(new Color(255, 255, 255));
 		ddayTitleBtn.setHorizontalAlignment(SwingConstants.LEFT);
-		
+		ddayTitleBtn.setFocusable(false);
 		ddayTitleBtn.setOpaque(false);
 		ddayTitleBtn.setBounds(0, 0, 150, 35);
 		ddayTitleBtn.setContentAreaFilled(false);
@@ -266,7 +270,10 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("d-day clicked");
+				
+				Ppop p = new Ppop();
 				//ppop을 띄워줄 것이다.
+				
 			}
 			
 		});
@@ -306,9 +313,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		alarmBtn.setBorder(null);
 		alarmBtn.setBorderPainted(false);
 		frame.getContentPane().add(alarmBtn);
-		
-		
-		
+				
 		
 		homeBtn = new JButton("");
 		homeBtn.setIcon(new ImageIcon("ateamproject/img/home.png"));
@@ -361,6 +366,12 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		engLbl.setBounds(610, 104, 93, 35);
 		frame.getContentPane().add(engLbl);
 		
+		memberLbl = new JLabel();
+		memberLbl.setBounds(600, 11, 200, 23);
+		memberLbl.setHorizontalAlignment(SwingConstants.RIGHT);
+		frame.getContentPane().add(memberLbl);
+		
+		
 		JButton logoutBtn = new JButton("로그아웃");
 		logoutBtn.setFont(new Font("굴림", Font.PLAIN, 10));
 		logoutBtn.setBounds(816, 11, 78, 23);
@@ -409,8 +420,9 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		}
 	}
 
-	public void setLoginInfo() {
-		
+	public void setLoginInfo(String mb_id) {
+		CalMemberBean bean = mbMgr.getMemberInfo(mb_id);
+		memberLbl.setText( bean.getMb_realname() + "님 환영합니다."); 
 	}
 	/**
 	 * Launch the application.

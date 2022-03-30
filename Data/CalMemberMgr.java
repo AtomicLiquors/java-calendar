@@ -66,6 +66,36 @@ public class CalMemberMgr {
 		}
 		return vlist;
 	}
+	public CalMemberBean getMemberInfo(String id){
+		
+		CalMemberBean bean = null;
+		
+		try {
+			con = pool.getConnection();
+			sql = "select * from member where mb_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.executeQuery();
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+					bean = new CalMemberBean(
+							rs.getString("mb_id"),
+							rs.getString("mb_pwd"),
+							rs.getDate("mb_joindate"),
+							rs.getString("mb_realname"),
+							rs.getDate("mb_birthdate"),
+							rs.getString("mb_email"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		
+		return bean;
+	}
 	
 	
 	
