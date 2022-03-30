@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -60,7 +61,6 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		initialize();
 		cmg.cGrid.setCalGrid(yearIdx, monthIdx);
 		setLbl();
-		
 	}
 
 	/**
@@ -76,8 +76,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	}
 	
 	private void initialize() {
-		
-		
+
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setLocation(-82, -107);
@@ -340,14 +339,21 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 				try {
 					MainWindow_Merged window = new MainWindow_Merged();
 					window.frame.setVisible(true);
-					window.frame.addMouseListener(new MouseAdapter() {
-						public void mouseEntered(MouseEvent e) {
-							System.out.println("예콩이");
-						}
-					});
+					
+//					window.frame.addMouseListener(new MouseAdapter() {
+//						public void mouseEntered(MouseEvent e) {
+//							System.out.println("예콩이");
+//						}
+//					});
 					
 					window.frame.addWindowListener(new WindowAdapter() {
-						public void 
+						public void windowActivated(WindowEvent e) {
+							window.setLbl();
+							window.cmg.cGrid.clearCalGrid();
+							window.cmg.cGrid.setCalGrid(window.yearIdx, window.monthIdx);
+							
+							System.out.println("이콩이");
+						}
 					});
 					
 					

@@ -118,8 +118,6 @@ public class CalendarPanel_Merged extends Panel implements WindowListener{
 
 		public void setCalGrid(int y, int m) {
 
-			//System.out.println("달력 세팅 시작");
-			
 			Calendar locCal = Calendar.getInstance();
 			//System.out.println("locCal 설정 시작 : yearidx, monthidx = " + y +", " + m);
 			
