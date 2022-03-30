@@ -15,15 +15,6 @@ public class CalSchedMgr {
 		pool = DBConnectionMgr.getInstance();
 	}
 
-//	다른 클래스에서 쓸 때 기본양식 :	
-
-//	CalSchedMgr mgr;
-//	Vector<CalSchedBean> vlist;
-//	mgr = new CalSchedMgr();
-//	vlist = mgr.listMember();
-	
-//	System.out.println(vlist);
-
 	
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -237,6 +228,9 @@ public class CalSchedMgr {
 		return flag;
 	}
 	
+	
+	//============Dday 관련 메소드==================
+	
 	public int getDdaySched() {
 		int ddayId = 0;
 		//DDay로 등록된 sc_id를 받아온다.
@@ -329,7 +323,6 @@ public class CalSchedMgr {
 	
 	
 	public boolean addDday(int sc_id) {
-		
 		boolean flag = false;
 		
 		try {
@@ -350,5 +343,107 @@ public class CalSchedMgr {
 		
 		return flag;
 	}
+
+	
+	//============Reply 관련 메소드==================
+	
+	public int getReply() {
+		int ddayId = 0;
+		//DDay로 등록된 sc_id를 받아온다.
+		try {
+			con = pool.getConnection();
+			sql = "SELECT sc_id FROM dday Limit 1";
+			pstmt = con.prepareStatement(sql);
+
+			// 적용된 레코드 개수 : 에러 및 처리 : 0, 정상 처리시 : 1(insert는 1이에요.)
+			ResultSet rs = pstmt.executeQuery(); // SQL문 실행!
+			
+			if (rs.next())
+				ddayId = rs.getInt("sc_id");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+
+		return ddayId;
+	}
+
+//	public boolean getReplier(String mb_id) {
+//		boolean flag;
+//		//DDay로 등록된 sc_id를 받아온다.
+//		try {
+//			con = pool.getConnection();
+//			sql = "SELECT sc_id FROM reply where mb_id = ?";
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setString(1, mb_id);
+//
+//			// 적용된 레코드 개수 : 에러 및 처리 : 0, 정상 처리시 : 1(insert는 1이에요.)
+//			ResultSet rs = pstmt.executeQuery(); // SQL문 실행!
+//			
+//			if (rs.next())
+//				flag = true;
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			pool.freeConnection(con, pstmt);
+//		}
+//
+//		return flag;
+//	}
+	
+	public boolean addReply() {
+		//3개면 추가 못하게 막아야 한다.
+		boolean flag = false;
+
+		try {
+			con = pool.getConnection();
+			sql = "INSERT INTO reply (mb_id, sc_id, rp_content, rp_date)" + " VALUES (?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+//			pstmt.setString(1, mb_id);
+//			pstmt.setInt(2, sc_id);
+//			pstmt.setInt(3, rp_content);
+//			pstmt.setInt(4, date today);
+			// 적용된 레코드 개수 : 에러 및 처리 : 0, 정상 처리시 : 1(insert는 1이에요.)
+			int cnt = pstmt.executeUpdate(); // SQL문 실행!
+
+			if (cnt == 1)
+				flag = true; // 그래서... "cnt는 1이면... flag는 true다."
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+
+		return flag;
+	}
+	
+	
+	public boolean delReply(int sc_id) {
+		boolean flag = false;
+
+		try {
+			con = pool.getConnection();
+			sql = "DELETE FROM dday where rp_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, sc_id);
+			// 적용된 레코드 개수 : 에러 및 처리 : 0, 정상 처리시 : 1(insert는 1이에요.)
+			int cnt = pstmt.executeUpdate(); // SQL문 실행!
+
+			if (cnt == 1)
+				flag = true; // 그래서... "cnt는 1이면... flag는 true다."
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+
+		return flag;
+	}
+	
+	
 }
+
 

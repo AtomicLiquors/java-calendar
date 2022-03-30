@@ -115,6 +115,16 @@ public class PpopDetail extends Ppop {
 		super.contentPane.add(lblNewLabel_3);
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 	}
+	
+	public void getComment(int sc_id) {
+		//코멘트 테이블을 조회한다.
+		//표시
+	}
+	
+	public void addComment(int sc_id) {
+		//코멘트를 등록한다.
+		//표시
+	}
 
 	
 	/**
