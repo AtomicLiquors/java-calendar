@@ -39,7 +39,9 @@ public class CalendarPanel_Merged extends Panel{
 	
 	int panelY = cal.get(Calendar.YEAR);;
 	int panelM = cal.get(Calendar.MONTH);
-
+	
+	String btnDate;
+	
 
 	public void setDate(int y, int m) {
 		panelY = y;
@@ -187,15 +189,24 @@ public class CalendarPanel_Merged extends Panel{
 				calBtn.addActionListener(this);
 				
 				
-				String btnDate = panelY + "-" + (panelM + 1) + "-" + calArr.get(i);;
+				if (panelM +1 == 13) {
+					panelM = 0;
+					
+				}else
+					btnDate = panelY + "-" + (panelM + 1) + "-" + calArr.get(i);
 				
 
 				if(i < prevArr.size()) {
 					if(panelM==0) {
-						panelY = panelY - 1;
+
 						panelM = 12;
+						
+						btnDate = panelY-1 + "-" + (panelM) + "-" + calArr.get(i);
+					}else {
+						btnDate = panelY + "-" + (panelM) + "-" + calArr.get(i);
 					}
-					btnDate = panelY + "-" + (panelM) + "-" + calArr.get(i);
+					
+					
 				}else if(i >= calArr.size() - nextArr.size()) {
 					if(panelM==11) {
 						panelY = panelY + 1;
@@ -203,11 +214,13 @@ public class CalendarPanel_Merged extends Panel{
 					}
 					btnDate = panelY + "-" + (panelM + 2) + "-" + calArr.get(i);
 				}
-					
-//				System.out.println(panelY);
-//				System.out.println(panelM);
-//				System.out.println(calArr.get(i));
 				
+//				System.out.println("panelY :" + panelY);
+//				System.out.println("panelM :" + panelM);
+//				System.out.println("panelD :" + calArr.get(i));
+//				System.out.println("btnDate :" + btnDate);
+					
+
 
 				CalSchedBean sbean = mgr.getSched(btnDate);
 				Boolean isSchedFound = (sbean.getSc_id()!=0);
