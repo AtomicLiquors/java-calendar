@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -120,6 +122,13 @@ public class LoginScreen {
 					MainWindow_Merged mw = new MainWindow_Merged();
 					mw.setLoginInfo(id); 
 					mw.frame.setVisible(true);
+					mw.frame.addWindowListener(new WindowAdapter() {
+						public void windowActivated(WindowEvent e) {
+							mw.setLbl();
+							mw.cPanel.cGrid.clearCalGrid();
+							mw.cPanel.cGrid.setCalGrid(mw.yearIdx, mw.monthIdx);
+						}
+					});
 					
 				} else {
 					JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 일치하지 않습니다");

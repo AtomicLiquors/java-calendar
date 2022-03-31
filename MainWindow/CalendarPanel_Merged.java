@@ -27,7 +27,7 @@ import ateamproject.SchPopup.Ppop;
 public class CalendarPanel_Merged extends Panel{
 	
 	Calendar cal = Calendar.getInstance();
-	CalendarGrid cGrid = new CalendarGrid();
+	public CalendarGrid cGrid = new CalendarGrid();
 	
 	CalSchedMgr mgr = new CalSchedMgr(); 
 

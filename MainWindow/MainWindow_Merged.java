@@ -31,13 +31,13 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	
 	Calendar cal = Calendar.getInstance();
 	Dday dd = new Dday();
-	CalendarPanel_Merged cPanel = new CalendarPanel_Merged();
+	public CalendarPanel_Merged cPanel = new CalendarPanel_Merged();
 	CalMemberMgr mbMgr = new CalMemberMgr();
 	CalSchedMgr scMgr = new CalSchedMgr();
 	CalSchedBean dBean;
 	
-	int yearIdx = cal.get(Calendar.YEAR);
-	int monthIdx = cal.get(Calendar.MONTH);
+	public int yearIdx = cal.get(Calendar.YEAR);
+	public int monthIdx = cal.get(Calendar.MONTH);
 	String[] engMonths = new DateFormatSymbols(Locale.US).getMonths();
 	
 	String loginId;
