@@ -421,14 +421,13 @@ public class CalSchedMgr {
 		try {
 			con = pool.getConnection();
 			sql = "insert into reply "
-					+ "(mb_id, sc_id, rp_id, rp_content, rp_date)"
-					+ "values(?, ?, ?, ?, ?, ?, ?, ?)";
+					+ "(mb_id, sc_id, rp_content, rp_date)"
+					+ "values(?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getMb_id());
 			pstmt.setInt(2, bean.getSc_id());
-			pstmt.setInt(3,bean.getRp_id());
-			pstmt.setString(4, bean.getRp_content());
-			pstmt.setDate(5, bean.getRp_date());
+			pstmt.setString(3, bean.getRp_content());
+			pstmt.setDate(4, bean.getRp_date());
 			
 			// 적용된 레코드 개수 : 에러 및 처리 : 0, 정상 처리시 : 1(insert는 1이에요.)
 			int cnt = pstmt.executeUpdate(); // SQL문 실행!

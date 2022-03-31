@@ -3,7 +3,7 @@ package ateamproject.SchPopup;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -65,7 +65,7 @@ public class PpopDetail extends Ppop {
 		super.contentPane.add(replyPanel);
 		
 		
-		setComment();
+		setReply();
 		
 		addReplyTf = new JTextField();
 		addReplyTf.setColumns(10);
@@ -82,16 +82,37 @@ public class PpopDetail extends Ppop {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+
+				  String ss=sdf.format(new java.util.Date());
+				//new java.util.Date()); //오늘 객체를 생성한다.
+
+
+				  java.sql.Date now = java.sql.Date.valueOf(ss);
+				//java.sql.Date 형식으로 바꾼다.
+
+				
+				
 				String rpText = addReplyTf.getText().trim();
 				if (rpText.length() > 0) {
 					int input = JOptionPane.showConfirmDialog(null, "코멘트를 등록할까요?");
 
 					if (input == 0) {
-						JOptionPane.showMessageDialog(null, popLoginId);
 						//데이터베이스 접근, 코멘트 등록
 //						
-//						CalReplyBean bean 
-//						= new CalReplyBean(popLoginId, schedId, 0, d, now);
+						CalReplyBean bean 
+						= new CalReplyBean();
+						bean.setMb_id(popLoginId);
+						bean.setRp_content(rpText);
+						bean.setRp_date(now);
+						bean.setSc_id(schedId);
+						
+						if(mgr.addReply(bean)) {
+							JOptionPane.showMessageDialog(null, "코멘트가 등록되었습니다.");
+							setReply();
+						}else {
+							JOptionPane.showMessageDialog(null, "예기치 못한 오류가 발생했습니다.");
+						}
 					}
 					
 				}else {
@@ -137,7 +158,7 @@ public class PpopDetail extends Ppop {
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 	}
 	
-	public void setComment() {
+	public void setReply() {
 		for (int i = 0; i < rlist.size(); i++) {
 			try {
 				String replyId = rlist.get(i).getMb_id();
