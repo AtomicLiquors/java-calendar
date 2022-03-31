@@ -294,7 +294,6 @@ public class Ppop extends JFrame {
 
 	public static void passLoginInfo(String loginId) {
 		popLoginId = loginId;
-		System.out.println(popLoginId);
 	}
 
 }

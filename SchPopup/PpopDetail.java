@@ -1,12 +1,15 @@
 package ateamproject.SchPopup;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.util.Vector;
 
-import javax.net.ssl.SSLContext;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -19,11 +22,13 @@ import ateamproject.Data.CalSchedMgr;
 
 public class PpopDetail extends Ppop {
 	
+	int schedId = super.schedId;
+	
 	CalSchedMgr mgr = new CalSchedMgr();
 	Vector<CalSchedBean> vlist = mgr.listSched();
 	Vector<CalReplyBean> rlist = mgr.getReply(super.schedId);
 
-	
+	String popLoginId = super.popLoginId;
 	private JPanel contentPane;
 	private JPanel replyPanel;
 	private JTextField replyTf;
@@ -65,7 +70,6 @@ public class PpopDetail extends Ppop {
 		addReplyTf = new JTextField();
 		addReplyTf.setColumns(10);
 		addReplyTf.setVisible(true);
-		addReplyTf.setFocusable(false);
 		addReplyTf.setText("");
 		addReplyTf.setToolTipText("코멘트를 입력하세요");
 		addReplyTf.setBounds(105, 0, 220, 20);
@@ -74,7 +78,28 @@ public class PpopDetail extends Ppop {
 		JButton addReplyBtn = new JButton("");
 		addReplyBtn.setIcon(new ImageIcon("ateamproject/img/pencil.png"));
 		addReplyBtn.setBounds(367, 0, 30, 30);
-		addReplyBtn.addActionListener("")
+		addReplyBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String rpText = addReplyTf.getText().trim();
+				if (rpText.length() > 0) {
+					int input = JOptionPane.showConfirmDialog(null, "코멘트를 등록할까요?");
+
+					if (input == 0) {
+						JOptionPane.showMessageDialog(null, popLoginId);
+						//데이터베이스 접근, 코멘트 등록
+//						
+//						CalReplyBean bean 
+//						= new CalReplyBean(popLoginId, schedId, 0, d, now);
+					}
+					
+				}else {
+					JOptionPane.showMessageDialog(null, "코멘트를 입력해주세요.");
+				}
+				
+			}
+		});		
 		
 		replyPanel.add(addReplyBtn);
 		
