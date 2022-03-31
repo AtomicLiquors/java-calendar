@@ -109,7 +109,9 @@ public class PpopDetail extends Ppop {
 						
 						if(mgr.addReply(bean)) {
 							JOptionPane.showMessageDialog(null, "코멘트가 등록되었습니다.");
-							setReply();
+							
+							dispose();
+							
 						}else {
 							JOptionPane.showMessageDialog(null, "예기치 못한 오류가 발생했습니다.");
 						}
@@ -177,6 +179,9 @@ public class PpopDetail extends Ppop {
 				replyTf.setText(reply);
 				replyTf.setBounds(105, 40 + (i*30), 220, 20);
 				replyPanel.add(replyTf);
+				
+				validate();
+				repaint();
 				
 			} catch (Exception e) {
 				System.out.println(i+"번째 조회 결과:");

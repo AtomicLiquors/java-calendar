@@ -95,6 +95,12 @@ public class Ppop extends JFrame {
 	}
 	
 	
+	public void openDetail() {
+		PpopDetail popDetail = new PpopDetail(popY, popM, popD);
+		popDetail.setVisible(true);
+
+		dispose();
+	}
 	
 	
 	private void initialize() {
@@ -133,10 +139,7 @@ public class Ppop extends JFrame {
 
 		callPop2Btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PpopDetail popDetail = new PpopDetail(popY, popM, popD);
-				popDetail.setVisible(true);
-
-				dispose();
+				openDetail();
 			}
 		});
 
