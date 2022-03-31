@@ -347,28 +347,44 @@ public class CalSchedMgr {
 	
 	//============Reply 관련 메소드==================
 	
-	public int getReply() {
-		int ddayId = 0;
-		//DDay로 등록된 sc_id를 받아온다.
+	public Vector<CalReplyBean> getReply(int sc_id) {
+		
+		Vector<CalReplyBean> vlist = new Vector<CalReplyBean>();
+		
 		try {
 			con = pool.getConnection();
-			sql = "SELECT sc_id FROM dday Limit 1";
+			sql = "select * from reply where sc_id = ?";
 			pstmt = con.prepareStatement(sql);
-
-			// 적용된 레코드 개수 : 에러 및 처리 : 0, 정상 처리시 : 1(insert는 1이에요.)
-			ResultSet rs = pstmt.executeQuery(); // SQL문 실행!
+			pstmt.setInt(1, sc_id);
+			pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			
-			if (rs.next())
-				ddayId = rs.getInt("sc_id");
+			while(rs.next()) {
+				CalReplyBean bean 
+				= new CalReplyBean(
+						rs.getString("mb_id"),
+						rs.getInt("sc_id"), 
+						rs.getInt("rp_id"), 
+						rs.getString("rp_content"),
+						rs.getDate("rp_date"));
+
+				vlist.addElement(bean);
+
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			pool.freeConnection(con, pstmt);
+			pool.freeConnection(con, pstmt, rs);
 		}
 
-		return ddayId;
+		return vlist;
+
 	}
+	
+
+
+
 
 //	public boolean getReplier(String mb_id) {
 //		boolean flag;
