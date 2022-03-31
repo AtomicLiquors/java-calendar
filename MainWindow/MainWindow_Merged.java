@@ -240,8 +240,8 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		JTable table;
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-			new String[][] {
-				{"1."},
+			new Object[][] {
+				{"1. 홍길동"},
 				{"2."},
 				{"3."},
 				{"4."},

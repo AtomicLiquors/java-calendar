@@ -27,8 +27,8 @@ public class PpopDetail extends Ppop {
 	private JPanel contentPane;
 	private JPanel replyPanel;
 	private JTextField replyTf;
-	private JTextField replyTf1;
-	private JTextField replyTf2;
+	private JTextField addReplyTf;
+
 	
 	private JLabel replyIdLbl;
 	private JLabel replyIdLbl1;
@@ -62,10 +62,20 @@ public class PpopDetail extends Ppop {
 		
 		setComment();
 		
+		addReplyTf = new JTextField();
+		addReplyTf.setColumns(10);
+		addReplyTf.setVisible(true);
+		addReplyTf.setFocusable(false);
+		addReplyTf.setText("");
+		addReplyTf.setToolTipText("코멘트를 입력하세요");
+		addReplyTf.setBounds(105, 0, 220, 20);
+		replyPanel.add(addReplyTf);
 		
-		JButton addReplyBtn = new JButton("+");
-		//btnNewButton_1.setIcon(new ImageIcon("ateamproject/img/x.png"));
-		addReplyBtn.setBounds(367, 0, 30, 20);
+		JButton addReplyBtn = new JButton("");
+		addReplyBtn.setIcon(new ImageIcon("ateamproject/img/pencil.png"));
+		addReplyBtn.setBounds(367, 0, 30, 30);
+		addReplyBtn.addActionListener("")
+		
 		replyPanel.add(addReplyBtn);
 		
 
@@ -109,7 +119,7 @@ public class PpopDetail extends Ppop {
 				System.out.println(replyId);
 				replyIdLbl = new JLabel(replyId);
 				replyIdLbl.setHorizontalAlignment(SwingConstants.CENTER);
-				replyIdLbl.setBounds(26, 3 + (i*30), 57, 15);
+				replyIdLbl.setBounds(26, 43 + (i*30), 57, 15);
 				replyPanel.add(replyIdLbl);
 				
 				String reply = rlist.get(i).getRp_content();
@@ -119,7 +129,7 @@ public class PpopDetail extends Ppop {
 				replyTf.setVisible(true);
 				replyTf.setFocusable(false);
 				replyTf.setText(reply);
-				replyTf.setBounds(105, (i*30), 220, 20);
+				replyTf.setBounds(105, 40 + (i*30), 220, 20);
 				replyPanel.add(replyTf);
 				
 			} catch (Exception e) {
