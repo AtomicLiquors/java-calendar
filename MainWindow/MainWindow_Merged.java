@@ -237,12 +237,30 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		tdLbl.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
 		panel_2.add(tdLbl);
 		
-		todoPanel = new JPanel();
-		todoPanel.setBackground(Color.WHITE);
-		todoPanel.setBounds(32, 276, 133, 287);
-		todoPanel.setVisible(true);
-		panel_1.add(todoPanel);
-		
+		JTable table;
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new String[][] {
+				{"1."},
+				{"2."},
+				{"3."},
+				{"4."},
+				{"5."},
+				{"6."},
+				{"7."},
+				{"8."},
+				{"9."},
+				{"10."},
+				{"11."},
+			},
+			new String[] {
+				"TO-DO list"
+			}
+		));
+		table.setBounds(32, 275, 133, 287);
+		panel_1.add(table);
+		 table.setRowHeight(26);
+	
 
 
 //		
