@@ -1,6 +1,7 @@
 package ateamproject.MainWindow;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -12,13 +13,18 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 
 import ateamproject.LoginScreen;
 import ateamproject.Data.CalMemberBean;
@@ -29,12 +35,18 @@ import ateamproject.SchPopup.Ppop;
 
 public class MainWindow_Merged implements ActionListener, Runnable{
 	
+	String[] data = { "aaaaaaaa", "bbbbbbbbb", "ccccccccc", "dddddddd", "eeeeeeeee", "fffffffff", "gggggggggg" };
+
+    
+	
+    
 	Calendar cal = Calendar.getInstance();
 	Dday dd = new Dday();
 	public CalendarPanel_Merged cPanel = new CalendarPanel_Merged();
 	CalMemberMgr mbMgr = new CalMemberMgr();
 	CalSchedMgr scMgr = new CalSchedMgr();
 	CalSchedBean dBean;
+
 	
 	public int yearIdx = cal.get(Calendar.YEAR);
 	public int monthIdx = cal.get(Calendar.MONTH);
@@ -46,6 +58,9 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	private Thread thread;
 	private SimpleDateFormat sfDate;
 	private SimpleDateFormat sfTime;
+	
+	DefaultTableModel dm = new DefaultTableModel();
+	
 
 	public JFrame frame;
 	
@@ -60,6 +75,8 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	JLabel ddayOneLbl;
 	JLabel memberLbl;
 	
+	JPanel todoPanel;
+	
 	JButton ddayTitleBtn;
 	
 	JButton alarmBtn;
@@ -68,6 +85,15 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	JButton prevBtn;
 	JButton nextBtn;
 
+	private Vector strArray2Vector(String[] str) {
+        Vector vector = new Vector();
+        for (int i = 0; i < str.length; i++) {
+          Vector v = new Vector();
+          v.addElement(str[i]);
+          vector.addElement(v);
+        }
+        return vector;
+      }
 	
 	/**
 	 * Create the application.
@@ -76,6 +102,12 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		initialize();
 		cPanel.cGrid.setCalGrid(yearIdx, monthIdx);
 		setLbl();
+
+		
+	    Vector dummyHeader = new Vector();
+	    dummyHeader.addElement("");
+	    dm.setDataVector(strArray2Vector(data), dummyHeader);
+
 	}
 
 	/**
@@ -189,6 +221,9 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		panel_1.setLayout(null);
 		frame.getContentPane().add(panel_1);
 		
+		
+		
+		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(51, 51, 204));
 		panel_2.setBounds(32, 234, 133, 42);
@@ -199,13 +234,30 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		tdLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		tdLbl.setBounds(0, 0, 133, 42);
 		tdLbl.setForeground(Color.WHITE);
-		tdLbl.setFont(new Font("굴림", Font.PLAIN, 25));
+		tdLbl.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
 		panel_2.add(tdLbl);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(32, 276, 133, 287);
-		panel_1.add(panel_3);
+		todoPanel = new JPanel();
+		todoPanel.setBackground(Color.WHITE);
+		todoPanel.setBounds(32, 276, 133, 287);
+		todoPanel.setVisible(true);
+		panel_1.add(todoPanel);
 		
+
+
+//		
+//		JTable table = new JTable(dm);
+//	    table.setShowGrid(false);
+//	    table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//	    JScrollPane scrollTable = new JScrollPane(table);
+//	    scrollTable.setColumnHeader(null);
+////	    scrollTable.setBounds(0,0,30,230);
+//	    scrollTable.setVisible(true);
+//	    todoPanel.add(scrollTable);
+	    
+	    
+	    
+	    
 		JPanel panel_4_1 = new JPanel();
 		panel_4_1.setForeground(new Color(0, 0, 204));
 		panel_4_1.setBackground(new Color(0, 51, 153));
@@ -221,6 +273,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		panel_1.add(panel_4_1_1);
 		panel_4_1_1.setLayout(null);
 				
+		
 		
 		//아래는 D-Day 항목들, 단 소속 패널이 다 따로따로 되어있는데 개선바람.		
 		JPanel panel_4_1_2 = new JPanel();
