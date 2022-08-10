@@ -33,16 +33,13 @@ import ateamproject.Data.CalSchedBean;
 import ateamproject.Data.CalSchedMgr;
 import ateamproject.SchPopup.Ppop;
 
-public class MainWindow_Merged implements ActionListener, Runnable{
+public class MainWindow implements ActionListener, Runnable{
 	
 	String[] data = { "aaaaaaaa", "bbbbbbbbb", "ccccccccc", "dddddddd", "eeeeeeeee", "fffffffff", "gggggggggg" };
-
-    
-	
     
 	Calendar cal = Calendar.getInstance();
 	Dday dd = new Dday();
-	public CalendarPanel_Merged cPanel = new CalendarPanel_Merged();
+	public CalendarPanel cPanel = new CalendarPanel();
 	CalMemberMgr mbMgr = new CalMemberMgr();
 	CalSchedMgr scMgr = new CalSchedMgr();
 	CalSchedBean dBean;
@@ -98,7 +95,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 	/**
 	 * Create the application.
 	 */
-	public MainWindow_Merged() {
+	public MainWindow() {
 		initialize();
 		cPanel.cGrid.setCalGrid(yearIdx, monthIdx);
 		setLbl();
@@ -519,7 +516,7 @@ public class MainWindow_Merged implements ActionListener, Runnable{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainWindow_Merged window = new MainWindow_Merged();
+					MainWindow window = new MainWindow();
 					window.frame.setVisible(true);
 					
 //					window.frame.addMouseListener(new MouseAdapter() {

@@ -1,3 +1,0 @@
-frame.invalidate();
-frame.validate();
-frame.repaint();

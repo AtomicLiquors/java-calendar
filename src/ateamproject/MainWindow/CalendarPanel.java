@@ -24,7 +24,7 @@ import ateamproject.SchPopup.Ppop;
 
 
 
-public class CalendarPanel_Merged extends Panel{
+public class CalendarPanel extends Panel{
 	
 	Calendar cal = Calendar.getInstance();
 	public CalendarGrid cGrid = new CalendarGrid();
@@ -48,7 +48,7 @@ public class CalendarPanel_Merged extends Panel{
 		panelM = m;
 	}
 	
-	public CalendarPanel_Merged() {		
+	public CalendarPanel() {		
 		
 		JPanel cPanel = new JPanel();
 		cPanel.setOpaque(false);

@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import ateamproject.Data.CalMemberMgr;
-import ateamproject.MainWindow.MainWindow_Merged;
+import ateamproject.MainWindow.MainWindow;
 import ateamproject.mbform.Accountcreate;
 import ateamproject.mbform.Accountseek;
 
@@ -71,7 +71,7 @@ public class LoginScreen {
 		frame.getContentPane().add(Loginpanel);
 		Loginpanel.setLayout(null);
 
-		JButton joinBtn = new JButton("");
+		JButton joinBtn = new JButton("회원가입");
 		joinBtn.setIcon(new ImageIcon(
 				"ateamproject/img/signup.png"));
 		joinBtn.setBounds(101, 215, 119, 35);
@@ -88,7 +88,7 @@ public class LoginScreen {
 		Loginpanel.add(joinBtn);
 		
 
-		JButton seekBtn = new JButton("");
+		JButton seekBtn = new JButton("ID찾기");
 		seekBtn.setIcon(new ImageIcon(
 				"ateamproject/img/lookup.png"));
 		seekBtn.setBounds(273, 215, 119, 35);
@@ -103,7 +103,7 @@ public class LoginScreen {
 		});
 		Loginpanel.add(seekBtn);
 
-		JButton loginBtn = new JButton("");
+		JButton loginBtn = new JButton("로그인");
 		loginBtn.setIcon(new ImageIcon(
 				"ateamproject/img/login.png"));
 		loginBtn.setBounds(410, 68, 113, 119);
@@ -119,7 +119,7 @@ public class LoginScreen {
 				
 				if (mgr.loginChk(id, pwd)) {
 					frame.dispose();
-					MainWindow_Merged mw = new MainWindow_Merged();
+					MainWindow mw = new MainWindow();
 					mw.setLoginInfo(id); 
 					mw.frame.setVisible(true);
 					mw.frame.addWindowListener(new WindowAdapter() {
@@ -138,36 +138,41 @@ public class LoginScreen {
 
 		});
 		loginBtn.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
-		Loginpanel.add(loginBtn);
+		
 
-		JLabel lblNewLabel = new JLabel("자바 SW A조 사무용 캘린더");
-		lblNewLabel.setBounds(134, 15, 236, 28);
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
-		Loginpanel.add(lblNewLabel);
+		JLabel titleLbl = new JLabel("자바 SW A조 사무용 캘린더");
+		titleLbl.setBounds(134, 15, 236, 28);
+		titleLbl.setForeground(Color.WHITE);
+		titleLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLbl.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
+		
 
 		ID = new JTextField();
 		ID.setBounds(101, 68, 291, 42);
 		ID.setColumns(10);
-		Loginpanel.add(ID);
+		
 
 		Password = new JPasswordField();
 		Password.setBounds(101, 145, 291, 42);
 		Password.setColumns(10);
+		
+		
+		Loginpanel.add(ID);
 		Loginpanel.add(Password);
+		Loginpanel.add(titleLbl);
+		Loginpanel.add(loginBtn);
 
-		JLabel lblNewLabel_1 = new JLabel("ID");
-		lblNewLabel_1.setBounds(36, 86, 52, 15);
-		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		Loginpanel.add(lblNewLabel_1);
+		JLabel idLbl = new JLabel("ID");
+		idLbl.setBounds(36, 86, 52, 15);
+		idLbl.setForeground(Color.WHITE);
+		idLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		Loginpanel.add(idLbl);
 
-		JLabel lblNewLabel_1_1 = new JLabel("PW");
-		lblNewLabel_1_1.setBounds(36, 160, 52, 15);
-		lblNewLabel_1_1.setForeground(Color.WHITE);
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		Loginpanel.add(lblNewLabel_1_1);
+		JLabel pwdLbl = new JLabel("PW");
+		pwdLbl.setBounds(36, 160, 52, 15);
+		pwdLbl.setForeground(Color.WHITE);
+		pwdLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		Loginpanel.add(pwdLbl);
 		
 		JPanel Mainpanel = new JPanel();
 		Mainpanel.setBounds(0, 0, 1100, 500);
