@@ -1,9 +1,12 @@
 # Java 사무용 캘린더
 
-sql문에서 sched 테이블과 reply 테이블 순서 바꿀것. 
+### 제작 기간 & 참여 인원
+'22.03.17 - '22.03.31 (2주)
+Java, MySQL (개발인원: 3명)
 
-설치방법 중
+<!--sql문에서 sched 테이블과 reply 테이블 순서 바꿀것. -->
 
+[설치방법]
 Project의 classpath에 MySQL 설치 위치에 있는 mysql-connector-java-8.0.21.jar를 추가해 줄 것 
 \MySQL\Connector J 8.0\mysql-connector-java-8.0.21.jar  
 
