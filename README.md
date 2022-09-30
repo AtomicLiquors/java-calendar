@@ -1,6 +1,6 @@
 # Java 사무용 캘린더 :date: 
-> 개발 공부 시작 후 첫 프로젝트,   
-> Java AWT/Swing 기반의 사무용 캘린더  
+> [개발 공부 시작 후 첫 프로젝트]   
+> Java AWT/Swing 기반, 공유 일정을 등록하는 사무용 캘린더  
 > DB Connection Pool을 이용한 DB연동 구현  
 
 &nbsp;  
@@ -22,6 +22,10 @@
 ### :books: 사용한 기술 
 - Java, MySQL
 - Tool : HeidiSQL, Github Desktop
+
+
+&nbsp;  
+___
 
 &nbsp;  
 ### :wrench: 주요 기능
@@ -49,30 +53,34 @@
   한글이 손상되는 문제가 발생하였다.  
   조원들과 의논한 결과 Workspace 전체를 UTF-8로 바꿔서 해결하였다.  
 
+
 &nbsp;  
+___
+
+&nbsp;   
 ### :bar_chart: 구조
 #### Class Diagram 
 <img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/class_diagram.png" style= "width: 40vw;">
 
-- **LoginScreen.java**  
+- **LoginScreen**  
  로그인 화면이며, 프로그램의 진입점입니다.
  
 - **AccoutCreate**  
  신규 계정을 등록하는 화면입니다.
  
-- **AccountSeek.java**  
+- **AccountSeek**  
  계정정보를 조회하는 화면입니다.
 
  &nbsp;  
 
  
-- **MainWindow.java**  
+- **MainWindow**  
   핵심 기능을 종합한 화면입니다. 
   
-- **CalendarPanel.java**  
+- **CalendarPanel**  
  달력이 표시되는 틀입니다. 
  
-- **CalendarGrid.java**   
+- **CalendarGrid**   
  달력의 월, 일을 표시합니다. 일정이 등록된 날짜는 파랗게 표시합니다.
  
 - **Ppop, PpopDetail**  
@@ -84,8 +92,26 @@
 <img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/ER_Diagram.png" style= "width: 40vw;">
 
 
+ 
+- **member**  
+  등록된 계정 정보를 저장하는 테이블입니다.
+  
+- **sched**  
+ 일정 정보를 저장하는 테이블입니다. 
+ 
+- **todo**   
+ To-do list 정보를 저장하기 위해 생성한 테이블입니다.
+ 
+- **reply**  
+ 일정에 등록된 댓글을 저장하는 테이블입니다.
+ 
+ - **dday**  
+ 어떤 일정이 D-Day로 등록되었는지를 저장하는 테이블입니다.
 
 &nbsp;  
+___
+
+&nbsp;   
 ### :memo: 후기
 - Java 객체지향 기본 문법. static, private, public. 이해가 부족한 부분은 프로젝트가 끝나고 복습하였다.
 - DB 연결, 달력 패널의 경우 원리를 파악하기 위해 예제를 클론 코딩하는 과정을 거쳐야 했다.
