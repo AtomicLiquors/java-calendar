@@ -60,7 +60,7 @@ ___
 &nbsp;   
 ### :bar_chart: 구조
 #### Class Diagram 
-<img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/class_diagram.png" style= "width: 40vw;">
+<img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/class_diagram.png" style= "width: 60vw;">
 
 - **LoginScreen**  
  로그인 화면이며, 프로그램의 진입점입니다.
@@ -89,7 +89,7 @@ ___
 &nbsp;  
 &nbsp;  
 #### ER Diagram
-<img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/ER_Diagram.png" style= "width: 40vw;">
+<img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/ER_Diagram.png" style= "width: 60vw;">
 
 
  
