@@ -20,6 +20,7 @@
 &nbsp;  
 ### 사용한 기술 (기술 스택)
 - Java, MySQL
+- Tool : HeidiSQL, Github Desktop
 <!--
 
 
@@ -34,7 +35,7 @@
 -->
 
 &nbsp;  
-7. 핵심 기능 : 코드로 보여주거나, 코드 링크
+### 주요 기능
 - 달력 표시 기능
 - MainWindow.java
 
@@ -54,6 +55,15 @@
 
 ### Class Diagram 
 <img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/class_diagram.png" style= "width: 40vw;">
+
+- LoginScreen.java : 로그인 화면입니다.  
+  프로그램의 진입점입니다.
+ &nbsp;  
+- MainWindow.java : 
+- CalendarPanel.java : 달력이 표시되는 틀입니다. 
+- CalendarGrid.java : 달력의 월, 일을 표시합니다. 일정이 등록된 날짜는 파랗게 표시합니다.
+ &nbsp;  
+- Ppop.java :
 
 &nbsp;  
 &nbsp;  
