@@ -50,7 +50,19 @@
   한글이 손상되는 문제가 발생하였다.  
   조원들과 의논한 결과 Workspace 전체를 UTF-8로 바꿔서 해결하였다.  
 
+&nbsp;  
 
+### Class Diagram 
+<img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/class_diagram.png" style= "width: 40vw;">
+
+&nbsp;  
+&nbsp;  
+### ER Diagram
+<img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/ER_Diagram.png" style= "width: 40vw;">
+
+
+
+&nbsp;  
 ### 회고 / 느낀 점
 - Java 객체지향 기본 문법. static, private, public. 이해가 부족한 부분은 프로젝트가 끝나고 복습하였다.
 - 예제 클론 코딩 DB연결 등을
@@ -60,11 +72,3 @@
 - 새 창을 호출할 때마다, 로그인 정보를 일일이 생성자의 매개변수로 전달하여 불편함이 있었다. 
   그 후 JSP 과정에서 Session을 배우게 되었고, Session의 편리성을 실감하였다.
 - WindowBuilder 도입으로 초기 화면 구현 시간을 감축하였다.
-
-
-### Class Diagram 
-<img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/class_diagram.png" style= "width: 40vw;">
-
-### ER Diagram
-<img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/ER_Diagram.png" style= "width: 40vw;">
-
