@@ -24,7 +24,7 @@
 - Tool : HeidiSQL, Github Desktop
 
 &nbsp;  
-### 주요 기능
+### :wrench: 주요 기능
 - **계정 기능**    
  DB에 계정 정보를 등록하고 로그인, 계정 정보 찾기, 중복확인 등 수행
  
@@ -37,7 +37,7 @@
  등록된 일정 중 하나를 지정하여 좌측 사이드바에 D-Day로 표시합니다.
 
 &nbsp;  
-### :hammer:Troubleshooting
+### :hammer: Troubleshooting
 - **달력 예제 디버깅(경곗값 오류)**   
   
   CalendarGrid.java에 구현된 달력 패널은 구글링을 통해 캘린더 예제를 변형한 것이다.  
@@ -50,8 +50,8 @@
   조원들과 의논한 결과 Workspace 전체를 UTF-8로 바꿔서 해결하였다.  
 
 &nbsp;  
-
-### Class Diagram 
+### :bar_chart: 구조
+#### Class Diagram 
 <img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/class_diagram.png" style= "width: 40vw;">
 
 - **LoginScreen.java**  
@@ -80,7 +80,7 @@
 
 &nbsp;  
 &nbsp;  
-### ER Diagram
+#### ER Diagram
 <img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/ER_Diagram.png" style= "width: 40vw;">
 
 
