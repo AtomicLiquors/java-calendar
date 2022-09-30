@@ -63,7 +63,7 @@
 
 
 ### Class Diagram 
-[class diagram]
+[class diagram](https://github.com/AtomicLiquors/java-calendar/blob/main/class_diagram.png)
 
 ### ER Diagram
-[ER Diagram]
+[ER Diagram](https://github.com/AtomicLiquors/java-calendar/blob/main/ER_Diagram.png)
