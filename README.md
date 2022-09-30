@@ -54,16 +54,18 @@
 ### Class Diagram 
 <img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/class_diagram.png" style= "width: 40vw;">
 
-- **LoginScreen.java** 
+- **LoginScreen.java**  
  로그인 화면이며, 프로그램의 진입점입니다.
- &nbsp;  
+ 
 - **MainWindow.java**  
   핵심 기능을 종합한 화면입니다. 
+  
 - **CalendarPanel.java**  
  달력이 표시되는 틀입니다. 
+ 
 - **CalendarGrid.java**   
  달력의 월, 일을 표시합니다. 일정이 등록된 날짜는 파랗게 표시합니다.
- &nbsp;  
+ 
 - **Ppop.java**  
  일정을 표시하는 팝업화면입니다. 
 
