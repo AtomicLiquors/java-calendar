@@ -60,7 +60,7 @@ ___
 
 &nbsp;   
 ### :bar_chart: 구조
-#### Class Diagram 
+#### [Class Diagram]
 <img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/class_diagram.png" style= "width: 60vw;">
 
 - **LoginScreen**  
@@ -89,7 +89,7 @@ ___
 
 &nbsp;  
 &nbsp;  
-#### ER Diagram
+#### [ER Diagram]
 <img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/ER_Diagram.png" style= "width: 60vw;">
 
 
