@@ -64,29 +64,16 @@ ___
 #### [Class Diagram]
 <img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/class_diagram.png" style= "width: 60vw;">
 
-- **LoginScreen**  
- 로그인 화면이며, 프로그램의 진입점입니다.
- 
-- **AccoutCreate**  
- 신규 계정을 등록하는 화면입니다.
- 
-- **AccountSeek**  
- 계정정보를 조회하는 화면입니다.
 
- &nbsp;  
-
- 
-- **MainWindow**  
-  핵심 기능을 종합한 화면입니다. 
-  
-- **CalendarPanel**  
- 달력이 표시되는 틀입니다. 
- 
-- **CalendarGrid**   
- 달력의 월, 일을 표시합니다. 일정이 등록된 날짜는 파랗게 표시합니다.
- 
-- **Ppop, PpopDetail**  
- 일정을 표시하는 팝업화면입니다. [더보기] 클릭시 PpopDetail이 호출되어 팝업화면이 확장됩니다.
+|**클래스**|**설명**|
+|--|--|
+| **LoginScreen**  | **로그인 화면이며, 프로그램의 진입점입니다.**|
+|**AccoutCreate** | 신규 계정을 등록하는 화면입니다.|
+| **AccountSeek**  | 계정정보를 조회하는 화면입니다.|
+| **MainWindow**  | **핵심 기능을 종합한 화면입니다.** |
+| **CalendarPanel** | 달력이 표시되는 틀입니다. |
+| **CalendarGrid**  | 달력의 월, 일을 표시합니다. <br> 일정이 등록된 날짜는 파랗게 표시합니다.|
+| **Ppop, PpopDetail**  |  일정을 표시하는 팝업화면입니다. <br> [더보기] 클릭시 PpopDetail이 호출되어 팝업화면이 확장됩니다.|
 
 &nbsp;  
 &nbsp;  
@@ -94,21 +81,13 @@ ___
 <img src = "https://github.com/AtomicLiquors/java-calendar/blob/main/ER_Diagram.png" style= "width: 60vw;">
 
 
- 
-- **member**  
-  등록된 계정 정보를 저장하는 테이블입니다.
-  
-- **sched**  
- 일정 정보를 저장하는 테이블입니다. 
- 
-- **todo**   
- To-do list 정보를 저장하기 위해 생성한 테이블입니다.
- 
-- **reply**  
- 일정에 등록된 댓글을 저장하는 테이블입니다.
- 
- - **dday**  
- 어떤 일정이 D-Day로 등록되었는지를 저장하는 테이블입니다.
+|**테이블**|**설명**|
+|--|--|
+| **member** | 등록된 계정 정보를 저장하는 테이블입니다.|
+| **sched** | 일정 정보를 저장하는 테이블입니다. |
+| **todo**  | To-do list 정보를 저장하기 위해 생성한 테이블입니다. |
+| **reply** | 일정에 등록된 댓글을 저장하는 테이블입니다. |
+| **dday**  |  어떤 일정이 D-Day로 등록되었는지를 저장하는 테이블입니다. |
 
 &nbsp;  
 ___
